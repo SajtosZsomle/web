@@ -1,86 +1,60 @@
-// Smooth scrolling for navigation links
+// Live updating telemetry clock
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toTimeString().split(' ')[0];
+    const clockElement = document.getElementById('live-clock');
+    if(clockElement) clockElement.textContent = timeString;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Simulated Hardware Telemetry Logger Feed
+const logContainer = document.getElementById('log-stream');
+const logMessages = [
+    "DRV8825 // microstepping sequence initialized.",
+    "ESP32_CORE // checking sensor bus I2C status... OK",
+    "SYS_MONITOR // telemetry pipeline sync established.",
+    "FIRMWARE // flash memory verify: 100% integrity",
+    "ADC_CHANNEL // ambient read complete // LDR=412v",
+    "ANTI_DUPE // tracking system integrity structural match.",
+    "ASYNC_LOOP // execution delay 0ms",
+    "easyeda_export // verified gerber array layer structures."
+];
+
+function generateLog() {
+    if (!logContainer) return;
+    
+    const timestamp = new Date().toISOString().slice(11, 19);
+    const randomMsg = logMessages[Math.floor(Math.random() * logMessages.length)];
+    
+    const logLine = document.createElement('div');
+    logLine.style.marginBottom = "4px";
+    logLine.innerHTML = `<span style="color: #6272a4;">[${timestamp}]</span> ${randomMsg}`;
+    
+    logContainer.appendChild(logLine);
+    
+    // Maintain maximum window length for rows
+    while (logContainer.childNodes.length > 7) {
+        logContainer.removeChild(logContainer.firstChild);
+    }
+}
+
+if(logContainer) {
+    setInterval(generateLog, 2400);
+    // Initial instantiation loop
+    for(let i=0; i<5; i++) { generateLog(); }
+}
+
+// Micro-scrolling handling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+            window.scrollTo({
+                top: target.offsetTop - 60,
+                behavior: 'smooth'
+            });
+        }
     });
 });
-
-// Circuit Node Animation for Hero Section
-const canvas = document.getElementById('circuit-canvas');
-const ctx = canvas.getContext('2d');
-
-let width, height;
-let particles = [];
-
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-
-window.addEventListener('resize', resize);
-resize();
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = 1.5;
-    }
-
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#45a29e';
-        ctx.fill();
-    }
-}
-
-function initParticles() {
-    particles = [];
-    const particleCount = Math.floor((width * height) / 15000); // Responsive particle density
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, width, height);
-    
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        
-        // Draw connecting lines
-        for (let j = i; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 120) {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(102, 252, 241, ${1 - distance / 120})`;
-                ctx.lineWidth = 0.5;
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-            }
-        }
-    }
-    requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
