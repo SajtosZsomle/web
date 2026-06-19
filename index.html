@@ -3,124 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MrZsomi | Hardware & Embedded Systems</title>
-    <meta name="description" content="Portfolio of MrZsomi (Zsomle) - Building hardware systems from idea to reality.">
+    <title>mrzsomi.top // System Core</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-brand">&gt; mrzsomi.top</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <header id="hero" class="hero">
-        <canvas id="circuit-canvas"></canvas>
-        <div class="hero-content">
-            <h1>MrZsomi <span class="alias">(Zsomle)</span></h1>
-            <p class="tagline">Building hardware systems from idea to reality.</p>
-            <a href="#projects" class="cta-btn">View Projects</a>
-        </div>
-    </header>
+    <!-- Top Status Bar / Telemetry -->
+    <div class="status-bar">
+        <div class="status-segment"><span class="glow-dot"></span> SYSTEM: ACTIVE</div>
+        <div class="status-segment hidden-mobile">LOC: HU // 47.4979° N, 19.0402° E</div>
+        <div class="status-segment">CLOCK: <span id="live-clock">00:00:00</span></div>
+    </div>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">01. About Me</h2>
-            <div class="about-content">
-                <p>I am a student from Hungary passionate about electronics, embedded systems, and DIY engineering. My focus is on designing and building real-world projects using microcontrollers, custom PCBs, and sensor networks.</p>
-                <p>From writing low-level firmware to assembling mechanical gantry systems, I enjoy the entire process of bringing hardware to life.</p>
+    <!-- Main Workbench Dashboard Container -->
+    <main class="workbench-grid">
+        
+        <!-- Grid Item 1: Hero Node -->
+        <section class="panel hero-panel">
+            <div class="panel-corners"></div>
+            <div class="panel-label">CORE_IDENT //</div>
+            <div class="hero-brand">
+                <h1>mrzsomi<span class="accent">.top</span></h1>
+                <p class="alias">/ alias: Zsomle /</p>
             </div>
-        </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">02. Skills & Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>&lt;Hardware /&gt;</h3>
-                    <ul>
-                        <li>Arduino & ESP32</li>
-                        <li>Sensor Integration</li>
-                        <li>Stepper Motor Control (DRV8825)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>&lt;Software /&gt;</h3>
-                    <ul>
-                        <li>Embedded C/C++</li>
-                        <li>Arduino IDE</li>
-                        <li>Basic Firmware Logic</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>&lt;Engineering /&gt;</h3>
-                    <ul>
-                        <li>PCB Design (EasyEDA)</li>
-                        <li>Rapid Prototyping</li>
-                        <li>Hardware Debugging</li>
-                    </ul>
-                </div>
+            <div class="hero-tagline">
+                <span class="terminal-prompt">&gt;</span> Building hardware systems from idea to reality.
             </div>
-        </div>
-    </section>
+            <div class="action-row">
+                <a href="#projects" class="btn-primary">INITIALIZE_PROJECT_SCAN</a>
+            </div>
+        </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">03. Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>RoyalCore Plugin</h3>
-                        <span class="tech-tag">Software</span>
-                    </div>
-                    <p>A Minecraft plugin system featuring an advanced anti-dupe mechanism, exploit detection, and automated Discord webhook alerts for server administration.</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>ESP32 Sensor System</h3>
-                        <span class="tech-tag">IoT / Embedded</span>
-                    </div>
-                    <p>An environmental monitoring node utilizing DHT11, LDR, rain, and wind sensors. Features a Web API and a dashboard UI for real-time data visualization.</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Linear Rail Gantry</h3>
-                        <span class="tech-tag">Mechatronics</span>
-                    </div>
-                    <p>A mechanical and electronics hybrid system using stepper motors and linear rails to achieve precise, automated movement for custom tooling applications.</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>DRV8825 PCB</h3>
-                        <span class="tech-tag">Hardware Design</span>
-                    </div>
-                    <p>A custom-designed, Arduino-based stepper motor controller PCB utilizing the DRV8825 driver. Includes integrated safety logic enhancements.</p>
+        <!-- Grid Item 2: About / Spec Node -->
+        <section class="panel about-panel">
+            <div class="panel-corners"></div>
+            <div class="panel-label">SYS_BIO //</div>
+            <p>Student, maker, and electronics enthusiast based in Hungary. Focused on low-level firmware architecture, precision hardware automation, and custom structural layout fabrication.</p>
+            <p style="margin-top: 1rem;">Bridging the gap between software constraints and physical mechanical assembly.</p>
+        </section>
+
+        <!-- Grid Item 3: Live Hardware Logs Simulation -->
+        <section class="panel telemetry-panel hidden-mobile">
+            <div class="panel-corners"></div>
+            <div class="panel-label">LIVE_TELEMETRY_FEED //</div>
+            <div class="terminal-stream" id="log-stream">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Grid Item 4: Tech Stack Spec Matrix -->
+        <section id="skills" class="panel skills-panel">
+            <div class="panel-corners"></div>
+            <div class="panel-label">HARDWARE_SOFTWARE_MATRIX //</div>
+            
+            <div class="matrix-row">
+                <div class="matrix-cat">HW_LAYERS</div>
+                <div class="matrix-tags">
+                    <span>ESP32 / Arduino</span>
+                    <span>Sensors (I2C/SPI)</span>
+                    <span>DRV8825 Controls</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="container text-center">
-            <h2 class="section-title">04. Connection</h2>
-            <p>Interested in collaborating or checking out my open-source code?</p>
-            <div class="contact-links">
-                <a href="https://github.com/mrzsomi" class="cta-btn outline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-                <a href="mailto:hello@mrzsomi.top" class="cta-btn outline">Email Me</a>
+            <div class="matrix-row">
+                <div class="matrix-cat">SW_LAYERS</div>
+                <div class="matrix-tags">
+                    <span>Embedded C/C++</span>
+                    <span>Arduino IDE</span>
+                    <span>Firmware Logic</span>
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="matrix-row">
+                <div class="matrix-cat">ENG_LAYERS</div>
+                <div class="matrix-tags">
+                    <span>PCB Design (EasyEDA)</span>
+                    <span>Prototyping</span>
+                    <span>HW Debugging</span>
+                </div>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2026 MrZsomi. Built with pure HTML, CSS, and JS.</p>
+        <!-- Grid Item 5: Comprehensive Project Grid -->
+        <section id="projects" class="panel projects-wrapper">
+            <div class="panel-corners"></div>
+            <div class="panel-label">DEPLOYED_SUB_SYSTEMS //</div>
+            
+            <div class="bento-projects">
+                <!-- Project Card 1 -->
+                <div class="project-spec-card">
+                    <div class="card-meta">SYS_01 // SOFTWARE</div>
+                    <h3>RoyalCore Minecraft Plugin</h3>
+                    <p>High-performance anti-dupe mechanics with continuous exploit vectors mitigation. Connected to Discord webhook matrices for live structural logging.</p>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-spec-card">
+                    <div class="card-meta">SYS_02 // IOT_ARRAY</div>
+                    <h3>ESP32 Sensor Cluster</h3>
+                    <p>Environmental tracking station deploying DHT11, LDR, rain/wind arrays. Serves live metrics locally via Web API to a custom frontend UI.</p>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-spec-card">
+                    <div class="card-meta">SYS_03 // MECHATRONICS</div>
+                    <h3>Linear Rail Gantry System</h3>
+                    <p>Hybrid automated motion structure integrating physical linear tracks and stepper configurations for precise positioning tasks.</p>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="project-spec-card">
+                    <div class="card-meta">SYS_04 // PCB_LAYOUT</div>
+                    <h3>DRV8825 Controller Unit</h3>
+                    <p>Custom schematics and board layout for optimized stepper driving. Hardwired hardware safety overrides and isolation circuits built-in.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Item 6: Contact Uplink -->
+        <section id="contact" class="panel contact-panel">
+            <div class="panel-corners"></div>
+            <div class="panel-label">COMMS_UPLINK //</div>
+            <p>Establish direct pipeline connection:</p>
+            <div class="uplink-grid">
+                <a href="https://github.com/mrzsomi" target="_blank" rel="noopener noreferrer" class="uplink-node">
+                    <span>GITHUB</span>
+                    <span class="arrow">↗</span>
+                </a>
+                <a href="mailto:hello@mrzsomi.top" class="uplink-node">
+                    <span>EMAIL_CORE</span>
+                    <span class="arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="workbench-footer">
+        <div>REV_2026.06 // MRZSOMI // OPEN_SOURCE_TRANSPARENCY</div>
     </footer>
 
     <script src="script.js"></script>
