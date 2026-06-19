@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MrZsomi | Hardware & Embedded Systems</title>
+    <meta name="description" content="Portfolio of MrZsomi (Zsomle) - Building hardware systems from idea to reality.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">&gt; mrzsomi.top</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
+    <header id="hero" class="hero">
+        <canvas id="circuit-canvas"></canvas>
+        <div class="hero-content">
+            <h1>MrZsomi <span class="alias">(Zsomle)</span></h1>
+            <p class="tagline">Building hardware systems from idea to reality.</p>
+            <a href="#projects" class="cta-btn">View Projects</a>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">01. About Me</h2>
+            <div class="about-content">
+                <p>I am a student from Hungary passionate about electronics, embedded systems, and DIY engineering. My focus is on designing and building real-world projects using microcontrollers, custom PCBs, and sensor networks.</p>
+                <p>From writing low-level firmware to assembling mechanical gantry systems, I enjoy the entire process of bringing hardware to life.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">02. Skills & Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>&lt;Hardware /&gt;</h3>
+                    <ul>
+                        <li>Arduino & ESP32</li>
+                        <li>Sensor Integration</li>
+                        <li>Stepper Motor Control (DRV8825)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>&lt;Software /&gt;</h3>
+                    <ul>
+                        <li>Embedded C/C++</li>
+                        <li>Arduino IDE</li>
+                        <li>Basic Firmware Logic</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>&lt;Engineering /&gt;</h3>
+                    <ul>
+                        <li>PCB Design (EasyEDA)</li>
+                        <li>Rapid Prototyping</li>
+                        <li>Hardware Debugging</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">03. Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>RoyalCore Plugin</h3>
+                        <span class="tech-tag">Software</span>
+                    </div>
+                    <p>A Minecraft plugin system featuring an advanced anti-dupe mechanism, exploit detection, and automated Discord webhook alerts for server administration.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>ESP32 Sensor System</h3>
+                        <span class="tech-tag">IoT / Embedded</span>
+                    </div>
+                    <p>An environmental monitoring node utilizing DHT11, LDR, rain, and wind sensors. Features a Web API and a dashboard UI for real-time data visualization.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Linear Rail Gantry</h3>
+                        <span class="tech-tag">Mechatronics</span>
+                    </div>
+                    <p>A mechanical and electronics hybrid system using stepper motors and linear rails to achieve precise, automated movement for custom tooling applications.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>DRV8825 PCB</h3>
+                        <span class="tech-tag">Hardware Design</span>
+                    </div>
+                    <p>A custom-designed, Arduino-based stepper motor controller PCB utilizing the DRV8825 driver. Includes integrated safety logic enhancements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container text-center">
+            <h2 class="section-title">04. Connection</h2>
+            <p>Interested in collaborating or checking out my open-source code?</p>
+            <div class="contact-links">
+                <a href="https://github.com/mrzsomi" class="cta-btn outline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                <a href="mailto:hello@mrzsomi.top" class="cta-btn outline">Email Me</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MrZsomi. Built with pure HTML, CSS, and JS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
