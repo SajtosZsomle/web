@@ -1,149 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mrzsomi.top // System Core</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mrzsomi.top // System Core</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0d0f12;
+    --surface:  #111418;
+    --surface2: #161b22;
+    --border:   #1e2830;
+    --accent:   #00e5ff;
+    --accent2:  #7b61ff;
+    --discord:  #5865F2;
+    --text:     #c9d1d9;
+    --muted:    #586069;
+    --green:    #39d353;
+    --warn:     #f0883e;
+    --radius:   6px;
+    --gap:      16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 20px;
+    background: rgba(13,15,18,0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .status-bar .status-segment { display: flex; align-items: center; gap: 8px; }
+  .glow-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* ── GRID ── */
+  .workbench-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: var(--gap);
+    padding: var(--gap);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── PANEL ── */
+  .panel {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .panel:hover { border-color: #2a3440; }
+
+  .panel-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  /* corner accents */
+  .panel-corners::before,
+  .panel-corners::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .panel-corners::before { top: 4px; left: 4px; border-width: 1px 0 0 1px; }
+  .panel-corners::after  { bottom: 4px; right: 4px; border-width: 0 1px 1px 0; }
+
+  /* ── HERO ── */
+  .hero-panel {
+    grid-column: 1 / 8;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+  }
+  .hero-brand h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hero-brand h1 .accent { color: var(--accent); }
+  .alias {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+  .hero-tagline {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.85;
+  }
+  .terminal-prompt { color: var(--accent); margin-right: 6px; }
+
+  .action-row { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: var(--radius);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    background: rgba(0,229,255,0.08);
+    box-shadow: 0 0 14px rgba(0,229,255,0.15);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: var(--radius);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--text); color: var(--text); }
+
+  /* ── BIO ── */
+  .about-panel {
+    grid-column: 8 / 13;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .about-panel p { color: var(--text); font-size: 12px; opacity: 0.85; }
+  .about-panel p + p { margin-top: 10px; }
+
+  /* stat chips */
+  .stat-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 16px;
+  }
+  .stat-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .stat-chip span { color: var(--accent); font-weight: 600; }
+
+  /* ── TELEMETRY ── */
+  .telemetry-panel {
+    grid-column: 1 / 5;
+    grid-row: 2;
+  }
+  .terminal-stream {
+    height: 140px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .log-line {
+    font-size: 10.5px;
+    color: var(--muted);
+    animation: fadeIn 0.4s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .log-line .ts { color: var(--accent2); margin-right: 8px; }
+  .log-line .ok { color: var(--green); }
+  .log-line .warn { color: var(--warn); }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
+
+  /* ── SKILLS MATRIX ── */
+  .skills-panel {
+    grid-column: 5 / 13;
+    grid-row: 2;
+  }
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .matrix-col-head {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent2);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .matrix-tags { display: flex; flex-direction: column; gap: 5px; }
+  .matrix-tags span {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 10.5px;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s;
+  }
+  .matrix-tags span:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  .projects-wrapper {
+    grid-column: 1 / 13;
+    grid-row: 3;
+  }
+  .bento-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .project-spec-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+  .project-spec-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card-meta {
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .project-spec-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .project-spec-card p {
+    font-size: 11.5px;
+    color: var(--text);
+    opacity: 0.75;
+    line-height: 1.55;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+  .card-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.18);
+    color: var(--accent);
+  }
+
+  /* ── CONTACT ── */
+  .contact-panel {
+    grid-column: 1 / 13;
+    grid-row: 4;
+  }
+  .uplink-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .uplink-node {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    min-width: 160px;
+  }
+  .uplink-node:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(0,229,255,0.1);
+  }
+  .uplink-node.discord:hover {
+    border-color: var(--discord);
+    color: var(--discord);
+    box-shadow: 0 0 12px rgba(88,101,242,0.15);
+  }
+  .uplink-node .icon {
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .uplink-node svg { width: 16px; height: 16px; fill: currentColor; }
+  .uplink-node .arrow { margin-left: auto; opacity: 0.5; font-size: 14px; }
+
+  /* ── FOOTER ── */
+  .workbench-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    border-top: 1px solid var(--border);
+    margin-top: var(--gap);
+  }
+
+  /* ── CONTACT FORM ── */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 10px; }
+  .form-row { display: flex; flex-direction: column; gap: 4px; }
+  .form-label {
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+  }
+  .form-input, .form-textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0,229,255,0.08);
+  }
+  .form-textarea { height: 110px; }
+  .btn-send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 20px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: var(--radius);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    align-self: flex-start;
+  }
+  .btn-send:hover {
+    background: rgba(0,229,255,0.08);
+    box-shadow: 0 0 14px rgba(0,229,255,0.15);
+  }
+  .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-status {
+    font-size: 11px;
+    min-height: 18px;
+    letter-spacing: 0.06em;
+  }
+  .form-status.ok   { color: var(--green); }
+  .form-status.err  { color: var(--warn); }
+
+  .contact-social { display: flex; flex-direction: column; gap: 10px; }
+  .contact-social .uplink-node {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .contact-social .uplink-node:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(0,229,255,0.1);
+  }
+  .contact-social .uplink-node.discord:hover {
+    border-color: var(--discord);
+    color: var(--discord);
+    box-shadow: 0 0 12px rgba(88,101,242,0.15);
+  }
+  .contact-social .icon {
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .contact-social .arrow { margin-left: auto; opacity: 0.5; font-size: 14px; }
+
+  @media (max-width: 768px) {
+    .contact-inner { grid-template-columns: 1fr; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero-panel   { grid-column: 1 / -1; }
+    .about-panel  { grid-column: 1 / -1; }
+    .telemetry-panel { display: none; }
+    .skills-panel { grid-column: 1 / -1; grid-row: auto; }
+    .matrix-grid  { grid-template-columns: 1fr; }
+    .projects-wrapper { grid-column: 1 / -1; }
+    .contact-panel { grid-column: 1 / -1; }
+    .status-bar .hidden-mobile { display: none; }
+  }
+
+  /* scanline overlay — subtle */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Top Status Bar / Telemetry -->
-    <div class="status-bar">
-        <div class="status-segment"><span class="glow-dot"></span> SYSTEM: ACTIVE</div>
-        <div class="status-segment hidden-mobile">LOC: HU // 47.4979° N, 19.0402° E</div>
-        <div class="status-segment">CLOCK: <span id="live-clock">00:00:00</span></div>
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="status-segment"><span class="glow-dot"></span> SYSTEM: ACTIVE</div>
+  <div class="status-segment">CLOCK: <span id="live-clock">00:00:00</span></div>
+</div>
+
+<main class="workbench-grid">
+
+  <!-- HERO -->
+  <section class="panel hero-panel">
+    <div class="panel-corners"></div>
+    <div class="panel-label">CORE_IDENT //</div>
+    <div>
+      <div class="hero-brand">
+        <h1>mrzsomi<span class="accent">.top</span></h1>
+      </div>
+      <div class="hero-tagline">
+        <span class="terminal-prompt">&gt;</span> Building embedded systems from schematic to firmware — then shipping.
+      </div>
     </div>
+    <div class="action-row">
+      <a href="#projects" class="btn-primary">VIEW_PROJECTS</a>
+      <a href="#contact" class="btn-secondary">OPEN_COMMS</a>
+    </div>
+  </section>
 
-    <!-- Main Workbench Dashboard Container -->
-    <main class="workbench-grid">
-        
-        <!-- Grid Item 1: Hero Node -->
-        <section class="panel hero-panel">
-            <div class="panel-corners"></div>
-            <div class="panel-label">CORE_IDENT //</div>
-            <div class="hero-brand">
-                <h1>mrzsomi<span class="accent">.top</span></h1>
-                <p class="alias">/ alias: Zsomle /</p>
-            </div>
-            <div class="hero-tagline">
-                <span class="terminal-prompt">&gt;</span> Building hardware systems from idea to reality.
-            </div>
-            <div class="action-row">
-                <a href="#projects" class="btn-primary">INITIALIZE_PROJECT_SCAN</a>
-            </div>
-        </section>
+  <!-- BIO -->
+  <section class="panel about-panel">
+    <div class="panel-corners"></div>
+    <div class="panel-label">SYS_BIO //</div>
+    <p>Student, maker, and embedded systems builder based in Hungary. Designs custom PCBs in EasyEDA, writes ISR-driven C++ firmware, and 3D prints the enclosures that hold it all together.</p>
+    <p>Comfortable across the full stack — from DRV8825 stepper drivers and CRC8-validated EEPROM all the way up to nginx-served SPAs behind Cloudflare tunnels.</p>
+    <div class="stat-row">
+      <div class="stat-chip">Lang: <span>C/C++ · JS · Python</span></div>
+      <div class="stat-chip">MCU: <span>ESP32 · ATmega328</span></div>
+      <div class="stat-chip">RF: <span>nRF24L01 · 433 MHz</span></div>
+    </div>
+  </section>
 
-        <!-- Grid Item 2: About / Spec Node -->
-        <section class="panel about-panel">
-            <div class="panel-corners"></div>
-            <div class="panel-label">SYS_BIO //</div>
-            <p>Student, maker, and electronics enthusiast based in Hungary. Focused on low-level firmware architecture, precision hardware automation, and custom structural layout fabrication.</p>
-            <p style="margin-top: 1rem;">Bridging the gap between software constraints and physical mechanical assembly.</p>
-        </section>
+  <!-- TELEMETRY -->
+  <section class="panel telemetry-panel">
+    <div class="panel-corners"></div>
+    <div class="panel-label">LIVE_TELEMETRY_FEED //</div>
+    <div class="terminal-stream" id="log-stream"></div>
+  </section>
 
-        <!-- Grid Item 3: Live Hardware Logs Simulation -->
-        <section class="panel telemetry-panel hidden-mobile">
-            <div class="panel-corners"></div>
-            <div class="panel-label">LIVE_TELEMETRY_FEED //</div>
-            <div class="terminal-stream" id="log-stream">
-                <!-- Injected via JS -->
-            </div>
-        </section>
+  <!-- SKILLS MATRIX -->
+  <section id="skills" class="panel skills-panel">
+    <div class="panel-corners"></div>
+    <div class="panel-label">HARDWARE_SOFTWARE_MATRIX //</div>
+    <div class="matrix-grid">
+      <div>
+        <div class="matrix-col-head">HW_LAYERS</div>
+        <div class="matrix-tags">
+          <span>ESP32 / ATmega328</span>
+          <span>I2C / SPI / UART</span>
+          <span>DRV8825 Stepper</span>
+          <span>nRF24L01 RF</span>
+          <span>MPU-6500 IMU</span>
+          <span>SH1106 OLED</span>
+        </div>
+      </div>
+      <div>
+        <div class="matrix-col-head">SW_LAYERS</div>
+        <div class="matrix-tags">
+          <span>Embedded C / C++</span>
+          <span>ISR State Machines</span>
+          <span>OTA (ElegantOTA)</span>
+          <span>CRC8 EEPROM</span>
+          <span>PlatformIO / Arduino</span>
+          <span>Minecraft Plugins (JS)</span>
+        </div>
+      </div>
+      <div>
+        <div class="matrix-col-head">ENG_LAYERS</div>
+        <div class="matrix-tags">
+          <span>PCB Design (EasyEDA)</span>
+          <span>3D Printing</span>
+          <span>HW Debugging</span>
+          <span>Proxmox / LXC</span>
+          <span>nginx + Cloudflare</span>
+          <span>RF Analysis</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Grid Item 4: Tech Stack Spec Matrix -->
-        <section id="skills" class="panel skills-panel">
-            <div class="panel-corners"></div>
-            <div class="panel-label">HARDWARE_SOFTWARE_MATRIX //</div>
-            
-            <div class="matrix-row">
-                <div class="matrix-cat">HW_LAYERS</div>
-                <div class="matrix-tags">
-                    <span>ESP32 / Arduino</span>
-                    <span>Sensors (I2C/SPI)</span>
-                    <span>DRV8825 Controls</span>
-                </div>
-            </div>
-            <div class="matrix-row">
-                <div class="matrix-cat">SW_LAYERS</div>
-                <div class="matrix-tags">
-                    <span>Embedded C/C++</span>
-                    <span>Arduino IDE</span>
-                    <span>Firmware Logic</span>
-                </div>
-            </div>
-            <div class="matrix-row">
-                <div class="matrix-cat">ENG_LAYERS</div>
-                <div class="matrix-tags">
-                    <span>PCB Design (EasyEDA)</span>
-                    <span>Prototyping</span>
-                    <span>HW Debugging</span>
-                </div>
-            </div>
-        </section>
+  <!-- PROJECTS -->
+  <section id="projects" class="panel projects-wrapper">
+    <div class="panel-corners"></div>
+    <div class="panel-label">DEPLOYED_SUB_SYSTEMS //</div>
+    <div class="bento-projects">
 
-        <!-- Grid Item 5: Comprehensive Project Grid -->
-        <section id="projects" class="panel projects-wrapper">
-            <div class="panel-corners"></div>
-            <div class="panel-label">DEPLOYED_SUB_SYSTEMS //</div>
-            
-            <div class="bento-projects">
-                <!-- Project Card 1 -->
-                <div class="project-spec-card">
-                    <div class="card-meta">SYS_01 // SOFTWARE</div>
-                    <h3>RoyalCore Minecraft Plugin</h3>
-                    <p>High-performance anti-dupe mechanics with continuous exploit vectors mitigation. Connected to Discord webhook matrices for live structural logging.</p>
-                </div>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_01 // MECHATRONICS</div>
+        <h3>Linear Filling Machine</h3>
+        <p>Custom Arduino Nano firmware for a precision linear filling/spraying unit. 12-state ISR-driven state machine, CRC8-validated EEPROM persistence, layered hardware safety. Self-designed, manufactured PCB with DRV8825 stepper driver.</p>
+        <div class="card-tags">
+          <span class="card-tag">Arduino Nano</span>
+          <span class="card-tag">DRV8825</span>
+          <span class="card-tag">ISR</span>
+          <span class="card-tag">EasyEDA PCB</span>
+        </div>
+      </div>
 
-                <!-- Project Card 2 -->
-                <div class="project-spec-card">
-                    <div class="card-meta">SYS_02 // IOT_ARRAY</div>
-                    <h3>ESP32 Sensor Cluster</h3>
-                    <p>Environmental tracking station deploying DHT11, LDR, rain/wind arrays. Serves live metrics locally via Web API to a custom frontend UI.</p>
-                </div>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_02 // RF_TOOL</div>
+        <h3>ESP32 RF Multi-Tool</h3>
+        <p>Flipper Zero-inspired handheld with dual nRF24L01 modules and OLED display. Six passive RF/WiFi analytical modes. Resolved flash constraints with custom partition scheme; three firmware iterations to fix SPI re-init bugs.</p>
+        <div class="card-tags">
+          <span class="card-tag">ESP32</span>
+          <span class="card-tag">nRF24L01</span>
+          <span class="card-tag">PlatformIO</span>
+          <span class="card-tag">RF Analysis</span>
+        </div>
+      </div>
 
-                <!-- Project Card 3 -->
-                <div class="project-spec-card">
-                    <div class="card-meta">SYS_03 // MECHATRONICS</div>
-                    <h3>Linear Rail Gantry System</h3>
-                    <p>Hybrid automated motion structure integrating physical linear tracks and stepper configurations for precise positioning tasks.</p>
-                </div>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_03 // IMU_FIRMWARE</div>
+        <h3>Rowing Stroke Counter</h3>
+        <p>Arduino Nano firmware using MPU-6500 IMU and SH1106 OLED. Evolved through stroke counter, 3D rotating cube visualizer, and digital spirit level. Resolved ATmega328 RAM overflow via PROGMEM and stack-allocated buffers.</p>
+        <div class="card-tags">
+          <span class="card-tag">MPU-6500</span>
+          <span class="card-tag">SH1106</span>
+          <span class="card-tag">PROGMEM</span>
+          <span class="card-tag">I2C</span>
+        </div>
+      </div>
 
-                <!-- Project Card 4 -->
-                <div class="project-spec-card">
-                    <div class="card-meta">SYS_04 // PCB_LAYOUT</div>
-                    <h3>DRV8825 Controller Unit</h3>
-                    <p>Custom schematics and board layout for optimized stepper driving. Hardwired hardware safety overrides and isolation circuits built-in.</p>
-                </div>
-            </div>
-        </section>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_04 // IOT_OTA</div>
+        <h3>ESP32 OTA Update System</h3>
+        <p>Wireless firmware update stack using ElegantOTA v3 and ESPAsyncWebServer. HTTP Basic Auth, WiFi watchdog with auto-reconnect, and clean Arduino IDE integration for field-deployable IoT devices.</p>
+        <div class="card-tags">
+          <span class="card-tag">ESP32</span>
+          <span class="card-tag">ElegantOTA</span>
+          <span class="card-tag">ESPAsyncWebServer</span>
+          <span class="card-tag">OTA</span>
+        </div>
+      </div>
 
-        <!-- Grid Item 6: Contact Uplink -->
-        <section id="contact" class="panel contact-panel">
-            <div class="panel-corners"></div>
-            <div class="panel-label">COMMS_UPLINK //</div>
-            <p>Establish direct pipeline connection:</p>
-            <div class="uplink-grid">
-                <a href="https://github.com/mrzsomi" target="_blank" rel="noopener noreferrer" class="uplink-node">
-                    <span>GITHUB</span>
-                    <span class="arrow">↗</span>
-                </a>
-                <a href="mailto:hello@mrzsomi.top" class="uplink-node">
-                    <span>EMAIL_CORE</span>
-                    <span class="arrow">↗</span>
-                </a>
-            </div>
-        </section>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_05 // SOFTWARE</div>
+        <h3>RoyalCore Minecraft Plugin</h3>
+        <p>High-performance anti-dupe mechanics with continuous exploit vector mitigation. Discord webhook integration for live structural event logging.</p>
+        <div class="card-tags">
+          <span class="card-tag">JavaScript</span>
+          <span class="card-tag">Minecraft</span>
+          <span class="card-tag">Webhooks</span>
+        </div>
+      </div>
 
-    </main>
+      <div class="project-spec-card">
+        <div class="card-meta">SYS_06 // INFRA</div>
+        <h3>Portfolio SPA + Infra</h3>
+        <p>This site — single-file SPA with client-side routing, staggered CSS animations, and eight pages. Served via nginx in a Proxmox LXC container behind a Cloudflare tunnel.</p>
+        <div class="card-tags">
+          <span class="card-tag">nginx</span>
+          <span class="card-tag">Proxmox LXC</span>
+          <span class="card-tag">Cloudflare</span>
+          <span class="card-tag">HTML/CSS/JS</span>
+        </div>
+      </div>
 
-    <footer class="workbench-footer">
-        <div>REV_2026.06 // MRZSOMI // OPEN_SOURCE_TRANSPARENCY</div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- CONTACT -->
+  <section id="contact" class="panel contact-panel">
+    <div class="panel-corners"></div>
+    <div class="panel-label">COMMS_UPLINK //</div>
+    <div class="contact-inner">
+
+      <!-- EMAIL FORM -->
+      <div class="contact-form">
+        <div class="form-row">
+          <label class="form-label" for="cf-name">SENDER_ID //</label>
+          <input id="cf-name" class="form-input" type="text" placeholder="your name" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="cf-subject">SUBJECT_LINE //</label>
+          <input id="cf-subject" class="form-input" type="text" placeholder="what's this about">
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="cf-reply">REPLY_TO //</label>
+          <input id="cf-reply" class="form-input" type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="cf-msg">PAYLOAD //</label>
+          <textarea id="cf-msg" class="form-textarea" placeholder="write your message..."></textarea>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <button class="btn-send" id="cf-submit">TRANSMIT ⟶</button>
+          <div class="form-status" id="cf-status"></div>
+        </div>
+      </div>
+
+      <!-- SOCIAL LINKS -->
+      <div class="contact-social">
+        <p style="font-size:10px;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px">OR_REACH_VIA //</p>
+        <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener noreferrer" class="uplink-node">
+          <div class="icon">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </div>
+          <span>GITHUB</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener noreferrer" class="uplink-node discord">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </div>
+          <span>DISCORD</span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="workbench-footer">
+  REV_2026.06 // MRZSOMI // OPEN_SOURCE_TRANSPARENCY
+</footer>
+
+<script>
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('live-clock').textContent =
+      `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Telemetry feed
+  const logs = [
+    { type:'ok',   msg:'DRV8825 stepper init OK // microstep=1/16' },
+    { type:'ok',   msg:'MPU-6500 calibration complete // gyro bias zeroed' },
+    { type:'warn', msg:'nRF24L01 channel scan // 2.4GHz congestion detected' },
+    { type:'ok',   msg:'EEPROM CRC8 validation passed // params restored' },
+    { type:'ok',   msg:'OTA watchdog armed // WiFi RSSI=-61dBm' },
+    { type:'ok',   msg:'SH1106 OLED framebuffer flush // 64fps' },
+    { type:'warn', msg:'ATmega328 heap: 312B free // PROGMEM offload active' },
+    { type:'ok',   msg:'nginx upstream healthy // 200 OK mrzsomi.top' },
+    { type:'ok',   msg:'Cloudflare tunnel ACTIVE // latency 4ms' },
+    { type:'ok',   msg:'stroke counter state: RECOVERY // cadence=28spm' },
+    { type:'ok',   msg:'ISR tick @ 10kHz // step queue depth=0' },
+    { type:'warn', msg:'RF sniffer: unknown 433MHz burst // logging' },
+    { type:'ok',   msg:'LXC container boot OK // OMV storage mounted' },
+    { type:'ok',   msg:'ElegantOTA v3 ready // auth validated' },
+    { type:'ok',   msg:'PCB thermal: 34°C // within spec' },
+  ];
+
+  const stream = document.getElementById('log-stream');
+  let logIdx = 0;
+  const MAX_LINES = 10;
+
+  function addLog() {
+    const entry = logs[logIdx % logs.length];
+    logIdx++;
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const ts = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.innerHTML = `<span class="ts">[${ts}]</span><span class="${entry.type}">${entry.type.toUpperCase()}</span> ${entry.msg}`;
+    stream.appendChild(line);
+
+    while (stream.children.length > MAX_LINES) {
+      stream.removeChild(stream.firstChild);
+    }
+  }
+
+  // seed initial logs
+  for (let i = 0; i < 6; i++) addLog();
+  setInterval(addLog, 2200);
+</script>
 </body>
 </html>
