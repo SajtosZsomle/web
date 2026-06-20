@@ -679,26 +679,73 @@
 
       <!-- EMAIL FORM -->
       <div class="contact-form">
-        <div class="form-row">
-          <label class="form-label" for="cf-name">SENDER_ID //</label>
-          <input id="cf-name" class="form-input" type="text" placeholder="your name" autocomplete="off">
-        </div>
-        <div class="form-row">
-          <label class="form-label" for="cf-subject">SUBJECT_LINE //</label>
-          <input id="cf-subject" class="form-input" type="text" placeholder="what's this about">
-        </div>
-        <div class="form-row">
-          <label class="form-label" for="cf-reply">REPLY_TO //</label>
-          <input id="cf-reply" class="form-input" type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-row">
-          <label class="form-label" for="cf-msg">PAYLOAD //</label>
-          <textarea id="cf-msg" class="form-textarea" placeholder="write your message..."></textarea>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-          <button class="btn-send" id="cf-submit">TRANSMIT ⟶</button>
-          <div class="form-status" id="cf-status"></div>
-        </div>
+        <form
+  id="contact-form"
+  class="contact-form"
+  action="https://formspree.io/f/xpqevgod"
+  method="POST"
+>
+  <div class="form-row">
+    <label class="form-label" for="cf-name">SENDER_ID //</label>
+    <input
+      id="cf-name"
+      name="name"
+      class="form-input"
+      type="text"
+      placeholder="your name"
+      autocomplete="off"
+      required
+    >
+  </div>
+
+  <div class="form-row">
+    <label class="form-label" for="cf-subject">SUBJECT_LINE //</label>
+    <input
+      id="cf-subject"
+      name="subject"
+      class="form-input"
+      type="text"
+      placeholder="what's this about"
+      required
+    >
+  </div>
+
+  <div class="form-row">
+    <label class="form-label" for="cf-reply">REPLY_TO //</label>
+    <input
+      id="cf-reply"
+      name="email"
+      class="form-input"
+      type="email"
+      placeholder="your@email.com"
+      required
+    >
+  </div>
+
+  <div class="form-row">
+    <label class="form-label" for="cf-msg">PAYLOAD //</label>
+    <textarea
+      id="cf-msg"
+      name="message"
+      class="form-textarea"
+      placeholder="write your message..."
+      required
+    ></textarea>
+  </div>
+
+  <input type="hidden" name="_subject" value="mrzsomi.top Contact Form">
+
+  <div style="display:none">
+    <input type="text" name="_gotcha">
+  </div>
+
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <button class="btn-send" id="cf-submit" type="submit">
+      TRANSMIT ⟶
+    </button>
+    <div class="form-status" id="cf-status"></div>
+  </div>
+</form>
       </div>
 
       <!-- SOCIAL LINKS -->
@@ -786,6 +833,71 @@
   // seed initial logs
   for (let i = 0; i < 6; i++) addLog();
   setInterval(addLog, 2200);
+
+
+ // Formspree contact form
+
+const form = document.getElementById("contact-form");
+const submitBtn = document.getElementById("cf-submit");
+const statusBox = document.getElementById("cf-status");
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+
+  try {
+    statusBox.className = "form-status";
+    statusBox.textContent = "INITIALIZING LINK...";
+    await delay(400);
+
+    statusBox.textContent = "VERIFYING PAYLOAD...";
+    await delay(500);
+
+    statusBox.textContent = "OPENING UPLINK...";
+    await delay(700);
+
+    statusBox.textContent = "TRANSMITTING DATA...";
+    await delay(900);
+
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (response.ok) {
+      statusBox.className = "form-status ok";
+      statusBox.textContent = "TRANSMISSION COMPLETE ✓";
+
+      form.reset();
+
+      setTimeout(() => {
+        statusBox.textContent = "";
+        statusBox.className = "form-status";
+      }, 5000);
+
+    } else {
+      throw new Error("Formspree error");
+    }
+
+  } catch (err) {
+    statusBox.className = "form-status err";
+    statusBox.textContent = "UPLINK FAILURE ✗";
+
+    setTimeout(() => {
+      statusBox.textContent = "";
+      statusBox.className = "form-status";
+    }, 5000);
+  }
+
+  submitBtn.disabled = false;
+});
+ 
 </script>
 </body>
 </html>
