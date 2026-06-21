@@ -82,7 +82,16 @@
     <div class="app-shell">
       <header class="topbar">
         <div class="brand-wrap">
-          <div class="app-logo" aria-hidden="true">M</div>
+          <img
+            src="assets/img/favicon.ico"
+            alt="MrZsomi Logo"
+            class=""
+            onerror="
+              this.onerror = null;
+              this.src = 'assets/img/favicon.png';
+            "
+          />
+
           <div>
             <div class="app-title">mrzsomi.top</div>
             <div class="app-subtitle">
@@ -93,9 +102,21 @@
 
         <div class="topbar-meta">
           <div class="meta-pill live"><span class="dot"></span> ONLINE</div>
+
           <div class="meta-pill">
             LOCAL TIME <span id="live-clock">00:00:00</span>
           </div>
+
+          <!-- NEW STATUS BUTTON -->
+          <a
+            class="meta-pill button-pill"
+            href="https://status.mrzsomi.top"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📡 STATUS PAGE
+          </a>
+
           <button
             class="meta-pill button-pill"
             id="theme-toggle"
@@ -330,52 +351,82 @@
                     type="button"
                   >
                     <h3>FoamCutter</h3>
-                    <p>Hot wire CNC foam cutter with Arduino motion control and a basic PC interface.</p>
+                    <p>
+                      Hot wire CNC foam cutter with Arduino motion control and a
+                      basic PC interface.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p2" type="button">
                     <h3>Moving Linear Rail System</h3>
-                    <p>Lead screw linear rail with DRV8825 and Arduino for repeatable positioning.</p>
+                    <p>
+                      Lead screw linear rail with DRV8825 and Arduino for
+                      repeatable positioning.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p3" type="button">
                     <h3>DIY Fume Extraction System</h3>
-                    <p>Shop-built fume extractor with activated carbon filter and task lighting.</p>
+                    <p>
+                      Shop-built fume extractor with activated carbon filter and
+                      task lighting.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p4" type="button">
                     <h3>ESP32 Weather Station</h3>
-                    <p>Sensor node with a web dashboard and local API logging. Runs outside.</p>
+                    <p>
+                      Sensor node with a web dashboard and local API logging.
+                      Runs outside.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p5" type="button">
                     <h3>ESP32 OTA System</h3>
-                    <p>WiFi firmware updates via ElegantOTA with auth and watchdog recovery.</p>
+                    <p>
+                      WiFi firmware updates via ElegantOTA with auth and
+                      watchdog recovery.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p6" type="button">
                     <h3>RoyalCore Minecraft Network</h3>
-                    <p>Java Paper plugin with anti-dupe logic, exploit detection, and Discord alerts.</p>
+                    <p>
+                      Java Paper plugin with anti-dupe logic, exploit detection,
+                      and Discord alerts.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p7" type="button">
                     <h3>Homelab Infrastructure</h3>
-                    <p>Proxmox with nginx, OMV NAS, and a Cloudflare tunnel for external access.</p>
+                    <p>
+                      Proxmox with nginx, OMV NAS, and a Cloudflare tunnel for
+                      external access.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p8" type="button">
                     <h3>Custom Electronics Prototyping</h3>
-                    <p>Arduino and ESP32 experiments with sensors, displays, and motor drivers.</p>
+                    <p>
+                      Arduino and ESP32 experiments with sensors, displays, and
+                      motor drivers.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p9" type="button">
                     <h3>DRV8825 Custom PCB</h3>
-                    <p>Hand-designed stepper driver board in EasyEDA. Manufactured and soldered.</p>
+                    <p>
+                      Hand-designed stepper driver board in EasyEDA.
+                      Manufactured and soldered.
+                    </p>
                   </button>
 
                   <button class="project-item" data-project="p10" type="button">
                     <h3>mrzsomi.top Portfolio</h3>
-                    <p>This site. Github pages, cloudflare and Formspree for contact. Terminal-style dark UI.</p>
+                    <p>
+                      This site. Github pages, cloudflare and Formspree for
+                      contact. Terminal-style dark UI.
+                    </p>
                   </button>
                 </div>
 
