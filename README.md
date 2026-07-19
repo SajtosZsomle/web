@@ -1,93 +1,74 @@
-# 🌐 mrzsomi.top — Personal website / portfólió
+# 🌐 mrzsomi.top — Personal website / Portfólió
 
-This repository contains the static source for https://mrzsomi.top — a bilingual (EN / HU) personal portfolio built with vanilla HTML/CSS/JS and deployed on GitHub Pages.
-
----
-
-## Live
-
-- Demo: https://mrzsomi.top
+🇬🇧 English | 🇭🇺 Magyar
 
 ---
 
-## What’s in this repo
+## Overview / Áttekintés
 
-- index.html — main layout and content
-- assets/ — CSS, JS, images and fonts
-- projects.en.json, projects.hu.json — project data (edit here to add/update projects)
-- README.md — this file
+This repository contains the static source for the personal website and portfolio of mrzsomi — https://mrzsomi.top. The site is maintained and published by a single author as a personal portfolio and primary web presence.
 
----
-
-## Quickstart — local preview
-
-1. Clone the repo:
-
-   git clone https://github.com/SajtosZsomle/web.git
-   cd web
-
-2. Preview locally (static server):
-
-   # Python 3
-   python -m http.server 8000
-   # then open http://localhost:8000
-
-   # or use a lightweight dev server
-   npx serve .
-
-Notes: The site is static — no build step is required. Editing HTML/CSS/JS and refreshing the browser shows changes.
+Ez a tárhely a mrzsomi személyes weboldalának és portfóliójának statikus forráskódját tartalmazza (https://mrzsomi.top). A honlapot egyetlen szerző tartja karban, ez az ő személyes portfóliója és fő webes megjelenése.
 
 ---
 
-## Editing content
+## Live site / Élő weboldal
 
-- Projects: update `projects.en.json` and `projects.hu.json` in parallel (keep IDs and keys consistent). The site supports multiple link types: github, web, discord, documentation, live-demo.
-- Translations: the inlined i18n strings live in `assets/js/script.js`. For larger changes consider extracting them to JSON and loading dynamically.
-- Images: place optimized assets in `assets/img`. Use responsive images (srcset) and modern formats (WebP/AVIF) if adding new images.
-
----
-
-## Accessibility & UX notes
-
-- The site respects `prefers-reduced-motion` to disable heavy animations.
-- A prominent `<noscript>` message appears if JavaScript is disabled — many features require JS to function.
-- Use semantic headings and alt text when adding images.
+- https://mrzsomi.top
+- GitHub profile: https://github.com/SajtosZsomle
 
 ---
 
-## Deployment (GitHub Pages)
+## Quick facts / Gyors infók
 
-- This repository is configured for GitHub Pages: push to `main` and Pages serves the static site from the repository root.
-- Recommended: enable Cloudflare in front of Pages if you need caching, Brotli/GZIP, or custom headers.
-
----
-
-## Contribution guidelines
-
-- Keep changes small and focused. Open a PR for non-trivial changes.
-- For content changes (projects/translations), update both English and Hungarian files together.
-- Follow existing code style (vanilla JS, minimal deps). If adding build tooling, include a GitHub Actions workflow and document the steps here.
+- Author / Szerző: mrzsomi
+- Tech: HTML, CSS, JavaScript (no frameworks)
+- Purpose: personal portfolio, projects, contact
+- Repo status: single-author, not open for external contributions
 
 ---
 
-## Troubleshooting
+## What you’ll find here / Mi található itt
 
-- If projects don’t appear, check `projects.en.json` / `projects.hu.json` for valid JSON (IDs must be unique).
-- If the activity feed fails, the site falls back to a link to the GitHub profile (rate limits or network errors).
-- If the nav highlighting behaves oddly, clear cache or test in an incognito tab — layout shifts can affect active detection.
-
----
-
-## License & Copyright
-
-All rights reserved unless otherwise noted. Please contact via the website if you need reuse permission.
+- index.html — main page
+- assets/ — styles, scripts, images
+- projects.en.json / projects.hu.json — project metadata (EN / HU)
+- small utility scripts for UI, i18n and fetches
 
 ---
 
-## Kapcsolat (HU)
+## Design highlights / Főbb elemek
 
-A honlapon lévő űrlapon keresztül vagy a repository Issue-ján keresztül érhetsz el.
+- Responsive hero with animated avatar and floating icons
+- Project showcase with multi-link support (GitHub, Web, Docs, Live demo)
+- Live activity feed (public GitHub events)
+- Light/Dark theme and accessibility options (prefers-reduced-motion supported)
+- Bilingual content (EN / HU)
 
 ---
 
-Készítette: mrzsomi — © 2026
+## Contact / Kapcsolat
+
+- Contact form on the website: https://mrzsomi.top/#contact
+- GitHub: https://github.com/SajtosZsomle
+
+---
+
+## Copyright & License / Szerzői jog
+
+All content, design and assets are © mrzsomi 2026. Unauthorized reuse or redistribution is not permitted.
+
+Minden tartalom, dizájn és grafika a mrzsomi tulajdona © 2026. Engedély nélküli felhasználás tilos.
+
+---
+
+## Short links / Rövid linkek
+
+- Website: https://mrzsomi.top
+- Projects JSON (EN): https://mrzsomi.top/projects.en.json
+- Projects JSON (HU): https://mrzsomi.top/projects.hu.json
+- Source (this repo): https://github.com/SajtosZsomle/web
+
+---
+
+Made with ❤️ by mrzsomi / Készítette: mrzsomi
