@@ -516,9 +516,38 @@
         const scrollY = window.scrollY || window.pageYOffset;
         const top = target.getBoundingClientRect().top + scrollY - 80;
         window.scrollTo({ top, behavior:'smooth' });
+        window.location.hash = link.getAttribute('href').substring(1);
       }
     });
   });
+
+  // Handle hash change (direct URL navigation)
+  function updateNavFromHash() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const link = document.querySelector(`.nav-links a[href="#${hash}"]`);
+      if (link) {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        const target = document.querySelector(`#${hash}`);
+        if (target) {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const top = target.getBoundingClientRect().top + scrollY - 80;
+          window.scrollTo({ top, behavior:'smooth' });
+        }
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', updateNavFromHash);
+  
+  // Initialize active nav on page load
+  updateOffsets();
+  if (window.location.hash) {
+    setTimeout(updateNavFromHash, 100);
+  } else {
+    window.dispatchEvent(new Event('scroll'));
+  }
 
   // ── Init ──
   applyLanguage(currentLang);
