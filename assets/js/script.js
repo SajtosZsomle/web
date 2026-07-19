@@ -371,7 +371,7 @@
     let html = project.full || project.short || '';
     
     // Render links if available
-    const links = project.links || project.github ? { github: project.github } : null;
+    const links = project.links || (project.github ? { github: project.github } : null);
     if (links) {
       const linkIcons = {
         github: { icon: '🐙', label: 'GitHub', color: '#333333', colorRgb: '51, 51, 51' },
