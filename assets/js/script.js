@@ -62,7 +62,12 @@
       nav_contact: "Contact",
       loading_projects: "Loading projects…",
       error_projects: "Failed to load projects.",
-      no_projects: "No projects match this filter."
+      no_projects: "No projects match this filter.",
+      link_github: "GitHub",
+      link_web: "Website",
+      link_discord: "Discord",
+      link_documentation: "Docs",
+      link_live_demo: "Live Demo"
     },
     hu: {
       about_tag: "Szia! Mr. Zsomi vagyok",
@@ -125,7 +130,12 @@
       nav_contact: "Kapcsolat",
       loading_projects: "Projektek betöltése…",
       error_projects: "Hiba történt a projektek betöltése során.",
-      no_projects: "Nincs a szűrésnek megfelelő projekt."
+      no_projects: "Nincs a szűrésnek megfelelő projekt.",
+      link_github: "GitHub",
+      link_web: "Weboldal",
+      link_discord: "Discord",
+      link_documentation: "Dokumentáció",
+      link_live_demo: "Élő bemutató"
     }
   };
 
@@ -374,11 +384,11 @@
     const links = project.links || (project.github ? { github: project.github } : null);
     if (links) {
       const linkIcons = {
-        github: { icon: '🐙', label: 'GitHub', color: '#333333', colorRgb: '51, 51, 51' },
-        web: { icon: '🌐', label: 'Website', color: '#4285f4', colorRgb: '66, 133, 244' },
-        discord: { icon: '💬', label: 'Discord', color: '#5865f2', colorRgb: '88, 101, 242' },
-        documentation: { icon: '📚', label: 'Docs', color: '#0969da', colorRgb: '9, 105, 218' },
-        'live-demo': { icon: '🎯', label: 'Live Demo', color: '#22c55e', colorRgb: '34, 197, 94' }
+        github: { icon: '🐙', labelKey: 'link_github', color: '#666666', colorDark: '#a0a0a0', colorRgb: '102, 102, 102', colorRgbDark: '160, 160, 160' },
+        web: { icon: '🌐', labelKey: 'link_web', color: '#4285f4', colorRgb: '66, 133, 244' },
+        discord: { icon: '💬', labelKey: 'link_discord', color: '#5865f2', colorRgb: '88, 101, 242' },
+        documentation: { icon: '📚', labelKey: 'link_documentation', color: '#0969da', colorRgb: '9, 105, 218' },
+        'live-demo': { icon: '🎯', labelKey: 'link_live_demo', color: '#22c55e', colorRgb: '34, 197, 94' }
       };
       
       const activeLinks = Object.entries(links).filter(([key, value]) => value !== false && value !== null);
@@ -387,9 +397,13 @@
         activeLinks.forEach(([key, url]) => {
           const linkInfo = linkIcons[key];
           if (linkInfo) {
-            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${linkInfo.color}; --platform-color-rgb: ${linkInfo.colorRgb};" title="${linkInfo.label}">
+            const isDarkTheme = document.documentElement.getAttribute('data-theme') === 'dark';
+            const color = key === 'github' && isDarkTheme ? linkInfo.colorDark : linkInfo.color;
+            const colorRgb = key === 'github' && isDarkTheme ? linkInfo.colorRgbDark : linkInfo.colorRgb;
+            const label = translations[currentLang][linkInfo.labelKey] || linkInfo.labelKey;
+            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${color}; --platform-color-rgb: ${colorRgb};" title="${label}">
               <span class="link-icon">${linkInfo.icon}</span>
-              <span class="link-label">${linkInfo.label}</span>
+              <span class="link-label">${label}</span>
             </a>`;
           }
         });
