@@ -163,5 +163,20 @@
     },
     "tags": ["web", "game", "github-pages"],
     "status": "in-progress"
+  },
+  {
+    "id": "p12",
+    "title": "Status Page",
+    "short": "Uptime monitor and status page powered by Upptime, tracking service availability.",
+    "full": "An open-source uptime monitoring and status page for all services, powered by Upptime. Monitors service health 24/7 using GitHub Actions workflows. Provides real-time status, response time graphs, and incident tracking via GitHub issues. Live status page at status.mrzsomi.top.",
+    "links": {
+      "github": "https://github.com/SajtosZsomle/status-page",
+      "web": "https://status.mrzsomi.top",
+      "discord": false,
+      "documentation": false,
+      "live-demo": "https://status.mrzsomi.top"
+    },
+    "tags": ["infra", "monitoring", "github-actions"],
+    "status": "completed"
   }
 ]

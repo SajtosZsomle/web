@@ -146,7 +146,7 @@
       "documentation": false,
       "live-demo": "https://mrzsomi.top"
     },
-    "tags": ["web", "portfolio"],
+    "tags": ["web", "portfolio", "github-pages"],
     "status": "completed"
   },
   {
@@ -163,5 +163,20 @@
     },
     "tags": ["web", "game", "github-pages"],
     "status": "in-progress"
+  },
+  {
+    "id": "p12",
+    "title": "Státuszoldal",
+    "short": "Upptime-alapú üzemidő-figyelő és státuszoldal a szolgáltatások elérhetőségének nyomon követésére.",
+    "full": "Nyílt forráskódú üzemidő-monitorozási és státuszoldal az összes szolgáltatáshoz, az Upptime alapján működtetve. 24/7-es szolgáltatás-állapot-figyelést végez GitHub Actions munkafolyamatokkal. Valós idejű státuszt, válaszidő-grafikonokat és incidenslövetést biztosít GitHub-problémakon keresztül. Az élő státuszoldal a status.mrzsomi.top címen érhető el.",
+    "links": {
+      "github": "https://github.com/SajtosZsomle/status-page",
+      "web": "https://status.mrzsomi.top",
+      "discord": false,
+      "documentation": false,
+      "live-demo": "https://status.mrzsomi.top"
+    },
+    "tags": ["infra", "monitoring", "github-actions"],
+    "status": "completed"
   }
 ]
