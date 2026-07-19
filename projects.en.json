@@ -1,155 +1,92 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MrZsomi — Embedded Systems & Portfolio</title>
-    <meta name="description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work — based in Hungary." />
-    <meta name="keywords" content="embedded systems, firmware, PCB design, ESP32, ATmega328, RF, portfolio, Hungary" />
-    <meta name="author" content="mrzsomi" />
-    <link rel="canonical" href="https://mrzsomi.top/" />
-    <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#ff8a3d" />
-    <meta name="copyrighted-site-verification" content="316f1e851e704216" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="mrzsomi.top — Embedded Systems, Firmware, and Infra" />
-    <meta property="og:description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work." />
-    <meta property="og:url" content="https://mrzsomi.top/" />
-    <meta property="og:image" content="https://mrzsomi.top/assets/img/og-image.png" />
-    <meta property="og:image:alt" content="mrzsomi.top portfolio preview" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="mrzsomi.top — Embedded Systems, Firmware, and Infra" />
-    <meta name="twitter:description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work." />
-    <meta name="twitter:image" content="https://mrzsomi.top/assets/img/og-image.png" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
-    <link rel="manifest" href="assets/img/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <script defer src="assets/js/script.js"></script>
-  </head>
-  <body>
-    <canvas id="particle-canvas"></canvas>
-
-    <nav class="nav">
-      <div class="container nav-inner">
-        <a href="#" class="logo">
-          <img src="assets/img/favicon.ico" alt="logo" onerror="this.onerror=null;this.src='assets/img/favicon.png';" />
-          mrzsomi.top
-        </a>
-        <ul class="nav-links">
-          <li><a href="#about" data-i18n-nav="about">About</a></li>
-          <li><a href="#skills" data-i18n-nav="skills">Skills</a></li>
-          <li><a href="#projects" data-i18n-nav="projects">Projects</a></li>
-          <li><a href="#activity" data-i18n-nav="activity">Activity</a></li>
-          <li><a href="#contact" data-i18n-nav="contact">Contact</a></li>
-        </ul>
-        <div class="nav-actions">
-          <span class="badge"><span class="dot"></span> <span data-i18n="available">Available</span></span>
-          <span class="badge" id="live-clock">00:00</span>
-          <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
-          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
-            <span id="theme-icon">🌙</span>
-          </button>
-        </div>
-      </div>
-    </nav>
-
-    <main class="container">
-      <section id="about" class="hero">
-        <p class="section-tag" data-i18n="about_tag">Hello, I'm Zsomi</p>
-        <h1 data-i18n-html="hero_title">I build <span class="accent-text">embedded systems</span> and the tools around them.</h1>
-        <p data-i18n="hero_paragraph">Firmware, PCB design, RF experiments, and infrastructure — based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.</p>
-        <div class="hero-stats">
-          <div data-i18n-html="stat1"><strong>30+</strong> projects shipped</div>
-          <div data-i18n-html="stat2"><strong>Embedded · Web · Infra</strong></div>
-          <div data-i18n-html="stat3"><strong>Hungary</strong></div>
-        </div>
-        <div class="btn-group">
-          <a href="#projects" class="btn btn-primary" data-i18n="view_projects">View projects</a>
-          <a href="#contact" class="btn btn-outline" data-i18n="get_in_touch">Get in touch</a>
-        </div>
-        <div class="name-origin" data-i18n="name_origin">
-          The name came from Minecraft: first as "sajtoszsömlé" (cheese bun), then shortened to "mrzsomi". It refers to a zsömle (bun), not the name Zsomor.
-        </div>
-      </section>
-
-      <section id="skills">
-        <p class="section-tag" data-i18n="skills_tag">Expertise</p>
-        <h2 class="section-title" data-i18n="skills_title">Skills & tools</h2>
-        <div class="skills-grid" id="skills-container"></div>
-      </section>
-
-      <section id="projects">
-        <p class="section-tag" data-i18n="projects_tag">Portfolio</p>
-        <h2 class="section-title" data-i18n="projects_title">Selected projects</h2>
-        <div class="filter-bar" id="filter-bar">
-          <button class="filter-chip active" data-filter="all" data-i18n="filter_all">All</button>
-        </div>
-        <div class="project-list" id="project-list">
-          <div class="loader">Loading projects…</div>
-        </div>
-        <div class="project-detail" id="project-detail"></div>
-      </section>
-
-      <section id="activity">
-        <p class="section-tag" data-i18n="activity_tag">Live</p>
-        <h2 class="section-title" data-i18n="activity_title">Recent GitHub activity</h2>
-        <div class="activity-feed" id="activity-feed">
-          <div class="loader">Fetching activity…</div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <p class="section-tag" data-i18n="contact_tag">Let's talk</p>
-        <h2 class="section-title" data-i18n="contact_title">Contact</h2>
-        <div class="contact-grid">
-          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xpqevgod" method="POST">
-            <div class="form-group">
-              <label for="name" data-i18n="form_name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" data-i18n-placeholder="form_name_placeholder" required />
-            </div>
-            <div class="form-group">
-              <label for="subject" data-i18n="form_subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="What's this about?" data-i18n-placeholder="form_subject_placeholder" required />
-            </div>
-            <div class="form-group">
-              <label for="email" data-i18n="form_email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" data-i18n-placeholder="form_email_placeholder" required />
-            </div>
-            <div class="form-group">
-              <label for="message" data-i18n="form_message">Message</label>
-              <textarea id="message" name="message" placeholder="Your message…" data-i18n-placeholder="form_message_placeholder" required></textarea>
-            </div>
-            <input type="hidden" name="_subject" value="mrzsomi.top Contact Form" />
-            <div class="form-row">
-              <button type="submit" class="btn btn-primary" id="submit-btn" data-i18n="form_submit">Send message</button>
-              <span id="form-status" class="form-status"></span>
-            </div>
-          </form>
-          <div class="social-links">
-            <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" class="social-card">🐙 GitHub ↗</a>
-            <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener" class="social-card">💬 Discord ↗</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <a class="copyrighted-badge" title="Copyrighted.com Registered & Protected" target="_blank"
-         href="https://app.copyrighted.com/website/HvaQmrxPD94tPsp8/">
-        <img alt="Copyrighted.com Registered & Protected" width="125" height="25"
-             srcset="https://static.copyrighted.com/badges/125x25/03_1_2x.png 2x"
-             src="https://static.copyrighted.com/badges/125x25/03_1.png" />
-      </a>
-      <script src="https://static.copyrighted.com/badges/helper.js"></script>
-      <span data-i18n="footer_text">REV_2026.06 · MRZSOMI · OPEN SOURCE TRANSPARENCY</span>
-    </footer>
-  </body>
-</html>
+[
+  {
+    "id": "p1",
+    "title": "FoamCutter",
+    "short": "Hot wire CNC foam cutter with Arduino motion control and PC interface.",
+    "full": "A hot wire CNC foam cutter built around an Arduino for motion control. Includes a simple PC interface for sending G-code-like commands. Designed for cutting wing cores and custom packaging inserts.",
+    "github": "https://github.com/SajtosZsomle/foamcutter",
+    "tags": ["arduino", "cnc", "motion"],
+    "status": "completed"
+  },
+  {
+    "id": "p2",
+    "title": "Moving Linear Rail System",
+    "short": "Lead screw linear rail with DRV8825 and Arduino for repeatable positioning.",
+    "full": "A lead-screw-driven linear rail using a DRV8825 stepper driver and Arduino. Built for repeatable positioning tasks. Used as a testbed for motion profiling and limit-switch homing routines.",
+    "github": "https://github.com/SajtosZsomle/linear-rail",
+    "tags": ["arduino", "motion", "pcb"],
+    "status": "completed"
+  },
+  {
+    "id": "p3",
+    "title": "DIY Fume Extraction System",
+    "short": "Shop-built fume extractor with activated carbon filter and task lighting.",
+    "full": "A shop-built solder fume extractor with an activated carbon filter layer and integrated task lighting. Powered by a quiet DC fan with adjustable speed.",
+    "github": false,
+    "tags": ["diy", "workshop"],
+    "status": "completed"
+  },
+  {
+    "id": "p4",
+    "title": "ESP32 Weather Station",
+    "short": "Sensor node with web dashboard and local API logging. Runs outside.",
+    "full": "An outdoor sensor node measuring temperature and humidity. Serves a local web dashboard and logs readings via a simple REST API. Runs on a small solar-charged battery setup.",
+    "github": "https://github.com/SajtosZsomle/esp32-weather",
+    "tags": ["esp32", "iot", "web"],
+    "status": "in-progress"
+  },
+  {
+    "id": "p5",
+    "title": "ESP32 OTA System",
+    "short": "WiFi firmware updates via ElegantOTA with auth and watchdog recovery.",
+    "full": "Over-the-air firmware update system using ElegantOTA with basic authentication and a hardware watchdog for recovery. Simplifies field updates without a physical connection.",
+    "github": "https://github.com/SajtosZsomle/esp32-ota",
+    "tags": ["esp32", "firmware"],
+    "status": "completed"
+  },
+  {
+    "id": "p6",
+    "title": "RoyalCore Minecraft Network",
+    "short": "Java Paper plugin with anti-dupe logic, exploit detection, and Discord alerts.",
+    "full": "A custom Java Paper plugin featuring anti-dupe logic, exploit detection heuristics, and Discord webhook alerts. Built for a small multiplayer community.",
+    "github": "https://github.com/SajtosZsomle/royalcore-plugin",
+    "tags": ["java", "minecraft", "backend"],
+    "status": "completed"
+  },
+  {
+    "id": "p7",
+    "title": "Homelab Infrastructure",
+    "short": "2 Dell Optiplex servers in PVE cluster, running Jellyfin, Pelican Panel, hosting projects, websites, DBs.",
+    "full": "Two Dell Optiplex machines clustered with Proxmox VE. They run Jellyfin, Pelican Panel, host several websites, databases, and personal projects behind Cloudflare Tunnels.",
+    "github": false,
+    "tags": ["infra", "self-hosted"],
+    "status": "in-progress"
+  },
+  {
+    "id": "p8",
+    "title": "Custom Electronics Prototyping",
+    "short": "Arduino and ESP32 experiments with sensors, displays, and motor drivers.",
+    "full": "Assorted Arduino and ESP32 experiments: sensor breakouts, OLED displays, motor drivers, and communication modules. Used to validate ideas before committing to a PCB.",
+    "github": "https://github.com/SajtosZsomle/prototyping-sketches",
+    "tags": ["arduino", "esp32", "prototype"],
+    "status": "ongoing"
+  },
+  {
+    "id": "p9",
+    "title": "DRV8825 Custom PCB",
+    "short": "Hand-designed stepper driver board in EasyEDA. Manufactured and soldered.",
+    "full": "A hand-routed stepper driver breakout board designed in EasyEDA. Manufactured and hand-soldered. Used as a drop-in module for multiple motion projects.",
+    "github": "https://github.com/SajtosZsomle/drv8825-pcb",
+    "tags": ["pcb", "easyeda", "motion"],
+    "status": "completed"
+  },
+  {
+    "id": "p10",
+    "title": "mrzsomi.top Portfolio",
+    "short": "This site. GitHub Pages, Cloudflare, and Formspree for contact. Clean UI.",
+    "full": "This very site. Hosted on GitHub Pages, fronted by Cloudflare, with a contact form powered by Formspree. Clean responsive design with dark and light themes, particle background, and live GitHub activity.",
+    "github": "https://github.com/SajtosZsomle/mrzsomi.top",
+    "tags": ["web", "portfolio"],
+    "status": "completed"
+  }
+]
