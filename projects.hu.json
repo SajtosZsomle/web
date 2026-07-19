@@ -148,5 +148,20 @@
     },
     "tags": ["web", "portfolio"],
     "status": "completed"
+  },
+  {
+    "id": "p11",
+    "title": "Game Web Assets",
+    "short": "Játékokhoz és játékszerverekhez való weblapok és statikus eszközök, GitHub Pages-ben kiszolgálva.",
+    "full": "A játékhoz kapcsolódó projektek és szerverlapok központi webeszköz-tárháza. A game.mrzsomi.top webhelyét üzemelteti, Counter-Strike: Source MOTD (Message of the Day) lapokat és élő szerver-állapot információkat, amelyeket GitHub Actions frissít. Olyan automatizálási munkafolyamatokat tartalmaz, amelyek szerzőszer-adatokat hoz és naprakészen tartja az oldalakat.",
+    "links": {
+      "github": "https://github.com/SajtosZsomle/game-web",
+      "web": "https://game.mrzsomi.top",
+      "discord": false,
+      "documentation": false,
+      "live-demo": "https://game.mrzsomi.top"
+    },
+    "tags": ["web", "game", "github-pages"],
+    "status": "in-progress"
   }
 ]
