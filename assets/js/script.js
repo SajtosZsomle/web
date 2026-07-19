@@ -369,9 +369,34 @@
 
   function showDetail(project) {
     let html = project.full || project.short || '';
-    if (project.github) {
-      html += `<br><a class="github-link-btn" href="${project.github}" target="_blank" rel="noopener">🔗 GitHub →</a>`;
+    
+    // Render links if available
+    const links = project.links || project.github ? { github: project.github } : null;
+    if (links) {
+      const linkIcons = {
+        github: { icon: '🐙', label: 'GitHub', color: '#333333', colorRgb: '51, 51, 51' },
+        web: { icon: '🌐', label: 'Website', color: '#4285f4', colorRgb: '66, 133, 244' },
+        discord: { icon: '💬', label: 'Discord', color: '#5865f2', colorRgb: '88, 101, 242' },
+        documentation: { icon: '📚', label: 'Docs', color: '#0969da', colorRgb: '9, 105, 218' },
+        'live-demo': { icon: '🎯', label: 'Live Demo', color: '#22c55e', colorRgb: '34, 197, 94' }
+      };
+      
+      const activeLinks = Object.entries(links).filter(([key, value]) => value !== false && value !== null);
+      if (activeLinks.length > 0) {
+        html += '<div class="project-links">';
+        activeLinks.forEach(([key, url]) => {
+          const linkInfo = linkIcons[key];
+          if (linkInfo) {
+            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${linkInfo.color}; --platform-color-rgb: ${linkInfo.colorRgb};" title="${linkInfo.label}">
+              <span class="link-icon">${linkInfo.icon}</span>
+              <span class="link-label">${linkInfo.label}</span>
+            </a>`;
+          }
+        });
+        html += '</div>';
+      }
     }
+    
     detailPanel.innerHTML = html;
     detailPanel.classList.add('visible');
   }

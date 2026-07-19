@@ -4,7 +4,13 @@
     "title": "FoamCutter",
     "short": "Hot wire CNC foam cutter with Arduino motion control and PC interface.",
     "full": "A hot wire CNC foam cutter built around an Arduino for motion control. Includes a simple PC interface for sending G-code-like commands. Designed for cutting wing cores and custom packaging inserts.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "cnc", "motion"],
     "status": "completed"
   },
@@ -13,7 +19,13 @@
     "title": "Moving Linear Rail System",
     "short": "Lead screw linear rail with DRV8825 and Arduino for repeatable positioning.",
     "full": "A lead-screw-driven linear rail using a DRV8825 stepper driver and Arduino. Built for repeatable positioning tasks. Used as a testbed for motion profiling and limit-switch homing routines.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "motion", "pcb"],
     "status": "completed"
   },
@@ -22,7 +34,13 @@
     "title": "DIY Fume Extraction System",
     "short": "Shop-built fume extractor with activated carbon filter and task lighting.",
     "full": "A shop-built solder fume extractor with an activated carbon filter layer and integrated task lighting. Powered by a quiet DC fan with adjustable speed.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["diy", "workshop"],
     "status": "completed"
   },
@@ -31,7 +49,13 @@
     "title": "ESP32 Weather Station",
     "short": "Sensor node with web dashboard and local API logging. Runs outside.",
     "full": "An outdoor sensor node measuring temperature and humidity. Serves a local web dashboard and logs readings via a simple REST API. Runs on a small solar-charged battery setup.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["esp32", "iot", "web"],
     "status": "in-progress"
   },
@@ -40,7 +64,13 @@
     "title": "ESP32 OTA System",
     "short": "WiFi firmware updates via ElegantOTA with auth and watchdog recovery.",
     "full": "Over-the-air firmware update system using ElegantOTA with basic authentication and a hardware watchdog for recovery. Simplifies field updates without a physical connection.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["esp32", "firmware"],
     "status": "completed"
   },
@@ -49,7 +79,13 @@
     "title": "RoyalCore Minecraft Network",
     "short": "Java Paper plugin with anti-dupe logic, exploit detection, and Discord alerts.",
     "full": "A custom Java Paper plugin featuring anti-dupe logic, exploit detection heuristics, and Discord webhook alerts. Built for a small multiplayer community.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["java", "minecraft", "backend"],
     "status": "completed"
   },
@@ -58,7 +94,13 @@
     "title": "Homelab Infrastructure",
     "short": "2 Dell Optiplex servers in PVE cluster, running Jellyfin, Pelican Panel, hosting projects, websites, DBs.",
     "full": "Two Dell Optiplex machines clustered with Proxmox VE. They run Jellyfin, Pelican Panel, host several websites, databases, and personal projects behind Cloudflare Tunnels.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["infra", "self-hosted"],
     "status": "in-progress"
   },
@@ -67,7 +109,13 @@
     "title": "Custom Electronics Prototyping",
     "short": "Arduino and ESP32 experiments with sensors, displays, and motor drivers.",
     "full": "Assorted Arduino and ESP32 experiments: sensor breakouts, OLED displays, motor drivers, and communication modules. Used to validate ideas before committing to a PCB.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "esp32", "prototype"],
     "status": "ongoing"
   },
@@ -76,7 +124,13 @@
     "title": "DRV8825 Custom PCB",
     "short": "Hand-designed stepper driver board in EasyEDA. Manufactured and soldered.",
     "full": "A hand-routed stepper driver breakout board designed in EasyEDA. Manufactured and hand-soldered. Used as a drop-in module for multiple motion projects.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["pcb", "easyeda", "motion"],
     "status": "completed"
   },
@@ -85,7 +139,13 @@
     "title": "mrzsomi.top Portfolio",
     "short": "This site. GitHub Pages, Cloudflare, and Formspree for contact. Clean UI.",
     "full": "This very site. Hosted on GitHub Pages, fronted by Cloudflare, with a contact form powered by Formspree. Clean responsive design with dark and light themes, particle background, and live GitHub activity.",
-    "github": "https://github.com/SajtosZsomle/web",
+    "links": {
+      "github": "https://github.com/SajtosZsomle/web",
+      "web": "https://mrzsomi.top",
+      "discord": false,
+      "documentation": false,
+      "live-demo": "https://mrzsomi.top"
+    },
     "tags": ["web", "portfolio"],
     "status": "completed"
   }

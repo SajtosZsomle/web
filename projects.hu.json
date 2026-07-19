@@ -4,7 +4,13 @@
     "title": "FoamCutter (CNC habvágó)",
     "short": "Izzóhuzalos CNC habvágó Arduino mozgásvezérléssel és PC-s kezelőfelülettel.",
     "full": "Arduino alapú, izzóhuzalos CNC habvágó gép. Egyszerű PC-s szoftveres felülettel rendelkezik a G-kód-szerű parancsok küldéséhez. Főként szárnyprofilok és egyedi csomagolásvédő betétek vágására tervezve.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "cnc", "motion"],
     "status": "completed"
   },
@@ -13,7 +19,13 @@
     "title": "Mozgó lineáris sínrendszer",
     "short": "Menetes orsós lineáris sín DRV8825-tel és Arduinóval, ismételhető pozicionáláshoz.",
     "full": "Menetes tengelyű (orsós) lineáris sín DRV8825 léptetőmotor-vezérlővel és Arduinóval hajtva. Nagy pontosságú, ismételhető pozicionálási feladatokhoz, mozgásprofilok és végállás-kapcsolók tesztelésére tervezve.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "motion", "pcb"],
     "status": "completed"
   },
@@ -22,7 +34,13 @@
     "title": "DIY forrasztási füstelszívó",
     "short": "Saját készítésű forrasztási füstelszívó aktív szénszűrővel és LED munkavilágítással.",
     "full": "Műhelybe tervezett forrasztási füstelszívó aktív szénszűrő réteggel és beépített célvilágítással. Csendes, állítható fordulatszámú DC ventilátorral működik.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["diy", "workshop"],
     "status": "completed"
   },
@@ -31,7 +49,13 @@
     "title": "ESP32 időjárás-állomás",
     "short": "Kültéri szenzorállomás webes kezelőfelülettel és helyi API-naplózással.",
     "full": "Kültéri mérőállomás hőmérséklet és páratartalom monitorozására. Helyi webes műszerfalat biztosít, az adatokat REST API-n keresztül naplózza. Napelemes akkutöltő áramkörről üzemel.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["esp32", "iot", "web"],
     "status": "in-progress"
   },
@@ -40,7 +64,13 @@
     "title": "ESP32 OTA frissítőrendszer",
     "short": "Vezeték nélküli (OTA) firmware-frissítés ElegantOTA-val, hitelesítéssel és watchdoggal.",
     "full": "Vezeték nélküli firmware-frissítő (OTA) rendszer ElegantOTA alapon, alapvető hitelesítéssel és hardveres watchdog áramkörrel a hibák automatikus javításához. Leegyszerűsíti a terepi frissítést fizikai kapcsolat nélkül.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["esp32", "firmware"],
     "status": "completed"
   },
@@ -49,7 +79,13 @@
     "title": "RoyalCore Minecraft hálózat",
     "short": "Java Paper plugin tárgysokszorosítás (anti-dupe) elleni védelemmel és Discord értesítésekkel.",
     "full": "Egyedi Java Paper szerver-plugin, amely anti-dupe (tárgyduplikálást gátló) logikát, exploit-szűrést és Discord webhook riasztásokat tartalmaz egy kis többjátékos közösség részére.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["java", "minecraft", "backend"],
     "status": "completed"
   },
@@ -58,7 +94,13 @@
     "title": "Homelab infrastruktúra",
     "short": "Két Dell Optiplex szerver Proxmox VE fürtben, Jellyfin, Pelican Panel és egyedi webhelyek kiszolgálása.",
     "full": "Két Dell Optiplex gépből álló Proxmox VE fürt (cluster). Jellyfin médiaszervert, Pelican Panelt futtatnak, valamint több adatbázist, egyedi weboldalt és tesztprojektet hosztolnak biztonságos Cloudflare alagutakon (Tunnel) keresztül.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["infra", "self-hosted"],
     "status": "in-progress"
   },
@@ -67,7 +109,13 @@
     "title": "Egyedi elektronikai prototípusok",
     "short": "Arduino és ESP32 prototípusok szenzorokkal, kijelzőkkel és motorvezérlőkkel.",
     "full": "Különféle Arduino és ESP32 kísérleti áramkörök: szenzorok, OLED kijelzők, léptető- és szervomotorok vezérlése. Az elméleti koncepciók gyakorlati igazolására szolgálnak a végleges NYÁK-tervezés előtt.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["arduino", "esp32", "prototype"],
     "status": "ongoing"
   },
@@ -76,7 +124,13 @@
     "title": "Egyedi DRV8825 NYÁK-lap",
     "short": "Egyedi tervezésű léptetőmotor-vezérlő NYÁK EasyEDA alapon, gyártva és beforrasztva.",
     "full": "Kézzel huzalozott léptetőmotor-vezérlő illesztőkártya (breakout board) EasyEDA-ban tervezve. Kínai gyártás után kézzel forrasztva; univerzális modulként szolgál számos pozicionáló projektemben.",
-    "github": false,
+    "links": {
+      "github": false,
+      "web": false,
+      "discord": false,
+      "documentation": false,
+      "live-demo": false
+    },
     "tags": ["pcb", "easyeda", "motion"],
     "status": "completed"
   },
@@ -85,7 +139,13 @@
     "title": "mrzsomi.top portfólió",
     "short": "Ez a portfólió oldal. GitHub Pages, Cloudflare védelem és Formspree kapcsolatfelvétel.",
     "full": "Maga a jelenlegi portfólió webhely. Gazdaoldalként a GitHub Pages szolgál, Cloudflare védi, a kapcsolati form pedig Formspree alapon működik. Reszponzív dizájn, sötét/világos mód, részecskeháttér és élő GitHub események.",
-    "github": "https://github.com/SajtosZsomle/mrzsomi.top",
+    "links": {
+      "github": "https://github.com/SajtosZsomle/web",
+      "web": "https://mrzsomi.top",
+      "discord": false,
+      "documentation": false,
+      "live-demo": "https://mrzsomi.top"
+    },
     "tags": ["web", "portfolio"],
     "status": "completed"
   }

@@ -213,6 +213,22 @@ section { padding: 5rem 0; }
   color: var(--accent); text-decoration: none; font-weight: 500; transition: 0.2s;
 }
 .github-link-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+
+/* Project links panel */
+.project-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.project-link {
+  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.2rem;
+  background: rgba(var(--platform-color-rgb, 100, 100, 100), 0.12); 
+  border: 1.5px solid var(--platform-color); opacity: 0.8;
+  border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+  color: var(--platform-color); transition: all 0.2s ease;
+}
+.project-link:hover {
+  background: rgba(var(--platform-color-rgb, 100, 100, 100), 0.2);
+  opacity: 1; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(var(--platform-color-rgb, 100, 100, 100), 0.25);
+}
+.project-link .link-icon { font-size: 1.1rem; }
+.project-link .link-label { font-weight: 500; }
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(-12px); }
   to { opacity: 1; transform: translateY(0); }
