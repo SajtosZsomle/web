@@ -2,7 +2,7 @@
   // ── i18n ──
   const translations = {
     en: {
-      about_tag: "Hello, I'm Zsomi",
+      about_tag: "Hello, I'm Mr. Zsomi",
       hero_title: 'I build <span class="accent-text">embedded systems</span> and the tools around them.',
       hero_paragraph: "Firmware, PCB design, RF experiments, and infrastructure — based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.",
       stat1: '<strong>30+</strong> projects shipped',
@@ -53,7 +53,7 @@
       form_message: "Message",
       form_message_placeholder: "Your message…",
       form_submit: "Send message",
-      footer_text: "REV_2026.06 · MRZSOMI · OPEN SOURCE TRANSPARENCY",
+      footer_text: "REV_2026.06 · MRZSOMI.TOP",
       available: "Available",
       nav_about: "About",
       nav_skills: "Skills",
@@ -64,7 +64,7 @@
       no_projects: "No projects match this filter."
     },
     hu: {
-      about_tag: "Üdv, Zsomi vagyok",
+      about_tag: "Üdv, Mr. Zsomi vagyok",
       hero_title: '<span class="accent-text">Beágyazott rendszereket</span> és a hozzájuk tartozó eszközöket építek.',
       hero_paragraph: "Firmware, PCB tervezés, RF kísérletek és infrastruktúra — Magyarországról. Mikrokontrollerekkel dolgozom, C/C++, Python, Java és JavaScript nyelveken írok kódot, és szeretek működő dolgokat létrehozni.",
       stat1: '<strong>30+</strong> projekt teljesítve',
@@ -111,11 +111,11 @@
       form_subject: "Tárgy",
       form_subject_placeholder: "Miről van szó?",
       form_email: "Email",
-      form_email_placeholder: "te@example.com",
+      form_email_placeholder: "te@gmail.com",
       form_message: "Üzenet",
       form_message_placeholder: "Üzeneted…",
       form_submit: "Küldés",
-      footer_text: "REV_2026.06 · MRZSOMI · NYÍLT FORRÁSKÓD · ÁTLÁTHATÓSÁG",
+      footer_text: "REV_2026.06 · MRZSOMI.TOP",
       available: "Elérhető",
       nav_about: "Rólam",
       nav_skills: "Készségek",
