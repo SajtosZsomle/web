@@ -41,8 +41,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="preload" href="assets/css/styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/styles.css"></noscript>
     <script defer src="assets/js/script.js"></script>
+
+    <!-- Hreflang for language-aware indexing -->
+    <link rel="alternate" href="https://mrzsomi.top/" hreflang="en" />
+    <link rel="alternate" href="https://mrzsomi.top/hu/" hreflang="hu" />
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "mrzsomi",
+      "url": "https://mrzsomi.top/",
+      "sameAs": [
+        "https://github.com/SajtosZsomle"
+      ],
+      "jobTitle": "Embedded Systems & Firmware Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "mrzsomi.top"
+      }
+    }
+    </script>
   </head>
   <body>
     <noscript>
@@ -62,7 +85,7 @@
     <nav class="nav">
       <div class="container nav-inner">
         <a href="#" class="logo">
-          <img src="assets/img/favicon.ico" alt="logo" onerror="this.onerror=null;this.src='assets/img/favicon.png';" />
+                  <img src="assets/img/favicon.ico" alt="mrzsomi logo" width="30" height="30" loading="lazy" onerror="this.onerror=null;this.src='assets/img/favicon.png';" />
           mrzsomi.top
         </a>
         <ul class="nav-links">

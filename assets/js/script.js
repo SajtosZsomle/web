@@ -417,22 +417,28 @@
 
   // ── GitHub Activity ──
   async function fetchGitHubActivity() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     try {
-      const res = await fetch('https://api.github.com/users/SajtosZsomle/events/public');
+      const res = await fetch('https://api.github.com/users/SajtosZsomle/events/public', { signal: controller.signal });
+      clearTimeout(timeout);
       if (!res.ok) throw new Error('limit');
       const events = await res.json();
       renderActivity(events.slice(0, 6));
-    } catch { 
-      document.getElementById('activity-feed').innerHTML = '<div class="loader">No recent activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; 
+    } catch (err) {
+      // Graceful fallback with link to profile
+      document.getElementById('activity-feed').innerHTML = '<div class="loader">No recent activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>';
+      console.warn('GitHub activity fetch failed:', err && err.name ? err.name : err);
     }
   }
   function renderActivity(events) {
     const feed = document.getElementById('activity-feed');
     feed.innerHTML = '';
-    if (!events.length) { feed.innerHTML = '<div class="loader">No recent public activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; return; }
+    if (!events || !events.length) { feed.innerHTML = '<div class="loader">No recent public activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; return; }
     events.forEach(e => {
       const item = document.createElement('div'); item.className = 'activity-item';
       const avatar = e.actor?.avatar_url || '';
+      const avatarAlt = (e.actor?.display_login || e.actor?.login || 'avatar');
       const repo = e.repo?.name || '';
       const type = e.type?.replace('Event','') || '';
       const date = new Date(e.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric' });
@@ -446,7 +452,7 @@
       else if (e.type === 'PullRequestEvent') action = `${e.payload.action} PR`;
       else if (e.type === 'WatchEvent') action = 'Starred';
       else action = e.type;
-      item.innerHTML = `<img class="activity-avatar" src="${avatar}" onerror="this.style.display='none'"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
+      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt="${avatarAlt}" width="40" height="40" loading="lazy" onerror="this.style.display='none'"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
       feed.appendChild(item);
     });
   }
