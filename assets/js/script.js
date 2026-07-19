@@ -497,20 +497,24 @@
   window.addEventListener('load', updateOffsets);
   updateOffsets();
 
+  // Improved scroll handler: pick the section whose top is closest to the header offset.
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    let current = '';
-    
-    // Find the current active section using cached offsets to prevent layout thrashing
-    for (let i = 0; i < sectionOffsets.length; i++) {
-      if (scrollY >= sectionOffsets[i].top - 120) {
-        current = sectionOffsets[i].id;
+    const targetLine = 80; // header offset used for scroll positions
+    let closestId = '';
+    let closestDistance = Infinity;
+
+    sections.forEach(s => {
+      const rect = s.getBoundingClientRect();
+      const distance = Math.abs(rect.top - targetLine);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestId = s.id;
       }
-    }
+    });
 
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.classList.remove('active');
-      if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
+      if (a.getAttribute('href') === `#${closestId}`) a.classList.add('active');
     });
   });
 
