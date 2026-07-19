@@ -113,11 +113,7 @@
             <p class="section-tag" data-i18n="about_tag">Hello, I'm Mr. Zsomi</p>
             <h1 data-i18n-html="hero_title">I build <span class="accent-text">embedded systems</span> and the tools around them.</h1>
             <p data-i18n="hero_paragraph">Firmware, PCB design, RF experiments, and infrastructure - based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.</p>
-            <div class="hero-stats">
-              <div class="stat-item" data-i18n-html="stat1"><strong>30+</strong> projects shipped</div>
-              <div class="stat-item" data-i18n-html="stat2"><strong>Embedded · Web · Infra</strong></div>
-              <div class="stat-item" data-i18n-html="stat3"><strong>Hungary</strong></div>
-            </div>
+
             <div class="btn-group">
               <a href="#projects" class="btn btn-primary" data-i18n="view_projects">View projects</a>
               <a href="#contact" class="btn btn-outline" data-i18n="get_in_touch">Get in touch</a>
@@ -127,12 +123,16 @@
             </div>
           </div>
           <div class="hero-visual">
-            <div class="abstract-hero">
-              <div class="shape shape-1"></div>
-              <div class="shape shape-2"></div>
-              <div class="shape shape-3"></div>
-              <div class="shape shape-4"></div>
-              <div class="shape-center"></div>
+            <div class="hero-terminal">
+              <div class="trm-bar">
+                <span class="trm-dot trm-red"></span>
+                <span class="trm-dot trm-yellow"></span>
+                <span class="trm-dot trm-green"></span>
+                <span class="trm-title">Serial Monitor — /dev/ttyUSB0 @ 115200</span>
+              </div>
+              <div class="trm-body" id="trm-body">
+                <span class="trm-cursor" id="trm-cursor"></span>
+              </div>
             </div>
           </div>
         </div>

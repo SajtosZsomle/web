@@ -5,9 +5,6 @@
       about_tag: "Hello, I'm Mr. Zsomi",
       hero_title: 'I build <span class="accent-text">embedded systems</span> and the tools around them.',
       hero_paragraph: "Firmware, PCB design, RF experiments, and infrastructure - based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.",
-      stat1: '<strong>30+</strong> projects shipped',
-      stat2: '<strong>Embedded · Web · Infra</strong>',
-      stat3: '<strong>Hungary</strong>',
       view_projects: "View projects",
       get_in_touch: "Get in touch",
       name_origin: "The nickname started in Minecraft, where I first called myself \"sajtoszsömlé\" (cheese bun). Over time it shortened to \"mrzsomi\" (Mr. Zsömi). It's a nod to the Hungarian word \"zsömle\" (a type of bun), not a reference to the name Zsombor.",
@@ -73,9 +70,6 @@
       about_tag: "Szia! Mr. Zsomi vagyok",
       hero_title: '<span class="accent-text">Beágyazott rendszereket</span> és a köréjük épülő eszközöket fejlesztek.',
       hero_paragraph: "Firmware, PCB tervezés, RF kísérletek és infrastruktúra - Magyarországon. Mikrokontrollerekkel dolgozom, C/C++, Python, Java és JavaScript nyelveken fejlesztek, és szeretek olyan dolgokat alkotni, amik valóban működnek.",
-      stat1: '<strong>30+</strong> sikeres projekt',
-      stat2: '<strong>Embedded · Web · Infra</strong>',
-      stat3: '<strong>Magyarország</strong>',
       view_projects: "Projektek megtekintése",
       get_in_touch: "Kapcsolatfelvétel",
       name_origin: "A becenevem még Minecraftból ered, ahol kezdetben \"sajtoszsömlé\"-nek hívtam magam. Ez rövidült le idővel \"mrzsomi\"-ra (Mr. Zsömi). A név a magyar \"zsömle\" szóra utal, és semmi köze a Zsombor névhez.",
@@ -548,6 +542,60 @@
   } else {
     window.dispatchEvent(new Event('scroll'));
   }
+
+  // ── Terminal animation ──
+  const trmBody = document.getElementById('trm-body');
+  const trmCursor = document.getElementById('trm-cursor');
+  const TRM_MAX = 9;
+  const trmLines = [
+    { type: 'info', text: 'Initializing firmware v1.4.2...' },
+    { type: 'ok',   text: 'ESP32 boot sequence complete' },
+    { type: 'info', text: 'Connecting to WiFi ···' },
+    { type: 'ok',   text: 'WiFi: 192.168.1.105 (mrzsomi-net)' },
+    { type: 'info', text: 'MQTT handshake ···' },
+    { type: 'ok',   text: 'MQTT connected: broker.local:1883' },
+    { type: 'val',  text: 'BME280: 23.4°C / 61.2% RH / 1013 hPa' },
+    { type: 'val',  text: 'RF signal: -67 dBm @ 433.92 MHz' },
+    { type: 'warn', text: 'OTA update available — scheduling...' },
+    { type: 'ok',   text: 'OTA flash done — firmware v1.4.3' },
+    { type: 'info', text: 'ISR state machine: IDLE → ACTIVE' },
+    { type: 'val',  text: 'PWM duty: 74% / freq: 20 kHz' },
+    { type: 'ok',   text: 'Proxmox heartbeat: OK (mrzsomi-srv)' },
+    { type: 'val',  text: 'CPU temp: 41.2°C / load: 12%' },
+    { type: 'info', text: 'Waiting for next sensor cycle...' },
+    { type: 'ok',   text: 'PCB rev3 self-test: all pins OK' },
+    { type: 'val',  text: 'ADC ch0: 2.87 V / ch1: 1.13 V' },
+    { type: 'warn', text: 'VBAT low: 3.62 V — charging...' },
+    { type: 'ok',   text: 'NTP sync: 2026-07-19 21:42:00 UTC' },
+    { type: 'info', text: 'Sleeping for 30s ···' },
+  ];
+  let trmIdx = 0;
+  let trmTimeout = null;
+  const trmStart = Date.now();
+
+  function addTrmLine() {
+    if (!trmBody || !trmCursor) return;
+    const entry = trmLines[trmIdx % trmLines.length];
+    trmIdx++;
+    const elapsed = ((Date.now() - trmStart) / 1000).toFixed(3);
+
+    const el = document.createElement('div');
+    el.className = 't-line';
+    el.innerHTML = `<span class="t-ts">[${elapsed}]</span> <span class="t-${entry.type}">${entry.text}</span>`;
+
+    if (trmCursor.parentNode) trmCursor.parentNode.removeChild(trmCursor);
+    trmBody.appendChild(el);
+    trmBody.appendChild(trmCursor);
+
+    const allLines = trmBody.querySelectorAll('.t-line');
+    if (allLines.length > TRM_MAX) allLines[0].remove();
+
+    requestAnimationFrame(() => el.classList.add('t-visible'));
+
+    trmTimeout = setTimeout(addTrmLine, 900 + Math.random() * 900);
+  }
+
+  setTimeout(addTrmLine, 500);
 
   // ── Init ──
   applyLanguage(currentLang);
