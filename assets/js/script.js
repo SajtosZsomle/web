@@ -4,7 +4,7 @@
     en: {
       about_tag: "Hello, I'm Mr. Zsomi",
       hero_title: 'I build <span class="accent-text">embedded systems</span> and the tools around them.',
-      hero_paragraph: "Firmware, PCB design, RF experiments, and infrastructure — based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.",
+      hero_paragraph: "Firmware, PCB design, RF experiments, and infrastructure - based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.",
       stat1: '<strong>30+</strong> projects shipped',
       stat2: '<strong>Embedded · Web · Infra</strong>',
       stat3: '<strong>Hungary</strong>',
@@ -61,20 +61,21 @@
       nav_activity: "Activity",
       nav_contact: "Contact",
       loading_projects: "Loading projects…",
+      error_projects: "Failed to load projects.",
       no_projects: "No projects match this filter."
     },
     hu: {
-      about_tag: "Üdv, Mr. Zsomi vagyok",
-      hero_title: '<span class="accent-text">Beágyazott rendszereket</span> és a hozzájuk tartozó eszközöket építek.',
-      hero_paragraph: "Firmware, PCB tervezés, RF kísérletek és infrastruktúra — Magyarországról. Mikrokontrollerekkel dolgozom, C/C++, Python, Java és JavaScript nyelveken írok kódot, és szeretek működő dolgokat létrehozni.",
-      stat1: '<strong>30+</strong> projekt teljesítve',
+      about_tag: "Szia! Mr. Zsomi vagyok",
+      hero_title: '<span class="accent-text">Beágyazott rendszereket</span> és a köréjük épülő eszközöket fejlesztek.',
+      hero_paragraph: "Firmware, PCB tervezés, RF kísérletek és infrastruktúra - Magyarországon. Mikrokontrollerekkel dolgozom, C/C++, Python, Java és JavaScript nyelveken fejlesztek, és szeretek olyan dolgokat alkotni, amik valóban működnek.",
+      stat1: '<strong>30+</strong> sikeres projekt',
       stat2: '<strong>Embedded · Web · Infra</strong>',
       stat3: '<strong>Magyarország</strong>',
-      view_projects: "Projektek",
-      get_in_touch: "Kapcsolat",
-      name_origin: "A név a Minecraftban született: először \"sajtoszsömlé\"-nek neveztem magam, ami aztán lerövidült \"mrzsomi\"-ra (Mr. Zsömi). A név a zsömlére (péksütemény) utal, nem a Zsombor névre.",
+      view_projects: "Projektek megtekintése",
+      get_in_touch: "Kapcsolatfelvétel",
+      name_origin: "A becenevem még Minecraftból ered, ahol kezdetben \"sajtoszsömlé\"-nek hívtam magam. Ez rövidült le idővel \"mrzsomi\"-ra (Mr. Zsömi). A név a magyar \"zsömle\" szóra utal, és semmi köze a Zsombor névhez.",
       skills_tag: "Szakértelem",
-      skills_title: "Készségek & eszközök",
+      skills_title: "Készségek és eszközök",
       hardware_title: "Hardver",
       software_title: "Szoftver",
       engineering_title: "Mérnökség",
@@ -82,22 +83,22 @@
         "ESP32 / ATmega328",
         "PCB tervezés (EasyEDA)",
         "3D nyomtatás (Creality)",
-        "Forrasztás & újraöntés",
+        "Forrasztás és SMD javítás (rework)",
         "Otthoni szerver (Proxmox)"
       ],
       skills_software: [
         "Beágyazott C/C++",
         "Java / Kotlin",
         "Python / JavaScript",
-        "OTA / Async szerverek",
-        "ISR állapotgépek"
+        "OTA frissítések és aszinkron szerverek",
+        "ISR alapú állapotgépek"
       ],
       skills_engineering: [
-        "RF hibakeresés & elemzés",
+        "RF diagnosztika és mérés",
         "Cloudflare / Proxmox",
         "IntelliJ / VSCodium",
         "Figma (UI/UX)",
-        "Git / CI/CD"
+        "Git és CI/CD folyamatok"
       ],
       filter_all: "Összes",
       projects_tag: "Portfólió",
@@ -123,7 +124,8 @@
       nav_activity: "Aktivitás",
       nav_contact: "Kapcsolat",
       loading_projects: "Projektek betöltése…",
-      no_projects: "Nincs találat erre a szűrőre."
+      error_projects: "Hiba történt a projektek betöltése során.",
+      no_projects: "Nincs a szűrésnek megfelelő projekt."
     }
   };
 
@@ -161,6 +163,15 @@
   let particles = [];
   function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+  // Cache accent color to prevent layout thrashing (reflow) on every frame
+  let accentColor = '#ff8a3d';
+  function updateParticleColor() {
+    accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff8a3d';
+  }
+  updateParticleColor();
+  window.addEventListener('load', updateParticleColor);
+
   class Particle {
     constructor() { this.reset(); }
     reset() {
@@ -175,7 +186,7 @@
     }
     draw() {
       ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff8a3d';
+      ctx.fillStyle = accentColor;
       ctx.fill();
     }
   }
@@ -199,6 +210,7 @@
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next); localStorage.setItem('theme', next);
     themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+    updateParticleColor();
   });
 
   // ── Language toggle ──
@@ -209,27 +221,71 @@
   // ── Skills rendering ──
   const skillsContainer = document.getElementById('skills-container');
   const skillPercentages = {
-    hardware: [95, 85, 80, 90, 75],
-    software: [90, 85, 80, 85, 88],
-    engineering: [70, 80, 95, 60, 75]
+    // Hardware
+    "ESP32 / ATmega328": 76,
+    "PCB Design (EasyEDA)": 65,
+    "3D Printing (Creality)": 80,
+    "Soldering & Rework": 72,
+    "Home Server (Proxmox)": 82,
+
+    // Software
+    "Embedded C/C++": 70,
+    "Java / Kotlin": 77,
+    "Python / JavaScript": 88,
+    "OTA / Async Servers": 74,
+    "ISR State Machines": 65,
+
+    // Engineering
+    "RF Debugging & Analysis": 64,
+    "Cloudflare / Proxmox": 82,
+    "IntelliJ / VSCodium": 85,
+    "Figma (UI/UX)": 75,
+    "Git / CI/CD": 85
   };
   function renderSkills() {
     const t = translations[currentLang];
+    const en = translations.en;
     const categories = [
-      { title: t.hardware_title, items: t.skills_hardware, percents: skillPercentages.hardware },
-      { title: t.software_title, items: t.skills_software, percents: skillPercentages.software },
-      { title: t.engineering_title, items: t.skills_engineering, percents: skillPercentages.engineering }
+      { title: t.hardware_title, items: t.skills_hardware, enItems: en.skills_hardware },
+      { title: t.software_title, items: t.skills_software, enItems: en.skills_software },
+      { title: t.engineering_title, items: t.skills_engineering, enItems: en.skills_engineering }
     ];
-    skillsContainer.innerHTML = categories.map(cat => `
-      <div class="skill-card">
-        <h3>${cat.title}</h3>
-        <ul>
-          ${cat.items.map((item, i) => `
-            <li>${item} <span class="progress-bar"><span class="progress-fill" style="width: ${cat.percents[i]}%"></span></span></li>
-          `).join('')}
-        </ul>
-      </div>
-    `).join('');
+    skillsContainer.innerHTML = categories.map(cat => {
+      // Zip translated items with their English counterparts, look up their percentage, then sort descending
+      const sortedSkills = cat.items.map((item, idx) => {
+        const enName = cat.enItems[idx];
+        const percent = skillPercentages[enName] || 0;
+        return { name: item, percent };
+      }).sort((a, b) => b.percent - a.percent);
+
+
+      return `
+        <div class="skill-card">
+          <h3>${cat.title}</h3>
+          <ul>
+            ${sortedSkills.map(item => `
+              <li>
+                <div class="skill-info">
+                  <span class="skill-name">${item.name}</span>
+                  <span class="skill-percent">${item.percent}%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-percent="${item.percent}" style="width: 0%"></div>
+                </div>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+    }).join('');
+
+    // Trigger slide-in animation after rendering to allow CSS transitions to execute
+    setTimeout(() => {
+      document.querySelectorAll('.progress-fill').forEach(fill => {
+        const pct = fill.getAttribute('data-percent');
+        fill.style.width = pct + '%';
+      });
+    }, 100);
   }
 
   // ── Projects ──
@@ -248,7 +304,7 @@
       buildFilters();
       renderProjects();
     } catch (err) {
-      listContainer.innerHTML = `<div class="loader">${translations[currentLang].loading_projects}</div>`;
+      listContainer.innerHTML = `<div class="loader" style="color: var(--accent);">${translations[currentLang].error_projects || 'Failed to load projects.'}</div>`;
     }
   }
 
@@ -327,12 +383,14 @@
       if (!res.ok) throw new Error('limit');
       const events = await res.json();
       renderActivity(events.slice(0, 6));
-    } catch { document.getElementById('activity-feed').innerHTML = '<div class="loader">No recent activity.</div>'; }
+    } catch { 
+      document.getElementById('activity-feed').innerHTML = '<div class="loader">No recent activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; 
+    }
   }
   function renderActivity(events) {
     const feed = document.getElementById('activity-feed');
     feed.innerHTML = '';
-    if (!events.length) { feed.innerHTML = '<div class="loader">No recent public activity.</div>'; return; }
+    if (!events.length) { feed.innerHTML = '<div class="loader">No recent public activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; return; }
     events.forEach(e => {
       const item = document.createElement('div'); item.className = 'activity-item';
       const avatar = e.actor?.avatar_url || '';
@@ -340,8 +398,11 @@
       const type = e.type?.replace('Event','') || '';
       const date = new Date(e.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric' });
       let action = '';
-      if (e.type === 'PushEvent') action = `Pushed ${e.payload.commits?.length || 0} commits`;
-      else if (e.type === 'CreateEvent') action = `Created ${e.payload.ref_type}`;
+      if (e.type === 'PushEvent') {
+        const branch = e.payload.ref?.replace('refs/heads/', '') || 'main';
+        action = `Pushed to ${branch}`;
+      }
+      else if (e.type === 'CreateEvent') action = `Created ${e.payload.ref_type} ${e.payload.ref || ''}`;
       else if (e.type === 'IssuesEvent') action = `${e.payload.action} issue`;
       else if (e.type === 'PullRequestEvent') action = `${e.payload.action} PR`;
       else if (e.type === 'WatchEvent') action = 'Starred';
@@ -375,21 +436,46 @@
   });
 
   // ── Smooth scroll + active nav ──
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  let sectionOffsets = [];
+
+  function updateOffsets() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    sectionOffsets = sections.map(s => ({
+      id: s.id,
+      top: s.getBoundingClientRect().top + scrollY
+    }));
+  }
+
+  // Update offsets initially, on load, and on window resize
+  window.addEventListener('resize', updateOffsets);
+  window.addEventListener('load', updateOffsets);
+  updateOffsets();
+
   window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
+    const scrollY = window.scrollY || window.pageYOffset;
     let current = '';
-    sections.forEach(s => { if (window.pageYOffset >= s.offsetTop - 120) current = s.id; });
+    
+    // Find the current active section using cached offsets to prevent layout thrashing
+    for (let i = 0; i < sectionOffsets.length; i++) {
+      if (scrollY >= sectionOffsets[i].top - 120) {
+        current = sectionOffsets[i].id;
+      }
+    }
+
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.classList.remove('active');
       if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
     });
   });
+
   document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
-        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        const scrollY = window.scrollY || window.pageYOffset;
+        const top = target.getBoundingClientRect().top + scrollY - 80;
         window.scrollTo({ top, behavior:'smooth' });
       }
     });

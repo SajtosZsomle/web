@@ -3,24 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MrZsomi — Embedded Systems & Portfolio</title>
-    <meta name="description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work — based in Hungary." />
-    <meta name="keywords" content="embedded systems, firmware, PCB design, ESP32, ATmega328, RF, portfolio, Hungary" />
+    <title>mrzsomi | Embedded Systems, Firmware & Infrastructure</title>
+    <meta name="description" content="Personal portfolio of mrzsomi, an embedded systems and firmware engineer based in Hungary. PCB design, microcontrollers, RF tools, and homelab setups." />
+    <meta name="keywords" content="embedded systems, firmware engineer, PCB design, ESP32, STM32, Arduino, RF debugging, homelab, Proxmox, portfolio, Hungary" />
     <meta name="author" content="mrzsomi" />
     <link rel="canonical" href="https://mrzsomi.top/" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#ff8a3d" />
     <meta name="copyrighted-site-verification" content="316f1e851e704216" />
 
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="mrzsomi.top — Embedded Systems, Firmware, and Infra" />
-    <meta property="og:description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work." />
     <meta property="og:url" content="https://mrzsomi.top/" />
+    <meta property="og:title" content="mrzsomi | Embedded Systems, Firmware & Infrastructure" />
+    <meta property="og:description" content="Embedded systems development, firmware engineering, PCB design, RF debugging, and homelab setups by mrzsomi." />
     <meta property="og:image" content="https://mrzsomi.top/assets/img/og-image.png" />
     <meta property="og:image:alt" content="mrzsomi.top portfolio preview" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="mrzsomi.top" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="hu_HU" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="mrzsomi.top — Embedded Systems, Firmware, and Infra" />
-    <meta name="twitter:description" content="Embedded systems, firmware, PCB design, RF tooling, and infrastructure work." />
+    <meta name="twitter:url" content="https://mrzsomi.top/" />
+    <meta name="twitter:title" content="mrzsomi | Embedded Systems, Firmware & Infrastructure" />
+    <meta name="twitter:description" content="Embedded systems development, firmware engineering, PCB design, RF debugging, and homelab setups by mrzsomi." />
     <meta name="twitter:image" content="https://mrzsomi.top/assets/img/og-image.png" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
@@ -65,7 +75,7 @@
       <section id="about" class="hero">
         <p class="section-tag" data-i18n="about_tag">Hello, I'm Mr. Zsomi</p>
         <h1 data-i18n-html="hero_title">I build <span class="accent-text">embedded systems</span> and the tools around them.</h1>
-        <p data-i18n="hero_paragraph">Firmware, PCB design, RF experiments, and infrastructure — based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.</p>
+        <p data-i18n="hero_paragraph">Firmware, PCB design, RF experiments, and infrastructure - based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.</p>
         <div class="hero-stats">
           <div data-i18n-html="stat1"><strong>30+</strong> projects shipped</div>
           <div data-i18n-html="stat2"><strong>Embedded · Web · Infra</strong></div>
@@ -92,10 +102,12 @@
         <div class="filter-bar" id="filter-bar">
           <button class="filter-chip active" data-filter="all" data-i18n="filter_all">All</button>
         </div>
-        <div class="project-list" id="project-list">
-          <div class="loader">Loading projects…</div>
+        <div class="projects-wrapper">
+          <div class="project-list" id="project-list">
+            <div class="loader">Loading projects…</div>
+          </div>
+          <div class="project-detail" id="project-detail"></div>
         </div>
-        <div class="project-detail" id="project-detail"></div>
       </section>
 
       <section id="activity">
