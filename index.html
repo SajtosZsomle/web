@@ -41,8 +41,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
 
-    <link rel="preload" href="assets/css/styles.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/styles.css"></noscript>
+    <!-- Preloader – inline so it renders before any external file loads -->
+    <style>
+      #preloader {
+        position: fixed; inset: 0; z-index: 99999;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 1.6rem;
+        background: #ffffff;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      #preloader.pre-dark { background: #0a0a0a; }
+      #preloader.pre-out  { opacity: 0; visibility: hidden; pointer-events: none; }
+      .pre-wordmark {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 1.35rem; font-weight: 700;
+        letter-spacing: -0.03em; color: #111827;
+        display: flex; align-items: center; gap: 0;
+      }
+      #preloader.pre-dark .pre-wordmark { color: #f0f0f0; }
+      .pre-wordmark .pre-dot { color: #ff8a3d; }
+      .pre-track {
+        width: 90px; height: 2px;
+        background: #e5e7eb; border-radius: 10px; overflow: hidden;
+      }
+      #preloader.pre-dark .pre-track { background: #2a2a2a; }
+      .pre-thumb {
+        height: 100%; width: 42%;
+        background: linear-gradient(90deg, #ff8a3d, #ff6b2b);
+        border-radius: 10px;
+        animation: pre-sweep 1s ease-in-out infinite;
+      }
+      @keyframes pre-sweep {
+        0%   { transform: translateX(-130%); }
+        100% { transform: translateX(290%); }
+      }
+    </style>
+    <!-- Apply saved theme BEFORE any stylesheet to prevent flash -->
+    <script>
+      (function(){
+        var t = localStorage.getItem('theme');
+        if (t === 'dark') {
+          document.documentElement.setAttribute('data-theme','dark');
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
     <script defer src="assets/js/script.js"></script>
 
     <!-- Hreflang for language-aware indexing -->
@@ -68,6 +112,29 @@
     </script>
   </head>
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="pre-wordmark">mrzsomi<span class="pre-dot">.top</span></div>
+      <div class="pre-track"><div class="pre-thumb"></div></div>
+    </div>
+    <script>
+      (function(){
+        var el = document.getElementById('preloader');
+        if (localStorage.getItem('theme') === 'dark') el.classList.add('pre-dark');
+        function hide() {
+          el.classList.add('pre-out');
+          setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 520);
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(hide, 80);
+        } else {
+          window.addEventListener('load', function(){ setTimeout(hide, 80); }, { once: true });
+          // Safety net: never show longer than 4s
+          setTimeout(hide, 4000);
+        }
+      })();
+    </script>
+
     <noscript>
       <div class="noscript-warning">
         <div class="noscript-content">
