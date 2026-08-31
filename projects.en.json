@@ -2,8 +2,8 @@
   {
     "id": "p1",
     "title": "FoamCutter",
-    "short": "Hot wire CNC foam cutter with Arduino motion control and PC interface.",
-    "full": "A hot wire CNC foam cutter built around an Arduino for motion control. Includes a simple PC interface for sending G-code-like commands. Designed for cutting wing cores and custom packaging inserts.",
+    "short": "A compact hot-wire CNC cutter with Arduino motion control and a small PC interface.",
+    "full": "I built this cutter to make repeatable foam cuts without turning every shape into a manual exercise. Arduino handles the motion while a lightweight PC tool sends G-code-style commands. It has been useful for wing cores and custom packaging inserts.",
     "links": {
       "github": false,
       "web": false,
@@ -17,8 +17,8 @@
   {
     "id": "p2",
     "title": "Moving Linear Rail System",
-    "short": "Lead screw linear rail with DRV8825 and Arduino for repeatable positioning.",
-    "full": "A lead-screw-driven linear rail using a DRV8825 stepper driver and Arduino. Built for repeatable positioning tasks. Used as a testbed for motion profiling and limit-switch homing routines.",
+    "short": "A lead-screw rail for repeatable positioning, driven by an Arduino and DRV8825.",
+    "full": "This rail is a small motion-control testbed: an Arduino drives the stepper through a DRV8825, with homing and motion-profiling routines layered on top. The goal was predictable, repeatable movement rather than a one-off demonstration.",
     "links": {
       "github": false,
       "web": false,
@@ -32,8 +32,8 @@
   {
     "id": "p3",
     "title": "DIY Fume Extraction System",
-    "short": "Shop-built fume extractor with activated carbon filter and task lighting.",
-    "full": "A shop-built solder fume extractor with an activated carbon filter layer and integrated task lighting. Powered by a quiet DC fan with adjustable speed.",
+    "short": "A workshop fume extractor with activated carbon filtration and integrated task lighting.",
+    "full": "I built this for a more comfortable soldering setup. A quiet, speed-controlled DC fan pulls fumes through an activated-carbon layer, while the integrated light keeps small work visible.",
     "links": {
       "github": false,
       "web": false,
@@ -47,7 +47,7 @@
   {
     "id": "p4",
     "title": "ESP32 Weather Station",
-    "short": "Sensor node with web dashboard and local API logging. Runs outside.",
+    "short": "An outdoor ESP32 sensor node with a small dashboard and local API logging.",
     "full": "An outdoor sensor node measuring temperature and humidity. Serves a local web dashboard and logs readings via a simple REST API. Runs on a small solar-charged battery setup.",
     "links": {
       "github": false,
@@ -62,7 +62,7 @@
   {
     "id": "p5",
     "title": "ESP32 OTA System",
-    "short": "WiFi firmware updates via ElegantOTA with auth and watchdog recovery.",
+    "short": "A safer way to update ESP32 firmware over Wi-Fi, with authentication and watchdog recovery.",
     "full": "Over-the-air firmware update system using ElegantOTA with basic authentication and a hardware watchdog for recovery. Simplifies field updates without a physical connection.",
     "links": {
       "github": false,
@@ -92,7 +92,7 @@
   {
     "id": "p7",
     "title": "Homelab Infrastructure",
-    "short": "2 Dell Optiplex servers in PVE cluster, running Jellyfin, Pelican Panel, hosting projects, websites, DBs.",
+    "short": "A two-node Proxmox setup for personal services, websites, databases and experiments.",
     "full": "Two Dell Optiplex machines clustered with Proxmox VE. They run Jellyfin, Pelican Panel, host several websites, databases, and personal projects behind Cloudflare Tunnels.",
     "links": {
       "github": false,
@@ -137,7 +137,7 @@
   {
     "id": "p10",
     "title": "mrzsomi.top Portfolio",
-    "short": "This site. GitHub Pages, Cloudflare, and Formspree for contact. Clean UI.",
+    "short": "The site you are looking at: a small bilingual portfolio with a deliberately simple stack.",
     "full": "This very site. Hosted on GitHub Pages, fronted by Cloudflare, with a contact form powered by Formspree. Clean responsive design with dark and light themes, particle background, and live GitHub activity.",
     "links": {
       "github": "https://github.com/SajtosZsomle/web",
@@ -167,7 +167,7 @@
   {
     "id": "p12",
     "title": "Status Page",
-    "short": "Uptime monitor and status page powered by Upptime, tracking service availability.",
+    "short": "A small, transparent status page that tracks service availability with Upptime.",
     "full": "An open-source uptime monitoring and status page for all services, powered by Upptime. Monitors service health 24/7 using GitHub Actions workflows. Provides real-time status, response time graphs, and incident tracking via GitHub issues. Live status page at status.mrzsomi.top.",
     "links": {
       "github": "https://github.com/SajtosZsomle/status-page",

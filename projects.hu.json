@@ -47,8 +47,8 @@
   {
     "id": "p4",
     "title": "ESP32 időjárás-állomás",
-    "short": "Kültéri szenzorállomás webes kezelőfelülettel és helyi API-naplózással.",
-    "full": "Kültéri mérőállomás hőmérséklet és páratartalom monitorozására. Helyi webes műszerfalat biztosít, az adatokat REST API-n keresztül naplózza. Napelemes akkutöltő áramkörről üzemel.",
+    "short": "Kültéri ESP32 szenzorállomás egyszerű műszerfallal és helyi API-naplózással.",
+    "full": "Kültéri mérőállomás hőmérséklet- és páratartalom-méréshez. Helyi webes műszerfalon jeleníti meg az adatokat, amelyeket egy egyszerű REST API-n keresztül naplóz. Kis, napelemes akkumulátoros rendszerben is önállóan működik.",
     "links": {
       "github": false,
       "web": false,
@@ -168,7 +168,7 @@
     "id": "p12",
     "title": "Státuszoldal",
     "short": "Upptime-alapú üzemidő-figyelő és státuszoldal a szolgáltatások elérhetőségének nyomon követésére.",
-    "full": "Nyílt forráskódú üzemidő-monitorozási és státuszoldal az összes szolgáltatáshoz, az Upptime alapján működtetve. 24/7-es szolgáltatás-állapot-figyelést végez GitHub Actions munkafolyamatokkal. Valós idejű státuszt, válaszidő-grafikonokat és incidenslövetést biztosít GitHub-problémakon keresztül. Az élő státuszoldal a status.mrzsomi.top címen érhető el.",
+    "full": "Az összes szolgáltatás állapotát követő, átlátható státuszoldal Upptime-ra építve. GitHub Actions figyeli az elérhetőséget, a válaszidőt és az incidenseket, az eredmények pedig nyilvánosan követhetők. Az élő státuszoldal a status.mrzsomi.top címen érhető el.",
     "links": {
       "github": "https://github.com/SajtosZsomle/status-page",
       "web": "https://status.mrzsomi.top",

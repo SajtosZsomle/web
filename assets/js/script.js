@@ -2,17 +2,18 @@
   // ── i18n ──
   const translations = {
     en: {
-      about_tag: "Hello, I'm Mr. Zsomi",
-      hero_title: 'I build <span class="accent-text">embedded systems</span> and the tools around them.',
-      hero_paragraph: "Firmware, PCB design, RF experiments, and infrastructure - based in Hungary. I work with microcontrollers, write code in C/C++, Python, Java and JavaScript, and enjoy creating things that actually work.",
+      about_tag: "Hi, I’m mrzsomi",
+      build_notes: "A few current interests",
+      hero_title: 'I’m into <span class="accent-text">a little bit of everything.</span>',
+      hero_paragraph: "Electronics is one of my main interests, but I also like software, websites, games, and picking up random new hobbies. I’m a Hungarian student, and this is where I share some of the things I build and try.",
       view_projects: "View projects",
       get_in_touch: "Get in touch",
-      name_origin: "The nickname started in Minecraft, where I first called myself \"sajtoszsömlé\" (cheese bun). Over time it shortened to \"mrzsomi\" (Mr. Zsömi). It's a nod to the Hungarian word \"zsömle\" (a type of bun), not a reference to the name Zsombor.",
-      skills_tag: "Expertise",
-      skills_title: "Skills & tools",
+      name_origin: "The name started with an old Minecraft username: sajtoszsömle, meaning cheese bun in Hungarian. I used it for a long time before shortening it to mrzsomi (Mr. Bun). It is a small reminder of where the name came from, even though the things I am interested in have changed quite a bit since then.",
+      skills_tag: "A few things I use",
+      skills_title: "Things I enjoy working with",
       hardware_title: "Hardware",
       software_title: "Software",
-      engineering_title: "Engineering",
+      engineering_title: "Projects & practice",
       skills_hardware: [
         "ESP32 / ATmega328",
         "PCB Design (EasyEDA)",
@@ -35,12 +36,12 @@
         "Git / CI/CD"
       ],
       filter_all: "All",
-      projects_tag: "Portfolio",
-      projects_title: "Selected projects",
-      activity_tag: "Live",
-      activity_title: "Recent GitHub activity",
-      contact_tag: "Let's talk",
-      contact_title: "Contact",
+      projects_tag: "Selected work",
+      projects_title: "Things I’ve made",
+      activity_tag: "What I’m up to",
+      activity_title: "Recent bits and pieces",
+      contact_tag: "Have a project in mind?",
+      contact_title: "Let’s talk",
       form_name: "Name",
       form_name_placeholder: "Your name",
       form_subject: "Subject",
@@ -50,7 +51,7 @@
       form_message: "Message",
       form_message_placeholder: "Your message…",
       form_submit: "Send message",
-      footer_text: "REV_2026.06 · MRZSOMI.TOP",
+      footer_text: "© 2026 mrzsomi · Budapest / online",
       available: "Available",
       nav_about: "About",
       nav_skills: "Skills",
@@ -64,20 +65,22 @@
       link_web: "Website",
       link_discord: "Discord",
       link_documentation: "Docs",
-      link_live_demo: "Live Demo"
+      link_live_demo: "Live Demo",
+      no_activity: "No recent public activity.",
+      view_github: "View GitHub profile"
     },
     hu: {
-      about_tag: "Szia! Mr. Zsomi vagyok",
-      hero_title: '<span class="accent-text">Beágyazott rendszereket</span> és a köréjük épülő eszközöket fejlesztek.',
-      hero_paragraph: "Firmware, PCB tervezés, RF kísérletek és infrastruktúra - Magyarországon. Mikrokontrollerekkel dolgozom, C/C++, Python, Java és JavaScript nyelveken fejlesztek, és szeretek olyan dolgokat alkotni, amik valóban működnek.",
-      view_projects: "Projektek megtekintése",
+      about_tag: "Szia, mrzsomi vagyok",
+      build_notes: "Néhány aktuális érdeklődés",
+      hero_title: '<span class="accent-text">Egy kicsit</span> minden érdekel.',
+      hero_paragraph: "Az elektronika az egyik fő érdeklődési területem, de a szoftverek, weboldalak, játékok és az új hobbik kipróbálása is érdekel. Magyar diákként ezen az oldalon néhány dolgot mutatok meg, amit megépítek és kipróbálok.",
       get_in_touch: "Kapcsolatfelvétel",
-      name_origin: "A becenevem még Minecraftból ered, ahol kezdetben \"sajtoszsömlé\"-nek hívtam magam. Ez rövidült le idővel \"mrzsomi\"-ra (Mr. Zsömi). A név a magyar \"zsömle\" szóra utal, és semmi köze a Zsombor névhez.",
-      skills_tag: "Szakértelem",
-      skills_title: "Készségek és eszközök",
+      name_origin: "A név egy régi Minecraft-os felhasználónévből indult: sajtoszsomle0821, vagyis sajtos zsömle. Sokáig ezt használtam (valahol még most is), később pedig mrzsomi-ra (Mr. Zsömi) rövidítettem. Jó emlékeztető arra, honnan jött a név, még akkor is, ha azóta sok minden más is elkezdett érdekelni.",
+      skills_tag: "Amikkel foglalkozom",
+      skills_title: "Amit szívesen használok",
       hardware_title: "Hardver",
       software_title: "Szoftver",
-      engineering_title: "Mérnökség",
+      engineering_title: "Projektek és gyakorlat",
       skills_hardware: [
         "ESP32 / ATmega328",
         "PCB tervezés (EasyEDA)",
@@ -100,12 +103,12 @@
         "Git és CI/CD folyamatok"
       ],
       filter_all: "Összes",
-      projects_tag: "Portfólió",
-      projects_title: "Válogatott projektek",
-      activity_tag: "Élő",
-      activity_title: "Legutóbbi GitHub aktivitás",
-      contact_tag: "Beszéljünk",
-      contact_title: "Kapcsolat",
+      projects_tag: "Válogatott munkák",
+      projects_title: "Amit készítettem",
+      activity_tag: "Amin most dolgozom",
+      activity_title: "Friss dolgok és kísérletek",
+      contact_tag: "Van egy ötleted?",
+      contact_title: "Beszéljünk",
       form_name: "Név",
       form_name_placeholder: "A neved",
       form_subject: "Tárgy",
@@ -115,7 +118,7 @@
       form_message: "Üzenet",
       form_message_placeholder: "Üzeneted…",
       form_submit: "Küldés",
-      footer_text: "REV_2026.06 · MRZSOMI.TOP",
+      footer_text: "© 2026 mrzsomi · Budapest / online",
       available: "Elérhető",
       nav_about: "Rólam",
       nav_skills: "Készségek",
@@ -129,7 +132,9 @@
       link_web: "Weboldal",
       link_discord: "Discord",
       link_documentation: "Dokumentáció",
-      link_live_demo: "Élő bemutató"
+      link_live_demo: "Élő bemutató",
+      no_activity: "Nincs friss nyilvános aktivitás.",
+      view_github: "GitHub-profil megnyitása"
     }
   };
 
@@ -159,6 +164,7 @@
     });
     renderSkills();
     loadProjects();
+    fetchGitHubActivity();
   }
 
   // ── Particles ──
@@ -239,7 +245,7 @@
     "OTA / Async Servers": 74,
     "ISR State Machines": 65,
 
-    // Engineering
+    // Projects and practice
     "RF Debugging & Analysis": 64,
     "Cloudflare / Proxmox": 82,
     "IntelliJ / VSCodium": 85,
@@ -346,7 +352,8 @@
       item.className = 'project-item' + (project.id === activeProjectId ? ' active' : '');
       item.setAttribute('data-id', project.id);
       const tagsHtml = (project.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
-      const statusHtml = project.status ? `<span class="status">${project.status}</span>` : '';
+      const statusLabels = { completed: currentLang === "hu" ? "Elkészült" : "Completed", "in-progress": currentLang === "hu" ? "Folyamatban" : "In progress", ongoing: currentLang === "hu" ? "Folyamatosan alakul" : "Ongoing" };
+      const statusHtml = project.status ? `<span class="status">${statusLabels[project.status] || project.status}</span>` : '';
       item.innerHTML = `
         <div class="project-info">
           <h3>${project.title}</h3>
@@ -412,35 +419,37 @@
   // ── GitHub Activity ──
   async function fetchGitHubActivity() {
     try {
-      const res = await fetch('https://api.github.com/users/SajtosZsomle/events/public');
-      if (!res.ok) throw new Error('limit');
+      const res = await fetch("https://api.github.com/users/SajtosZsomle/events/public");
+      if (!res.ok) throw new Error("limit");
       const events = await res.json();
       renderActivity(events.slice(0, 6));
-    } catch { 
-      document.getElementById('activity-feed').innerHTML = '<div class="loader">No recent activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; 
+    } catch {
+      const t = translations[currentLang];
+      document.getElementById("activity-feed").innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github} ↗</a></div>`;
     }
   }
   function renderActivity(events) {
-    const feed = document.getElementById('activity-feed');
-    feed.innerHTML = '';
-    if (!events.length) { feed.innerHTML = '<div class="loader">No recent public activity. <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">View GitHub Profile ↗</a></div>'; return; }
+    const feed = document.getElementById("activity-feed");
+    feed.innerHTML = "";
+    if (!events.length) {
+      const t = translations[currentLang];
+      feed.innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github} ↗</a></div>`;
+      return;
+    }
     events.forEach(e => {
-      const item = document.createElement('div'); item.className = 'activity-item';
-      const avatar = e.actor?.avatar_url || '';
-      const repo = e.repo?.name || '';
-      const type = e.type?.replace('Event','') || '';
-      const date = new Date(e.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric' });
-      let action = '';
-      if (e.type === 'PushEvent') {
-        const branch = e.payload.ref?.replace('refs/heads/', '') || 'main';
-        action = `Pushed to ${branch}`;
-      }
-      else if (e.type === 'CreateEvent') action = `Created ${e.payload.ref_type} ${e.payload.ref || ''}`;
-      else if (e.type === 'IssuesEvent') action = `${e.payload.action} issue`;
-      else if (e.type === 'PullRequestEvent') action = `${e.payload.action} PR`;
-      else if (e.type === 'WatchEvent') action = 'Starred';
+      const item = document.createElement("div"); item.className = "activity-item";
+      const avatar = e.actor?.avatar_url || "";
+      const repo = e.repo?.name || "";
+      const typeLabels = { PushEvent: currentLang === "hu" ? "Feltöltés" : "Push", CreateEvent: currentLang === "hu" ? "Létrehozás" : "Create", IssuesEvent: currentLang === "hu" ? "Issue" : "Issue", PullRequestEvent: currentLang === "hu" ? "Pull request" : "Pull request", WatchEvent: currentLang === "hu" ? "Csillagozás" : "Star" };
+      const type = typeLabels[e.type] || e.type?.replace("Event", "") || "";
+      let action = "";
+      if (e.type === "PushEvent") action = currentLang === "hu" ? `feltöltés a(z) ${e.payload.ref?.replace("refs/heads/", "") || "main"} ágra` : `pushed to ${e.payload.ref?.replace("refs/heads/", "") || "main"}`;
+      else if (e.type === "CreateEvent") action = currentLang === "hu" ? `${e.payload.ref_type} létrehozása` : `created ${e.payload.ref_type}`;
+      else if (e.type === "IssuesEvent") action = currentLang === "hu" ? `${e.payload.action} issue` : `${e.payload.action} issue`;
+      else if (e.type === "PullRequestEvent") action = currentLang === "hu" ? `${e.payload.action} pull request` : `${e.payload.action} pull request`;
+      else if (e.type === "WatchEvent") action = currentLang === "hu" ? "csillagozta" : "starred";
       else action = e.type;
-      item.innerHTML = `<img class="activity-avatar" src="${avatar}" onerror="this.style.display='none'"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
+      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt=""><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
       feed.appendChild(item);
     });
   }
@@ -547,35 +556,59 @@
   const trmBody = document.getElementById('trm-body');
   const trmCursor = document.getElementById('trm-cursor');
   const TRM_MAX = 9;
-  const trmLines = [
-    { type: 'info', text: 'Initializing firmware v1.4.2...' },
-    { type: 'ok',   text: 'ESP32 boot sequence complete' },
-    { type: 'info', text: 'Connecting to WiFi ···' },
-    { type: 'ok',   text: 'WiFi: 192.168.1.105 (mrzsomi-net)' },
-    { type: 'info', text: 'MQTT handshake ···' },
-    { type: 'ok',   text: 'MQTT connected: broker.local:1883' },
-    { type: 'val',  text: 'BME280: 23.4°C / 61.2% RH / 1013 hPa' },
-    { type: 'val',  text: 'RF signal: -67 dBm @ 433.92 MHz' },
-    { type: 'warn', text: 'OTA update available — scheduling...' },
-    { type: 'ok',   text: 'OTA flash done — firmware v1.4.3' },
-    { type: 'info', text: 'ISR state machine: IDLE → ACTIVE' },
-    { type: 'val',  text: 'PWM duty: 74% / freq: 20 kHz' },
-    { type: 'ok',   text: 'Proxmox heartbeat: OK (mrzsomi-srv)' },
-    { type: 'val',  text: 'CPU temp: 41.2°C / load: 12%' },
-    { type: 'info', text: 'Waiting for next sensor cycle...' },
-    { type: 'ok',   text: 'PCB rev3 self-test: all pins OK' },
-    { type: 'val',  text: 'ADC ch0: 2.87 V / ch1: 1.13 V' },
-    { type: 'warn', text: 'VBAT low: 3.62 V — charging...' },
-    { type: 'ok',   text: 'NTP sync: 2026-07-19 21:42:00 UTC' },
-    { type: 'info', text: 'Sleeping for 30s ···' },
-  ];
+  const trmLines = {
+    en: [
+      { type: "info", text: "Trying out a new idea..." },
+      { type: "ok", text: "A small project is taking shape" },
+      { type: "info", text: "Learning something new..." },
+      { type: "ok", text: "Making progress" },
+      { type: "val", text: "Electronics, code, and a bit of patience" },
+      { type: "info", text: "Taking a break, then back to it" },
+      { type: "ok", text: "Another little problem solved" },
+      { type: "val", text: "Ideas saved for later" },
+      { type: "info", text: "Looking for the next interesting thing..." },
+      { type: "ok", text: "It works well enough for today" },
+      { type: "val", text: "One step at a time" },
+      { type: "info", text: "Trying a different approach..." },
+      { type: "ok", text: "Something useful came out of it" },
+      { type: "val", text: "A little tinkering never hurts" },
+      { type: "info", text: "Saving notes for later..." },
+      { type: "ok", text: "Back to the real world" },
+      { type: "val", text: "Still curious" },
+      { type: "info", text: "More to come..." },
+      { type: "ok", text: "Done for now" },
+      { type: "info", text: "See you around" }
+    ],
+    hu: [
+      { type: "info", text: "Kipróbálok egy új ötletet..." },
+      { type: "ok", text: "Alakul egy új kis projekt" },
+      { type: "info", text: "Tanulok valami újat..." },
+      { type: "ok", text: "Lassan haladok vele" },
+      { type: "val", text: "Elektronika, kód és egy kis türelem" },
+      { type: "info", text: "Tartok egy kis szünetet" },
+      { type: "ok", text: "Újabb apró probléma megoldva" },
+      { type: "val", text: "Ötletek későbbre elmentve" },
+      { type: "info", text: "Keresem a következő érdekes dolgot..." },
+      { type: "ok", text: "Mára ennyi pont elég" },
+      { type: "val", text: "Lépésről lépésre" },
+      { type: "info", text: "Kipróbálok egy másik megközelítést..." },
+      { type: "ok", text: "Valami hasznos azért született belőle" },
+      { type: "val", text: "Egy kis barkácsolás még belefér" },
+      { type: "info", text: "Jegyzeteket írok későbbre..." },
+      { type: "ok", text: "Ideje visszatérni a valósághoz" },
+      { type: "val", text: "Továbbra is érdekel" },
+      { type: "info", text: "Folytatás később..." },
+      { type: "ok", text: "Mára kész" },
+      { type: "info", text: "Találkozunk még" }
+    ]
+  };
   let trmIdx = 0;
   let trmTimeout = null;
   const trmStart = Date.now();
 
   function addTrmLine() {
     if (!trmBody || !trmCursor) return;
-    const entry = trmLines[trmIdx % trmLines.length];
+    const entry = (trmLines[currentLang] || trmLines.en)[trmIdx % (trmLines[currentLang] || trmLines.en).length];
     trmIdx++;
     const elapsed = ((Date.now() - trmStart) / 1000).toFixed(3);
 

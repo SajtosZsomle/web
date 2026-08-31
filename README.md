@@ -1,76 +1,65 @@
-# 🌐 mrzsomi.top - Personal website / Portfólió
+<p align="center"><img src="assets/img/og-image.png" alt="mrzsomi.top preview" width="800"></p>
 
-[English ⇢](#english) • [Magyar ⇢](#magyar)
+# mrzsomi.top
 
----
-
-<p align="center">
-  <img src="assets/img/og-image.png" alt="mrzsomi.top preview" width="800" style="max-width:100%; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);"/>
-</p>
-
----
+[English](#english) · [Magyar](#magyar)
 
 ## English
 
-### Overview
-🔎 This is the single-author personal website and portfolio of **mrzsomi**. The site is the main public profile and showcases projects, experiments and infrastructure work. The repository contains the static source: HTML, CSS, JavaScript and assets.
+### What this is
 
-### About the site
-💡 The website focuses on engineering work: embedded systems, firmware, web tools and small infra projects. It is intentionally lightweight and framework-free to keep the surface area small and the page fast to load.
+This is the personal site and project notebook of **mrzsomi**, a Hungarian student interested in electronics and many other things. It brings together embedded systems, firmware experiments, small web tools, self-hosted infrastructure and whatever I am currently learning. The writing is intentionally straightforward: each project should explain what it does and why it exists, not just list a stack.
 
-### Highlights
-- 🚀 Responsive hero with animated avatar and floating icons
-- 📁 Project showcase with multiple link types (GitHub, Website, Docs, Live demo)
-- 📡 Live GitHub activity feed (public events)
-- 🌗 Dark and Light themes, plus prefers-reduced-motion support
-- 🌍 Bilingual content: English and Hungarian
+### What you can find here
 
-### Quick facts
-- 👤 Author: mrzsomi
-- 🧰 Tech: HTML, CSS, Vanilla JavaScript
-- 📌 Purpose: personal portfolio and main web presence
-- 🔒 Repo: single-author, not open for external contributions
+- A bilingual portfolio in English and Hungarian
+- Project notes covering Arduino, ESP32, motion control, PCB work, Java services and homelab infrastructure
+- Links to live sites, source repositories and documentation where they exist
+- Public GitHub activity, with graceful fallback when the API is unavailable
+- A responsive layout with light and dark themes
+- A contact form powered by Formspree
 
-### Useful links
-- 🔗 Website: https://mrzsomi.top
-- 🐙 GitHub: https://github.com/SajtosZsomle
-- 📂 Projects (EN JSON): https://mrzsomi.top/projects.en.json
+### Technical notes
 
-### Copyright
-© 2026 mrzsomi. All rights reserved. The content and design are the property of the author. For any reuse requests, contact via the site.
+The site is deliberately framework-free: semantic HTML, CSS and browser JavaScript are served as static files through GitHub Pages. Project content lives in `projects.en.json` and `projects.hu.json`, so new work can be added without changing the page structure. Cloudflare sits in front of the site, while GitHub provides the project and activity links.
 
----
+### Links
+
+- Website: https://mrzsomi.top
+- GitHub: https://github.com/SajtosZsomle
+- English project data: https://mrzsomi.top/projects.en.json
+- Hungarian project data: https://mrzsomi.top/projects.hu.json
+
+This is a personal repository rather than a collaborative project. Suggestions are welcome through the contact form, but external pull requests are not part of the current workflow.
 
 ## Magyar
 
-### Áttekintés
-🔎 Ez mrzsomi személyes weboldala és portfóliója. A honlap a szerző fő nyilvános profilja, bemutatja a projekteket, kísérleteket és infrastruktúra munkákat. A repository tartalmazza a statikus forrásokat: HTML, CSS, JavaScript és képek.
+### Mi ez?
 
-### A honlapról
-💡 A weboldal az mérnöki munkára fókuszál: beágyazott rendszerek, firmware, webes eszközök és kisebb infra projektek. Kerültem a nagy framework-öket, hogy a lap gyors és egyszerű legyen.
+Ez **mrzsomi** személyes weboldala és projekt-naplója. Magyar diákként az elektronika és még sok minden más érdekel; itt gyűjtöm össze a beágyazott rendszerekkel, firmware-kísérletekkel, elektronikával, kisebb webes eszközökkel és saját üzemeltetésű infrastruktúrával kapcsolatos munkáimat. A cél nem a technológiák felsorolása, hanem annak bemutatása, hogy az egyes projektek mit oldanak meg és miért készültek.
 
-### Főbb elemek
-- 🚀 Reszponzív hero animációkkal és lebegő ikonokkal
-- 📁 Projektek bemutatása több link-típussal (GitHub, Weboldal, Dokumentáció, Élő demo)
-- 📡 Élő GitHub aktivitás feed (publikus események)
-- 🌗 Sötét és világos témák, prefers-reduced-motion támogatás
-- 🌍 Angol és magyar tartalom
+### Mit találsz az oldalon?
 
-### Gyors infók
-- 👤 Szerző: mrzsomi
-- 🧰 Technológia: HTML, CSS, natív JavaScript
-- 📌 Cél: személyes portfólió és fő webes megjelenés
-- 🔒 Repository: egy szerző által karbantartott, nem nyitott külső közreműködésre
+- Angol és magyar nyelvű, kétnyelvű portfóliót
+- Arduino-, ESP32-, mozgásvezérlési, NYÁK-tervezési, Java- és homelab-projekteket
+- Forráskód-, élő oldal- és dokumentációs hivatkozásokat, ahol rendelkezésre állnak
+- Nyilvános GitHub-aktivitást, tartalék megjelenítéssel API-hiba esetére
+- Reszponzív felületet világos és sötét témával
+- Formspree-alapú kapcsolatfelvételi űrlapot
+
+### Technikai háttér
+
+Az oldal szándékosan nem használ frameworköt: szemantikus HTML, CSS és böngészőben futó JavaScript alkotja, statikus fájlként GitHub Pages szolgálja ki. A projektek tartalma a `projects.en.json` és `projects.hu.json` fájlokban található, így új munka hozzáadásához nem kell a HTML szerkezetét módosítani. A webhely előtt Cloudflare működik, a projekt- és aktivitáslinkek pedig GitHubhoz kapcsolódnak.
 
 ### Linkek
-- 🔗 Weboldal: https://mrzsomi.top
-- 🐙 GitHub: https://github.com/SajtosZsomle
-- 📂 Projektek (HU JSON): https://mrzsomi.top/projects.hu.json
 
-### Szerzői jog
-© 2026 mrzsomi. Minden jog fenntartva. A tartalom és a dizájn a szerző tulajdona. Engedély nélküli felhasználás tilos. Kérelmeket a weboldalon keresztül lehet benyújtani.
+- Weboldal: https://mrzsomi.top
+- GitHub: https://github.com/SajtosZsomle
+- Angol projektadatok: https://mrzsomi.top/projects.en.json
+- Magyar projektadatok: https://mrzsomi.top/projects.hu.json
+
+Ez egy személyes repository, nem közös fejlesztésre szánt projekt. Észrevételeket a kapcsolatfelvételi űrlapon keresztül szívesen fogadok, de külső pull requestek kezelése jelenleg nem része a munkafolyamatnak.
 
 ---
 
-<p align="center">Made with ❤️ by <strong>mrzsomi</strong> • © 2026</p>
-
+© 2026 mrzsomi. Minden jog fenntartva.
