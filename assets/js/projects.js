@@ -5,6 +5,44 @@
   const languageButton = document.getElementById('lang-toggle');
   let projects = [];
   let language = localStorage.getItem('lang') || 'en';
+  const pageCopy = {
+    en: {
+      title: 'Projects | mrzsomi',
+      description: 'A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi.',
+      nav: ['About', 'Toolkit', 'Projects', 'Contact'],
+      tag: 'Project archive',
+      titleHtml: 'Things I build<br /><span class="accent-text">and learn from.</span>',
+      lede: 'Hardware, code, servers, and the experiments between them.',
+      footer: '© 2026 mrzsomi · Budapest / online',
+      loading: 'Loading projects...',
+      error: 'Projects could not be loaded.'
+    },
+    hu: {
+      title: 'Projektek | mrzsomi',
+      description: 'Elektronikai, firmware-, webes és otthoni szerveres projektek válogatása.',
+      nav: ['Rólam', 'Eszköztár', 'Projektek', 'Kapcsolat'],
+      tag: 'Projektjeim',
+      titleHtml: 'Amiket építek<br /><span class="accent-text">és amiből tanulok.</span>',
+      lede: 'Hardver, kód, szerverek és a közben felmerülő kísérletek.',
+      footer: '© 2026 mrzsomi · Budapest / online',
+      loading: 'Projektek betöltése…',
+      error: 'Nem sikerült betölteni a projekteket.'
+    }
+  };
+
+  function applyPageCopy() {
+    const copy = pageCopy[language];
+    document.documentElement.lang = language;
+    document.getElementById('page-title').textContent = copy.title;
+    document.getElementById('page-description').content = copy.description;
+    ['about', 'skills', 'projects', 'contact'].forEach((key, index) => {
+      document.getElementById(`nav-${key}`).textContent = copy.nav[index];
+    });
+    document.getElementById('archive-tag').textContent = copy.tag;
+    document.getElementById('archive-title').innerHTML = copy.titleHtml;
+    document.getElementById('archive-lede').textContent = copy.lede;
+    document.getElementById('footer-text').textContent = copy.footer;
+  }
 
   themeButton.addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -25,13 +63,19 @@
 
   function render(tag = 'all') {
     const visible = tag === 'all' ? projects : projects.filter(project => project.tags.includes(tag));
+    const statusLabels = language === 'hu'
+      ? { completed: 'Kész', 'in-progress': 'Készül', ongoing: 'Folyamatban' }
+      : { completed: 'Completed', 'in-progress': 'In progress', ongoing: 'Ongoing' };
+    const copy = language === 'hu'
+      ? { note: 'Bővebben', project: 'projekt', build: 'munka' }
+      : { note: 'Read the note', project: 'project', build: 'build' };
     grid.innerHTML = visible.map(project => `
       <article class="archive-card">
         <div class="archive-icon" aria-hidden="true">${iconFor(project)}</div>
-        <div class="archive-card-top"><span>${project.status || 'project'}</span><span>${project.tags[0] || 'build'}</span></div>
+        <div class="archive-card-top"><span>${statusLabels[project.status] || project.status || copy.project}</span><span>${project.tags[0] || copy.build}</span></div>
         <h2>${project.title}</h2>
         <p>${project.short}</p>
-        <details><summary>Read the note</summary><p>${project.full || project.short}</p></details>
+        <details><summary>${copy.note}</summary><p>${project.full || project.short}</p></details>
         <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}</div>
       </article>`).join('');
   }
@@ -49,6 +93,7 @@
   }
 
   async function load() {
+    applyPageCopy();
     const response = await fetch(`projects.${language}.json`);
     projects = await response.json();
     languageButton.textContent = language.toUpperCase();
@@ -61,5 +106,5 @@
       });
     }
   }
-  load().catch(() => { grid.innerHTML = '<p class="loader">Projects could not be loaded.</p>'; });
+  load().catch(() => { grid.innerHTML = `<p class="loader">${pageCopy[language].error}</p>`; });
 })();

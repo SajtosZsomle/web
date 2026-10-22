@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects | mrzsomi</title>
-    <meta name="description" content="A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi." />
+    <title id="page-title">Projects | mrzsomi</title>
+    <meta id="page-description" name="description" content="A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi." />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script>
       (function () {
@@ -19,10 +19,10 @@
       <div class="container nav-inner">
         <a href="index.html" class="logo"><img src="assets/img/favicon.ico" alt="" width="30" height="30" /> mrzsomi.top</a>
         <ul class="nav-links">
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#skills">Toolkit</a></li>
-          <li><a class="active" href="projects.html">Projects</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a id="nav-about" href="index.html#about">About</a></li>
+          <li><a id="nav-skills" href="index.html#skills">Toolkit</a></li>
+          <li><a id="nav-projects" class="active" href="projects.html">Projects</a></li>
+          <li><a id="nav-contact" href="index.html#contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
           <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
@@ -32,13 +32,13 @@
     </nav>
     <main class="container archive-page">
       <header class="archive-header">
-        <p class="section-tag">Project archive</p>
-        <h1 class="archive-title">Things I build<br /><span class="accent-text">and learn from.</span></h1>
-        <p class="section-lede">Hardware, code, servers, and the experiments between them.</p>
+        <p id="archive-tag" class="section-tag">Project archive</p>
+        <h1 id="archive-title" class="archive-title">Things I build<br /><span class="accent-text">and learn from.</span></h1>
+        <p id="archive-lede" class="section-lede">Hardware, code, servers, and the experiments between them.</p>
       </header>
       <div class="archive-filters" id="archive-filters"></div>
       <div class="archive-grid" id="archive-grid"><p class="loader">Loading projects...</p></div>
     </main>
-    <footer class="footer"><span>© 2026 mrzsomi · Budapest / online</span></footer>
+    <footer class="footer"><span id="footer-text">© 2026 mrzsomi · Budapest / online</span></footer>
   </body>
 </html>

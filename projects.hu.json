@@ -2,8 +2,8 @@
   {
     "id": "p1",
     "title": "FoamCutter (CNC habvágó)",
-    "short": "Izzóhuzalos CNC habvágó Arduino mozgásvezérléssel és PC-s kezelőfelülettel.",
-    "full": "Arduino alapú, izzóhuzalos CNC habvágó gép. Egyszerű PC-s szoftveres felülettel rendelkezik a G-kód-szerű parancsok küldéséhez. Főként szárnyprofilok és egyedi csomagolásvédő betétek vágására tervezve.",
+    "short": "Izzóhuzalos CNC habvágó Arduino-vezérléssel és egyszerű PC-s kezelőfelülettel.",
+    "full": "Ezt a gépet azért építettem, hogy a habvágás ne mindig kézi munka legyen. Az Arduino mozgatja a gépet, a PC-s program pedig a vágási parancsokat küldi neki. Szárnyprofilokhoz és egyedi betétekhez használom.",
     "links": {
       "github": false,
       "web": false,
@@ -17,8 +17,8 @@
   {
     "id": "p2",
     "title": "Mozgó lineáris sínrendszer",
-    "short": "Menetes orsós lineáris sín DRV8825-tel és Arduinóval, ismételhető pozicionáláshoz.",
-    "full": "Menetes tengelyű (orsós) lineáris sín DRV8825 léptetőmotor-vezérlővel és Arduinóval hajtva. Nagy pontosságú, ismételhető pozicionálási feladatokhoz, mozgásprofilok és végállás-kapcsolók tesztelésére tervezve.",
+    "short": "Menetes orsós lineáris sín DRV8825-tel és Arduinóval, pontos mozgatáshoz.",
+    "full": "Egy kisebb mozgásvezérlési tesztpadot építettem belőle. Az Arduino a DRV8825-ön keresztül hajtja a léptetőmotort, a végálláskapcsolók pedig a biztonságos kezdőpozíciót segítik.",
     "links": {
       "github": false,
       "web": false,
@@ -32,8 +32,8 @@
   {
     "id": "p3",
     "title": "DIY forrasztási füstelszívó",
-    "short": "Saját készítésű forrasztási füstelszívó aktív szénszűrővel és LED munkavilágítással.",
-    "full": "Műhelybe tervezett forrasztási füstelszívó aktív szénszűrő réteggel és beépített célvilágítással. Csendes, állítható fordulatszámú DC ventilátorral működik.",
+    "short": "Saját forrasztási füstelszívó aktívszén-szűrővel és munkalámpával.",
+    "full": "A műhelybe készült, mert forrasztás közben jól jön egy kis elszívás és több fény. Állítható fordulatú, csendes ventilátor dolgozik benne.",
     "links": {
       "github": false,
       "web": false,
@@ -47,8 +47,8 @@
   {
     "id": "p4",
     "title": "ESP32 időjárás-állomás",
-    "short": "Kültéri ESP32 szenzorállomás egyszerű műszerfallal és helyi API-naplózással.",
-    "full": "Kültéri mérőállomás hőmérséklet- és páratartalom-méréshez. Helyi webes műszerfalon jeleníti meg az adatokat, amelyeket egy egyszerű REST API-n keresztül naplóz. Kis, napelemes akkumulátoros rendszerben is önállóan működik.",
+    "short": "Kültéri ESP32-es szenzorállomás saját műszerfallal és helyi naplózással.",
+    "full": "Hőmérsékletet és páratartalmat mér, az adatokat pedig egy helyi webes felületen mutatja. Napelemes akkumulátorról is elvan, ezért jó kis terepi tesztprojekt.",
     "links": {
       "github": false,
       "web": false,
@@ -62,8 +62,8 @@
   {
     "id": "p5",
     "title": "ESP32 OTA frissítőrendszer",
-    "short": "Vezeték nélküli (OTA) firmware-frissítés ElegantOTA-val, hitelesítéssel és watchdoggal.",
-    "full": "Vezeték nélküli firmware-frissítő (OTA) rendszer ElegantOTA alapon, alapvető hitelesítéssel és hardveres watchdog áramkörrel a hibák automatikus javításához. Leegyszerűsíti a terepi frissítést fizikai kapcsolat nélkül.",
+    "short": "ESP32-es vezeték nélküli firmware-frissítés ElegantOTA-val és watchdoggal.",
+    "full": "Az OTA-frissítés akkor hasznos, amikor nem szeretném minden alkalommal szétszedni az eszközt. Van benne alapvető beléptetés és watchdog is, hogy egy félresikerült frissítés után legyen esély a helyreállásra.",
     "links": {
       "github": false,
       "web": false,
@@ -77,8 +77,8 @@
   {
     "id": "p6",
     "title": "RoyalCore Minecraft hálózat",
-    "short": "Java Paper plugin tárgysokszorosítás (anti-dupe) elleni védelemmel és Discord értesítésekkel.",
-    "full": "Egyedi Java Paper szerver-plugin, amely anti-dupe (tárgyduplikálást gátló) logikát, exploit-szűrést és Discord webhook riasztásokat tartalmaz egy kis többjátékos közösség részére.",
+    "short": "Java Paper plugin duplikálás elleni védelemmel és Discord-riasztásokkal.",
+    "full": "Egy kisebb Minecraft-közösséghez készült plugin. Figyeli a gyanús tárgymozgatásokat, kiszűr néhány gyakori trükköt, és Discordon jelez, ha valami nem stimmel.",
     "links": {
       "github": false,
       "web": false,
@@ -92,8 +92,8 @@
   {
     "id": "p7",
     "title": "Homelab infrastruktúra",
-    "short": "Két Dell Optiplex szerver Proxmox VE fürtben, Jellyfin, Pelican Panel és egyedi webhelyek kiszolgálása.",
-    "full": "Két Dell Optiplex gépből álló Proxmox VE fürt (cluster). Jellyfin médiaszervert, Pelican Panelt futtatnak, valamint több adatbázist, egyedi weboldalt és tesztprojektet hosztolnak biztonságos Cloudflare alagutakon (Tunnel) keresztül.",
+    "short": "Két Dell Optiplexből álló otthoni szerverrendszer Proxmoxszal.",
+    "full": "Két Dell Optiplex gépen futnak a saját szolgáltatásaim: Jellyfin, Pelican Panel, adatbázisok és néhány weboldal. Kívülről Cloudflare Tunnelön keresztül érem el őket.",
     "links": {
       "github": false,
       "web": false,
@@ -107,8 +107,8 @@
   {
     "id": "p8",
     "title": "Egyedi elektronikai prototípusok",
-    "short": "Arduino és ESP32 prototípusok szenzorokkal, kijelzőkkel és motorvezérlőkkel.",
-    "full": "Különféle Arduino és ESP32 kísérleti áramkörök: szenzorok, OLED kijelzők, léptető- és szervomotorok vezérlése. Az elméleti koncepciók gyakorlati igazolására szolgálnak a végleges NYÁK-tervezés előtt.",
+    "short": "Arduino- és ESP32-kísérletek szenzorokkal, kijelzőkkel és motorokkal.",
+    "full": "Sok kisebb próba egy helyen: szenzorok, OLED-ek, motorvezérlők és kommunikációs modulok. Itt derül ki, hogy egy ötlet működik-e, mielőtt NYÁK-ot tervezek hozzá.",
     "links": {
       "github": false,
       "web": false,
@@ -122,8 +122,8 @@
   {
     "id": "p9",
     "title": "Egyedi DRV8825 NYÁK-lap",
-    "short": "Egyedi tervezésű léptetőmotor-vezérlő NYÁK EasyEDA alapon, gyártva és beforrasztva.",
-    "full": "Kézzel huzalozott léptetőmotor-vezérlő illesztőkártya (breakout board) EasyEDA-ban tervezve. Kínai gyártás után kézzel forrasztva; univerzális modulként szolgál számos pozicionáló projektemben.",
+    "short": "Saját tervezésű DRV8825-ös léptetőmotor-vezérlő NYÁK.",
+    "full": "EasyEDA-ban terveztem, legyártattam, majd kézzel beforrasztottam. Több mozgatási projektnél is jól jött, mert ugyanazt a vezérlőt nem kellett újra és újra összedrótozni.",
     "links": {
       "github": false,
       "web": false,
@@ -137,8 +137,8 @@
   {
     "id": "p10",
     "title": "mrzsomi.top portfólió",
-    "short": "Ez a portfólió oldal. GitHub Pages, Cloudflare védelem és Formspree kapcsolatfelvétel.",
-    "full": "Maga a jelenlegi portfólió webhely. Gazdaoldalként a GitHub Pages szolgál, Cloudflare védi, a kapcsolati form pedig Formspree alapon működik. Reszponzív dizájn, sötét/világos mód, részecskeháttér és élő GitHub események.",
+    "short": "Ez a portfólióoldal, GitHub Pagesen és Cloudflare mögött.",
+    "full": "A saját oldalam, ahol a projektjeimet és a kísérleteimet gyűjtöm. Statikus GitHub Pages-oldal, külön projektarchívummal, sötét móddal és Formspree-alapú kapcsolatfelvétellel.",
     "links": {
       "github": "https://github.com/SajtosZsomle/web",
       "web": "https://mrzsomi.top",
@@ -152,8 +152,8 @@
   {
     "id": "p11",
     "title": "Game Web Assets",
-    "short": "Játékokhoz és játékszerverekhez való weblapok és statikus eszközök, GitHub Pages-ben kiszolgálva.",
-    "full": "A játékhoz kapcsolódó projektek és szerverlapok központi webeszköz-tárháza. A game.mrzsomi.top webhelyét üzemelteti, Counter-Strike: Source MOTD (Message of the Day) lapokat és élő szerver-állapot információkat, amelyeket GitHub Actions frissít. Olyan automatizálási munkafolyamatokat tartalmaz, amelyek szerzőszer-adatokat hoz és naprakészen tartja az oldalakat.",
+    "short": "Játékokhoz és játékszerverekhez készült statikus weboldalak egy helyen.",
+    "full": "Itt vannak a játékos projektekhez tartozó oldalak és szerverinfók. A GitHub Actions frissíti a szerveradatokat, így a game.mrzsomi.top és a Counter-Strike: Source MOTD-oldalak külön kézi frissítés nélkül is naprakészek.",
     "links": {
       "github": "https://github.com/SajtosZsomle/game-web",
       "web": "https://game.mrzsomi.top",
@@ -167,8 +167,8 @@
   {
     "id": "p12",
     "title": "Státuszoldal",
-    "short": "Upptime-alapú üzemidő-figyelő és státuszoldal a szolgáltatások elérhetőségének nyomon követésére.",
-    "full": "Az összes szolgáltatás állapotát követő, átlátható státuszoldal Upptime-ra építve. GitHub Actions figyeli az elérhetőséget, a válaszidőt és az incidenseket, az eredmények pedig nyilvánosan követhetők. Az élő státuszoldal a status.mrzsomi.top címen érhető el.",
+    "short": "Upptime-alapú státuszoldal a szolgáltatások figyelésére.",
+    "full": "A GitHub Actions rendszeresen ellenőrzi a szolgáltatásokat, méri a válaszidőt, és jelzi, ha valami elérhetetlenné válik. Az eredmények és az esetleges hibák a status.mrzsomi.top oldalon láthatók.",
     "links": {
       "github": "https://github.com/SajtosZsomle/status-page",
       "web": "https://status.mrzsomi.top",
