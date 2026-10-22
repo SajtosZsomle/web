@@ -5,10 +5,10 @@
       about_tag: "Hi, I’m mrzsomi",
       build_notes: "A few current interests",
       hero_title: 'I’m into <span class="accent-text">a little bit of everything.</span>',
-      hero_paragraph: "Electronics is one of my main interests, but I also like software, websites, games, and picking up random new hobbies. I’m a Hungarian student, and this is where I share some of the things I build and try.",
+      hero_paragraph: "I build things with electronics, code, and whatever I am curious about next.",
       view_projects: "View projects",
       get_in_touch: "Get in touch",
-      name_origin: "The name started with an old Minecraft username: sajtoszsömle, meaning cheese bun in Hungarian. I used it for a long time before shortening it to mrzsomi (Mr. Bun). It is a small reminder of where the name came from, even though the things I am interested in have changed quite a bit since then.",
+      name_origin: "mrzsomi started as a Hungarian Minecraft username and stayed because it felt right.",
       skills_tag: "A few things I use",
       skills_title: "Things I enjoy working with",
       hardware_title: "Hardware",
@@ -38,6 +38,8 @@
       filter_all: "All",
       projects_tag: "Selected work",
       projects_title: "Things I’ve made",
+      projects_lede: "A few builds I keep coming back to.",
+      view_all_projects: "View all projects",
       activity_tag: "What I’m up to",
       activity_title: "Recent bits and pieces",
       contact_tag: "Have a project in mind?",
@@ -51,6 +53,9 @@
       form_message: "Message",
       form_message_placeholder: "Your message…",
       form_submit: "Send message",
+      form_wait: "Please wait before sending another message.",
+      form_slow_down: "Please take a moment to complete the form.",
+      form_error: "Something went wrong. Please try again.",
       footer_text: "© 2026 mrzsomi · Budapest / online",
       available: "Available",
       nav_about: "About",
@@ -73,9 +78,9 @@
       about_tag: "Szia, mrzsomi vagyok",
       build_notes: "Néhány aktuális érdeklődés",
       hero_title: '<span class="accent-text">Egy kicsit</span> minden érdekel.',
-      hero_paragraph: "Az elektronika az egyik fő érdeklődési területem, de a szoftverek, weboldalak, játékok és az új hobbik kipróbálása is érdekel. Magyar diákként ezen az oldalon néhány dolgot mutatok meg, amit megépítek és kipróbálok.",
+      hero_paragraph: "Elektronikával, kóddal és az éppen következő kíváncsiságommal szeretek építeni.",
       get_in_touch: "Kapcsolatfelvétel",
-      name_origin: "A név egy régi Minecraft-os felhasználónévből indult: sajtoszsomle0821, vagyis sajtos zsömle. Sokáig ezt használtam (valahol még most is), később pedig mrzsomi-ra (Mr. Zsömi) rövidítettem. Jó emlékeztető arra, honnan jött a név, még akkor is, ha azóta sok minden más is elkezdett érdekelni.",
+      name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
       skills_tag: "Amikkel foglalkozom",
       skills_title: "Amit szívesen használok",
       hardware_title: "Hardver",
@@ -105,6 +110,8 @@
       filter_all: "Összes",
       projects_tag: "Válogatott munkák",
       projects_title: "Amit készítettem",
+      projects_lede: "Néhány projekt, amelyhez újra és újra visszatérek.",
+      view_all_projects: "Összes projekt",
       activity_tag: "Amin most dolgozom",
       activity_title: "Friss dolgok és kísérletek",
       contact_tag: "Van egy ötleted?",
@@ -118,6 +125,9 @@
       form_message: "Üzenet",
       form_message_placeholder: "Üzeneted…",
       form_submit: "Küldés",
+      form_wait: "Kérlek, várj egy kicsit az újabb küldéssel.",
+      form_slow_down: "Kérlek, szánj egy kis időt az űrlap kitöltésére.",
+      form_error: "Hiba történt. Kérlek, próbáld újra.",
       footer_text: "© 2026 mrzsomi · Budapest / online",
       available: "Elérhető",
       nav_about: "Rólam",
@@ -301,9 +311,8 @@
   // ── Projects ──
   const listContainer = document.getElementById('project-list');
   const detailPanel = document.getElementById('project-detail');
-  const filterBar = document.getElementById('filter-bar');
+  const featuredProjectIds = ['p1', 'p4', 'p7', 'p10'];
   let allProjects = [];
-  let currentFilter = 'all';
   let activeProjectId = null;
 
   async function loadProjects() {
@@ -311,36 +320,16 @@
       const res = await fetch(`projects.${currentLang}.json`);
       if (!res.ok) throw new Error('Failed to load projects');
       allProjects = await res.json();
-      buildFilters();
       renderProjects();
     } catch (err) {
       listContainer.innerHTML = `<div class="loader" style="color: var(--accent);">${translations[currentLang].error_projects || 'Failed to load projects.'}</div>`;
     }
   }
 
-  function buildFilters() {
-    filterBar.innerHTML = `<button class="filter-chip active" data-filter="all" data-i18n="filter_all">${translations[currentLang].filter_all}</button>`;
-    const tags = new Set();
-    allProjects.forEach(p => p.tags?.forEach(t => tags.add(t)));
-    Array.from(tags).sort().forEach(tag => {
-      const btn = document.createElement('button');
-      btn.className = 'filter-chip'; btn.textContent = tag; btn.setAttribute('data-filter', tag);
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = tag; renderProjects();
-      });
-      filterBar.appendChild(btn);
-    });
-    document.querySelector('[data-filter="all"]').addEventListener('click', () => {
-      document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-      document.querySelector('[data-filter="all"]').classList.add('active');
-      currentFilter = 'all'; renderProjects();
-    });
-  }
-
   function renderProjects() {
-    const filtered = currentFilter === 'all' ? allProjects : allProjects.filter(p => p.tags?.includes(currentFilter));
+    const filtered = featuredProjectIds
+      .map(id => allProjects.find(project => project.id === id))
+      .filter(Boolean);
     listContainer.innerHTML = '';
     if (!filtered.length) {
       listContainer.innerHTML = `<div class="loader">${translations[currentLang].no_projects}</div>`;
@@ -349,24 +338,36 @@
     }
     filtered.forEach(project => {
       const item = document.createElement('div');
-      item.className = 'project-item' + (project.id === activeProjectId ? ' active' : '');
+      item.className = 'project-item featured-project-card' + (project.id === activeProjectId ? ' active' : '');
       item.setAttribute('data-id', project.id);
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', `${project.title}. View project details`);
       const tagsHtml = (project.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
       const statusLabels = { completed: currentLang === "hu" ? "Elkészült" : "Completed", "in-progress": currentLang === "hu" ? "Folyamatban" : "In progress", ongoing: currentLang === "hu" ? "Folyamatosan alakul" : "Ongoing" };
       const statusHtml = project.status ? `<span class="status">${statusLabels[project.status] || project.status}</span>` : '';
+      const icon = project.tags?.includes('infra') ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v4H4zM4 11h16v4H4zM4 17h16v2H4z"/><path d="M7 7h.01M7 13h.01M7 18h.01"/></svg>' : project.tags?.some(tag => ['web', 'java', 'backend'].includes(tag)) ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8.5 8.5 15.5 15.5"/></svg>';
       item.innerHTML = `
+        <span class="project-icon" aria-hidden="true">${icon}</span>
         <div class="project-info">
           <h3>${project.title}</h3>
           <p>${project.short}</p>
           <div class="project-meta">${statusHtml}${tagsHtml}</div>
         </div>
-        <span class="project-arrow">→</span>
+        <span class="project-status">Featured build</span>
+        <span class="project-arrow" aria-hidden="true">↗</span>
       `;
       item.addEventListener('click', () => {
         document.querySelectorAll('.project-item').forEach(el => el.classList.remove('active'));
         item.classList.add('active');
         activeProjectId = project.id;
         showDetail(project);
+      });
+      item.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          item.click();
+        }
       });
       listContainer.appendChild(item);
     });
@@ -380,6 +381,14 @@
 
   function showDetail(project) {
     let html = project.full || project.short || '';
+    const projectImages = {
+      hardware: 'assets/img/illustrations/circuit-board.svg',
+      software: 'assets/img/illustrations/code-window.svg',
+      infra: 'assets/img/illustrations/server-rack.svg',
+      web: 'assets/img/illustrations/code-window.svg'
+    };
+    const imageKey = project.tags?.includes('infra') ? 'infra' : project.tags?.some(tag => ['web', 'java', 'backend'].includes(tag)) ? 'web' : project.tags?.some(tag => ['arduino', 'esp32', 'pcb', 'cnc', 'workshop', 'diy'].includes(tag)) ? 'hardware' : 'software';
+    html = `<img class="project-image" src="${projectImages[imageKey]}" alt="" loading="lazy" />` + html;
     
     // Render links if available
     const links = project.links || (project.github ? { github: project.github } : null);
@@ -440,6 +449,7 @@
       const item = document.createElement("div"); item.className = "activity-item";
       const avatar = e.actor?.avatar_url || "";
       const repo = e.repo?.name || "";
+      const date = e.created_at ? new Date(e.created_at).toLocaleDateString(currentLang === "hu" ? "hu-HU" : "en-GB", { day: "numeric", month: "short" }) : "";
       const typeLabels = { PushEvent: currentLang === "hu" ? "Feltöltés" : "Push", CreateEvent: currentLang === "hu" ? "Létrehozás" : "Create", IssuesEvent: currentLang === "hu" ? "Issue" : "Issue", PullRequestEvent: currentLang === "hu" ? "Pull request" : "Pull request", WatchEvent: currentLang === "hu" ? "Csillagozás" : "Star" };
       const type = typeLabels[e.type] || e.type?.replace("Event", "") || "";
       let action = "";
@@ -459,22 +469,70 @@
   const form = document.getElementById('contact-form');
   const statusEl = document.getElementById('form-status');
   const submitBtn = document.getElementById('submit-btn');
+  const formStartedAt = Date.now();
+  const formRateLimitKey = 'mrzsomi-contact-last-submit';
+  const formRateLimitMs = 60 * 1000;
+  let formSubmitting = false;
+
+  function getLastSubmitTime() {
+    try {
+      const value = Number.parseInt(localStorage.getItem(formRateLimitKey) || '', 10);
+      return Number.isFinite(value) ? value : 0;
+    } catch (error) {
+      console.warn('Contact form rate-limit storage is unavailable.', error);
+      return 0;
+    }
+  }
+
+  function setLastSubmitTime() {
+    try {
+      localStorage.setItem(formRateLimitKey, String(Date.now()));
+    } catch (error) {
+      console.warn('Contact form rate-limit storage is unavailable.', error);
+    }
+  }
+
+  function setFormStatus(message, type) {
+    statusEl.textContent = message;
+    statusEl.className = `form-status ${type}`;
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (formSubmitting) return;
+    const t = translations[currentLang];
+    const honeypot = form.querySelector('#website');
+    const elapsed = Date.now() - formStartedAt;
+    const remaining = formRateLimitMs - (Date.now() - getLastSubmitTime());
+    if (honeypot.value.trim() || elapsed < 3000) {
+      setFormStatus(t.form_slow_down, 'error');
+      return;
+    }
+    if (remaining > 0) {
+      setFormStatus(`${t.form_wait} (${Math.ceil(remaining / 1000)}s)`, 'error');
+      return;
+    }
+
+    formSubmitting = true;
     submitBtn.disabled = true; submitBtn.textContent = currentLang === 'hu' ? 'Küldés…' : 'Sending…';
     statusEl.textContent = ''; statusEl.className = 'form-status';
     try {
       const res = await fetch(form.action, { method:'POST', body: new FormData(form), headers: {'Accept':'application/json'} });
       if (res.ok) {
+        setLastSubmitTime();
         statusEl.textContent = currentLang === 'hu' ? '✓ Üzenet elküldve!' : '✓ Message sent!';
         statusEl.className = 'form-status success'; form.reset();
       } else {
         const data = await res.json().catch(()=>({}));
-        statusEl.textContent = '⚠ ' + (data.error || 'Something went wrong.');
-        statusEl.className = 'form-status error';
+        setFormStatus('⚠ ' + (data.error || t.form_error), 'error');
       }
-    } catch { statusEl.textContent = '⚠ Network error.'; statusEl.className = 'form-status error'; }
-    finally { submitBtn.disabled = false; submitBtn.textContent = translations[currentLang].form_submit; }
+    } catch (error) {
+      console.error('Contact form submission failed.', error);
+      setFormStatus('⚠ Network error.', 'error');
+    } finally {
+      formSubmitting = false;
+      submitBtn.disabled = false; submitBtn.textContent = translations[currentLang].form_submit;
+    }
   });
 
   // ── Smooth scroll + active nav ──
@@ -632,4 +690,35 @@
 
   // ── Init ──
   applyLanguage(currentLang);
+
+  // Small, dependency-free interaction layer for static hosting.
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!motionQuery.matches) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section, .featured-project-card, .skill-card, .activity-item').forEach((element) => {
+      element.classList.add('reveal');
+      revealObserver.observe(element);
+    });
+
+    document.querySelectorAll('.magnetic').forEach((button) => {
+      button.addEventListener('pointermove', (event) => {
+        const rect = button.getBoundingClientRect();
+        const x = (event.clientX - rect.left - rect.width / 2) * 0.12;
+        const y = (event.clientY - rect.top - rect.height / 2) * 0.12;
+        button.style.setProperty('--mx', `${x}px`);
+        button.style.setProperty('--my', `${y}px`);
+      });
+      button.addEventListener('pointerleave', () => {
+        button.style.setProperty('--mx', '0px');
+        button.style.setProperty('--my', '0px');
+      });
+    });
+  }
 })();

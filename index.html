@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mrzsomi | Embedded systems, firmware and practical tools</title>
-    <meta name="description" content="A bilingual portfolio of mrzsomi: embedded systems, firmware, electronics prototypes, web tools and self-hosted infrastructure from Hungary." />
+    <title>mrzsomi | curious by default</title>
+    <meta name="description" content="The bilingual project notebook of mrzsomi: electronics, firmware, web experiments, self-hosted infrastructure and whatever comes next." />
     <meta name="keywords" content="embedded systems, firmware, PCB design, ESP32, STM32, Arduino, RF debugging, homelab, Proxmox, portfolio, Hungary" />
     <meta name="author" content="mrzsomi" />
     <link rel="canonical" href="https://mrzsomi.top/" />
@@ -15,8 +15,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mrzsomi.top/" />
-    <meta property="og:title" content="mrzsomi | Embedded systems, firmware and practical tools" />
-    <meta property="og:description" content="Embedded systems, firmware, electronics prototypes, web tools and self-hosted infrastructure by mrzsomi." />
+    <meta property="og:title" content="mrzsomi | curious by default" />
+    <meta property="og:description" content="Electronics, firmware, web experiments and other things worth making." />
     <meta property="og:image" content="https://mrzsomi.top/assets/img/og-image.png" />
     <meta property="og:image:alt" content="mrzsomi.top portfolio preview" />
     <meta property="og:image:width" content="1200" />
@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
 
-    <!-- Preloader – inline so it renders before any external file loads -->
+    <!-- Preloader, kept inline so it renders before any external file loads -->
     <style>
       #preloader {
         position: fixed; inset: 0; z-index: 99999;
@@ -158,7 +158,7 @@
         <ul class="nav-links">
           <li><a href="#about" data-i18n-nav="about">About</a></li>
           <li><a href="#skills" data-i18n-nav="skills">Skills</a></li>
-          <li><a href="#projects" data-i18n-nav="projects">Projects</a></li>
+          <li><a href="projects.html" data-i18n-nav="projects">Projects</a></li>
           <li><a href="#activity" data-i18n-nav="activity">Activity</a></li>
           <li><a href="#contact" data-i18n-nav="contact">Contact</a></li>
         </ul>
@@ -179,18 +179,19 @@
           <div class="hero-content">
             <p class="section-tag" data-i18n="about_tag">Hi, I’m mrzsomi</p>
             <h1 data-i18n-html="hero_title">I’m into <span class="accent-text">a little bit of everything.</span></h1>
-            <p data-i18n="hero_paragraph">Electronics is one of my main interests, but I also like software, websites, games, and picking up random new hobbies. I’m a Hungarian student, and this is where I share some of the things I build and try.</p>
+            <p data-i18n="hero_paragraph">I build things with electronics, code, and whatever I am curious about next.</p>
 
             <div class="btn-group">
-              <a href="#projects" class="btn btn-primary" data-i18n="view_projects">View projects</a>
-              <a href="#contact" class="btn btn-outline" data-i18n="get_in_touch">Get in touch</a>
-            </div>
-            <div class="name-origin" data-i18n="name_origin">
-              The name started with an old Minecraft username: sajtoszsömlé, meaning cheese bun in Hungarian. I used it for a long time before shortening it to mrzsomi. It is a small reminder of where the name came from, even though the things I am interested in have changed quite a bit since then.
+              <a href="#projects" class="btn btn-primary magnetic" data-i18n="view_projects">View projects <span aria-hidden="true">↗</span></a>
+              <a href="#contact" class="btn btn-outline magnetic" data-i18n="get_in_touch">Get in touch</a>
             </div>
           </div>
           <div class="hero-visual">
-            <div class="hero-terminal">
+            <figure class="hero-photo">
+              <img src="assets/img/illustrations/circuit-board.svg" alt="Illustration of a circuit board" loading="eager" />
+              <figcaption>hardware / software / curiosity</figcaption>
+            </figure>
+            <div class="hero-terminal" aria-hidden="true">
               <div class="trm-bar">
                 <span class="trm-dot trm-red"></span>
                 <span class="trm-dot trm-yellow"></span>
@@ -201,6 +202,7 @@
                 <span class="trm-cursor" id="trm-cursor"></span>
               </div>
             </div>
+            <div class="hero-note">small experiments.<br />real hardware.<br />good questions.</div>
           </div>
         </div>
       </section>
@@ -214,15 +216,14 @@
       <section id="projects">
         <p class="section-tag" data-i18n="projects_tag">Portfolio</p>
         <h2 class="section-title" data-i18n="projects_title">Things I’ve built</h2>
-        <div class="filter-bar" id="filter-bar">
-          <button class="filter-chip active" data-filter="all" data-i18n="filter_all">All</button>
-        </div>
+        <p class="section-lede" data-i18n="projects_lede">A few builds I keep coming back to.</p>
         <div class="projects-wrapper">
-          <div class="project-list" id="project-list">
+          <div class="featured-project-grid project-list-featured" id="project-list">
             <div class="loader">Loading projects…</div>
           </div>
           <div class="project-detail" id="project-detail"></div>
         </div>
+        <a href="projects.html" class="text-link" data-i18n="view_all_projects">View all projects <span aria-hidden="true">↗</span></a>
       </section>
 
       <section id="activity">
@@ -253,6 +254,10 @@
             <div class="form-group">
               <label for="message" data-i18n="form_message">Message</label>
               <textarea id="message" name="message" placeholder="Your message…" data-i18n-placeholder="form_message_placeholder" required></textarea>
+            </div>
+            <div class="form-trap" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
             </div>
             <input type="hidden" name="_subject" value="mrzsomi.top Contact Form" />
             <div class="form-row">

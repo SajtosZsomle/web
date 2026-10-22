@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Circuit board illustration</title>
+  <desc id="desc">A warm editorial illustration of a circuit board with traces and components.</desc>
+  <rect width="900" height="620" rx="42" fill="#e8ebe2"/>
+  <circle cx="760" cy="102" r="142" fill="#d9dfd5"/>
+  <circle cx="112" cy="530" r="180" fill="#f1dfd6"/>
+  <g fill="none" stroke="#879a86" stroke-width="8" stroke-linecap="round">
+    <path d="M100 170h166v72h112v88h188v-76h174"/>
+    <path d="M90 390h110v-70h86v-98h126"/>
+    <path d="M490 500v-70h94v-76h180"/>
+    <path d="M690 170v62h-72v76"/>
+  </g>
+  <g fill="#bd5d49">
+    <circle cx="100" cy="170" r="15"/><circle cx="730" cy="254" r="15"/>
+    <circle cx="90" cy="390" r="15"/><circle cx="764" cy="394" r="15"/>
+    <circle cx="490" cy="500" r="15"/>
+  </g>
+  <g fill="#202a26">
+    <rect x="326" y="206" width="158" height="152" rx="18"/>
+    <rect x="354" y="234" width="102" height="96" rx="10" fill="#879a86"/>
+    <rect x="594" y="360" width="98" height="64" rx="12"/>
+    <rect x="198" y="122" width="74" height="46" rx="10"/>
+  </g>
+  <g fill="#fbfaf7">
+    <circle cx="378" cy="258" r="7"/><circle cx="432" cy="258" r="7"/>
+    <circle cx="378" cy="306" r="7"/><circle cx="432" cy="306" r="7"/>
+    <rect x="612" y="378" width="62" height="8" rx="4"/>
+  </g>
+  <text x="72" y="84" fill="#202a26" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="4">MAKE / TEST / REPEAT</text>
+</svg>

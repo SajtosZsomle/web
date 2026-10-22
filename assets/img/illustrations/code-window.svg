@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Code window illustration</title>
+  <desc id="desc">A warm editorial illustration of a code editor window.</desc>
+  <rect width="900" height="620" rx="42" fill="#e8ebe2"/>
+  <circle cx="760" cy="510" r="168" fill="#f1dfd6"/>
+  <rect x="104" y="106" width="692" height="410" rx="24" fill="#202a26"/>
+  <rect x="104" y="106" width="692" height="68" rx="24" fill="#2d3931"/>
+  <circle cx="148" cy="140" r="10" fill="#bd5d49"/><circle cx="180" cy="140" r="10" fill="#b7a886"/><circle cx="212" cy="140" r="10" fill="#879a86"/>
+  <g font-family="monospace" font-size="25">
+    <text x="156" y="234" fill="#d3a190">const</text><text x="248" y="234" fill="#edf0e9"> idea = </text><text x="350" y="234" fill="#9caf9a">curiosity;</text>
+    <text x="156" y="286" fill="#9caf9a">function</text><text x="310" y="286" fill="#edf0e9"> build(idea) {</text>
+    <text x="190" y="338" fill="#edf0e9">return </text><text x="285" y="338" fill="#d3a190">make</text><text x="350" y="338" fill="#edf0e9">(idea);</text>
+    <text x="156" y="390" fill="#edf0e9">}</text>
+    <text x="156" y="464" fill="#879a86">// keep shipping small things</text>
+  </g>
+</svg>

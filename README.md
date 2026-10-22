@@ -8,20 +8,41 @@
 
 ### What this is
 
-This is the personal site and project notebook of **mrzsomi**, a Hungarian student interested in electronics and many other things. It brings together embedded systems, firmware experiments, small web tools, self-hosted infrastructure and whatever I am currently learning. The writing is intentionally straightforward: each project should explain what it does and why it exists, not just list a stack.
+This is the personal site and project notebook of **mrzsomi**, a Hungarian student interested in electronics and many other things. It brings together embedded systems, firmware experiments, small web tools, self-hosted infrastructure and whatever I am currently learning. The visual language is intentionally editorial and calm: strong type, a restrained terracotta-and-sage palette, small interface details, and motion that stays out of the way of the content.
 
 ### What you can find here
 
 - A bilingual portfolio in English and Hungarian
+- A focused homepage plus a separate searchable project archive
 - Project notes covering Arduino, ESP32, motion control, PCB work, Java services and homelab infrastructure
 - Links to live sites, source repositories and documentation where they exist
 - Public GitHub activity, with graceful fallback when the API is unavailable
-- A responsive layout with light and dark themes
+- A responsive, static layout with light and dark themes
 - A contact form powered by Formspree
+- A small set of local, editable SVG illustrations instead of repeated stock photography
+- Basic client-side contact protection with a honeypot and one-minute cooldown
 
 ### Technical notes
 
-The site is deliberately framework-free: semantic HTML, CSS and browser JavaScript are served as static files through GitHub Pages. Project content lives in `projects.en.json` and `projects.hu.json`, so new work can be added without changing the page structure. Cloudflare sits in front of the site, while GitHub provides the project and activity links.
+The site is deliberately framework-free: semantic HTML, CSS and browser JavaScript are served as static files through GitHub Pages. The design takes cues from UI Watermelon, Realtime Colors, Recent Design and React Bits, while using CSS transitions and the browser's native animation APIs instead of a runtime animation library. This keeps the site fast, public-repository friendly, and deployable without a build step. Project content lives in `projects.en.json` and `projects.hu.json`, so new work can be added without changing the page structure. The homepage shows four starred projects with no filtering, while `projects.html` provides the complete archive with filters and expandable notes. The featured IDs are easy to change in `assets/js/script.js`. Cloudflare sits in front of the site, while GitHub provides the project and activity links.
+
+The visual artwork lives in `assets/img/illustrations/` as plain SVG files. Edit those files directly to change the circuit board, code window, or server rack artwork without needing a design tool or build step.
+
+The contact form includes a hidden honeypot, a three-second minimum completion time, duplicate-submit protection, and a one-minute browser cooldown after a successful send. These controls reduce casual spam, but they are not a server-side security boundary because the site is static. Formspree remains responsible for server-side filtering and delivery limits.
+
+### GitHub Pages deployment
+
+There is no server or build process to maintain. Publish the repository root with GitHub Pages (or use the existing custom domain in `CNAME`), and the relative asset paths work for both a custom domain and a project site. The GitHub activity panel is progressive enhancement: if the public API is unavailable or rate-limited, the page links back to the profile instead of failing the rest of the site.
+
+### Editing locally
+
+Open `index.html` directly for a quick preview, or serve the repository root with any static file server when testing JSON fetches:
+
+```bash
+python3 -m http.server 8000
+```
+
+Project copy belongs in both JSON files. Shared structure lives in `index.html`, visual styles in `assets/css/styles.css`, and interactions/translations in `assets/js/script.js`.
 
 ### Links
 
