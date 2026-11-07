@@ -3,8 +3,8 @@
   const translations = {
     en: {
       about_tag: "Hi, I’m mrzsomi",
-      hero_title: 'I build useful things <span class="accent-text">at the edge of hardware and software.</span>',
-      hero_paragraph: "Embedded systems, practical tools and infrastructure for ideas that need to work in the real world.",
+      hero_title: 'I build across the stack, <span class="accent-text">from sensors to services.</span>',
+      hero_paragraph: "Firmware, web tools and infrastructure for the things I want to understand and make useful.",
       hero_index_label: "Current focus",
       hero_index_intro: "A small, practical selection of what I’m exploring now.",
       hero_index_hardware: "Embedded hardware",
@@ -16,11 +16,11 @@
       view_projects: "View projects",
       get_in_touch: "Get in touch",
       name_origin: "mrzsomi started as a Hungarian Minecraft username and stayed because it felt right.",
-      skills_tag: "A few things I use",
-      skills_title: "Things I enjoy working with",
-      hardware_title: "Hardware",
-      software_title: "Software",
-      engineering_title: "Projects & practice",
+      skills_tag: "Working set",
+      skills_title: "Tools for making things real",
+      hardware_title: "On the bench",
+      software_title: "In the editor",
+      engineering_title: "Around the system",
       skills_hardware: [
         "ESP32 / ATmega328",
         "PCB Design (EasyEDA)",
@@ -64,7 +64,7 @@
       form_slow_down: "Please take a moment to complete the form.",
       form_error: "Something went wrong. Please try again.",
       footer_text: "© 2026 mrzsomi · Budapest / online",
-      available: "Available",
+      available: "Building",
       nav_about: "About",
       nav_skills: "Skills",
       nav_projects: "Projects",
@@ -86,8 +86,8 @@
     },
     hu: {
       about_tag: "Szia, mrzsomi vagyok",
-      hero_title: 'Hasznos dolgokat építek <span class="accent-text">a hardver és a szoftver határán.</span>',
-      hero_paragraph: "Beágyazott rendszerek, praktikus eszközök és infrastruktúra olyan ötletekhez, amelyeknek működniük kell.",
+      hero_title: 'A teljes stackben építek, <span class="accent-text">a szenzortól a szolgáltatásig.</span>',
+      hero_paragraph: "Firmware, webes eszközök és infrastruktúra ahhoz, amit meg akarok érteni és hasznossá tenni.",
       hero_index_label: "Ami most érdekel",
       hero_index_intro: "Egy rövid, gyakorlatias válogatás abból, amivel mostanában foglalkozom.",
       hero_index_hardware: "Beágyazott hardver",
@@ -99,10 +99,10 @@
       get_in_touch: "Írj rám",
       name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
       skills_tag: "Amikkel dolgozom",
-      skills_title: "A hozzám közel álló dolgok",
-      hardware_title: "Hardver",
-      software_title: "Szoftver",
-      engineering_title: "Eszközök és módszerek",
+      skills_title: "Eszközök, amikkel működő dolgok születnek",
+      hardware_title: "A padon",
+      software_title: "A szerkesztőben",
+      engineering_title: "A rendszer körül",
       skills_hardware: [
         "ESP32 / ATmega328",
         "PCB tervezés (EasyEDA)",
@@ -146,7 +146,7 @@
       form_slow_down: "Töltsd ki egy kicsit lassabban az űrlapot.",
       form_error: "Nem sikerült elküldeni. Próbáld meg újra.",
       footer_text: "© 2026 mrzsomi · Budapest / online",
-      available: "Elérhető",
+      available: "Építek",
       nav_about: "Rólam",
       nav_skills: "Eszköztár",
       nav_projects: "Projektek",
@@ -197,11 +197,6 @@
     fetchGitHubActivity();
   }
 
-  // ── Clock ──
-  const clockEl = document.getElementById('live-clock');
-  function tick() { const now = new Date(); clockEl.textContent = now.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }); }
-  tick(); setInterval(tick, 1000);
-
   // ── Theme ──
   const html = document.documentElement;
   const themeBtn = document.getElementById('theme-toggle');
@@ -222,72 +217,23 @@
 
   // ── Skills rendering ──
   const skillsContainer = document.getElementById('skills-container');
-  const skillPercentages = {
-    // Hardware
-    "ESP32 / ATmega328": 76,
-    "PCB Design (EasyEDA)": 65,
-    "3D Printing (Creality)": 80,
-    "Soldering & Rework": 72,
-    "Home Server (Proxmox)": 82,
-
-    // Software
-    "Embedded C/C++": 70,
-    "Java / Kotlin": 77,
-    "Python / JavaScript": 88,
-    "OTA / Async Servers": 74,
-    "ISR State Machines": 65,
-
-    // Projects and practice
-    "RF Debugging & Analysis": 64,
-    "Cloudflare / Proxmox": 82,
-    "IntelliJ / VSCodium": 85,
-    "Figma (UI/UX)": 75,
-    "Git / CI/CD": 85
-  };
   function renderSkills() {
     const t = translations[currentLang];
-    const en = translations.en;
     const categories = [
-      { title: t.hardware_title, items: t.skills_hardware, enItems: en.skills_hardware },
-      { title: t.software_title, items: t.skills_software, enItems: en.skills_software },
-      { title: t.engineering_title, items: t.skills_engineering, enItems: en.skills_engineering }
+      { title: t.hardware_title, items: t.skills_hardware },
+      { title: t.software_title, items: t.skills_software },
+      { title: t.engineering_title, items: t.skills_engineering }
     ];
     skillsContainer.innerHTML = categories.map(cat => {
-      // Zip translated items with their English counterparts, look up their percentage, then sort descending
-      const sortedSkills = cat.items.map((item, idx) => {
-        const enName = cat.enItems[idx];
-        const percent = skillPercentages[enName] || 0;
-        return { name: item, percent };
-      }).sort((a, b) => b.percent - a.percent);
-
-
       return `
         <div class="skill-card">
           <h3>${cat.title}</h3>
           <ul>
-            ${sortedSkills.map(item => `
-              <li>
-                <div class="skill-info">
-                  <span class="skill-name">${item.name}</span>
-                  <span class="skill-percent">${item.percent}%</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" data-percent="${item.percent}" style="width: 0%"></div>
-                </div>
-              </li>
-            `).join('')}
+            ${cat.items.map(item => `<li><span class="skill-mark" aria-hidden="true"></span><span>${item}</span></li>`).join('')}
           </ul>
         </div>
       `;
     }).join('');
-
-    // Trigger slide-in animation after rendering to allow CSS transitions to execute
-    setTimeout(() => {
-      document.querySelectorAll('.progress-fill').forEach(fill => {
-        const pct = fill.getAttribute('data-percent');
-        fill.style.width = pct + '%';
-      });
-    }, 100);
   }
 
   // ── Projects ──
@@ -363,15 +309,6 @@
 
   function showDetail(project) {
     let html = project.full || project.short || '';
-    const projectImages = {
-      hardware: 'assets/img/illustrations/circuit-board.svg',
-      software: 'assets/img/illustrations/code-window.svg',
-      infra: 'assets/img/illustrations/server-rack.svg',
-      web: 'assets/img/illustrations/code-window.svg'
-    };
-    const imageKey = project.tags?.includes('infra') ? 'infra' : project.tags?.some(tag => ['web', 'java', 'backend'].includes(tag)) ? 'web' : project.tags?.some(tag => ['arduino', 'esp32', 'pcb', 'cnc', 'workshop', 'diy'].includes(tag)) ? 'hardware' : 'software';
-    html = `<img class="project-image" src="${projectImages[imageKey]}" alt="" width="800" height="360" loading="lazy" />` + html;
-    
     // Render links if available
     const links = project.links || (project.github ? { github: project.github } : null);
     if (links) {
@@ -595,34 +532,4 @@
   // ── Init ──
   applyLanguage(currentLang);
 
-  // Small, dependency-free interaction layer for static hosting.
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!motionQuery.matches) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('section, .featured-project-card, .skill-card, .activity-item').forEach((element) => {
-      element.classList.add('reveal');
-      revealObserver.observe(element);
-    });
-
-    document.querySelectorAll('.magnetic').forEach((button) => {
-      button.addEventListener('pointermove', (event) => {
-        const rect = button.getBoundingClientRect();
-        const x = (event.clientX - rect.left - rect.width / 2) * 0.12;
-        const y = (event.clientY - rect.top - rect.height / 2) * 0.12;
-        button.style.setProperty('--mx', `${x}px`);
-        button.style.setProperty('--my', `${y}px`);
-      });
-      button.addEventListener('pointerleave', () => {
-        button.style.setProperty('--mx', '0px');
-        button.style.setProperty('--my', '0px');
-      });
-    });
-  }
 })();

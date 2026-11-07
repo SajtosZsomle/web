@@ -19,14 +19,11 @@ This is the personal site and project notebook of **mrzsomi**, a Hungarian stude
 - Public GitHub activity, with graceful fallback when the API is unavailable
 - A responsive, static layout with light and dark themes
 - A contact form powered by Formspree
-- A small set of local, editable SVG illustrations instead of repeated stock photography
 - Basic client-side contact protection with a honeypot and one-minute cooldown
 
 ### Technical notes
 
 The site is deliberately framework-free: semantic HTML, CSS and browser JavaScript are served as static files through GitHub Pages. The design takes cues from UI Watermelon, Realtime Colors, Recent Design and React Bits, while using CSS transitions and the browser's native animation APIs instead of a runtime animation library. This keeps the site fast, public-repository friendly, and deployable without a build step. Project content lives in `projects.en.json` and `projects.hu.json`, so new work can be added without changing the page structure. The homepage shows four starred projects with no filtering, while `projects.html` provides the complete archive with filters and expandable notes. The featured IDs are easy to change in `assets/js/script.js`. Cloudflare sits in front of the site, while GitHub provides the project and activity links.
-
-The visual artwork lives in `assets/img/illustrations/` as plain SVG files. Edit those files directly to change the circuit board, code window, or server rack artwork without needing a design tool or build step.
 
 The contact form includes a hidden honeypot, a three-second minimum completion time, duplicate-submit protection, and a one-minute browser cooldown after a successful send. These controls reduce casual spam, but they are not a server-side security boundary because the site is static. Formspree remains responsible for server-side filtering and delivery limits.
 
