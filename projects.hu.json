@@ -2,8 +2,8 @@
   {
     "id": "p1",
     "title": "FoamCutter (CNC habvágó)",
-    "short": "Izzóhuzalos CNC habvágó Arduino-vezérléssel és egyszerű PC-s kezelőfelülettel.",
-    "full": "Ezt a gépet azért építettem, hogy a habvágás ne mindig kézi munka legyen. Az Arduino mozgatja a gépet, a PC-s program pedig a vágási parancsokat küldi neki. Szárnyprofilokhoz és egyedi betétekhez használom.",
+    "short": "Izzóhuzalos CNC habvágó Arduino-vezérléssel és egyszerű számítógépes kezelőfelülettel.",
+    "full": "Azért építettem, hogy a habvágás ne mindig kézi munka legyen. Az Arduino mozgatja a gépet, a számítógépes program pedig elküldi a vágási parancsokat. Szárnyprofilokhoz és egyedi betétekhez használom.",
     "links": {
       "github": false,
       "web": false,
@@ -16,9 +16,9 @@
   },
   {
     "id": "p2",
-    "title": "Mozgó lineáris sínrendszer",
-    "short": "Menetes orsós lineáris sín DRV8825-tel és Arduinóval, pontos mozgatáshoz.",
-    "full": "Egy kisebb mozgásvezérlési tesztpadot építettem belőle. Az Arduino a DRV8825-ön keresztül hajtja a léptetőmotort, a végálláskapcsolók pedig a biztonságos kezdőpozíciót segítik.",
+    "title": "Lineáris mozgatósín",
+    "short": "Menetes orsós sín DRV8825-tel és Arduinóval, ismételhető mozgatáshoz.",
+    "full": "Egy kisebb mozgásvezérlési tesztpadot építettem belőle. Az Arduino a DRV8825-ön keresztül hajtja a léptetőmotort, a végálláskapcsolók pedig segítenek biztonságosan felvenni a kezdőpozíciót.",
     "links": {
       "github": false,
       "web": false,
@@ -31,8 +31,8 @@
   },
   {
     "id": "p3",
-    "title": "DIY forrasztási füstelszívó",
-    "short": "Saját forrasztási füstelszívó aktívszén-szűrővel és munkalámpával.",
+    "title": "Forrasztási füstelszívó",
+    "short": "Műhelybe épített füstelszívó aktívszén-szűrővel és munkalámpával.",
     "full": "A műhelybe készült, mert forrasztás közben jól jön egy kis elszívás és több fény. Állítható fordulatú, csendes ventilátor dolgozik benne.",
     "links": {
       "github": false,
@@ -61,7 +61,7 @@
   },
   {
     "id": "p5",
-    "title": "ESP32 OTA frissítőrendszer",
+    "title": "ESP32 OTA-frissítés",
     "short": "ESP32-es vezeték nélküli firmware-frissítés ElegantOTA-val és watchdoggal.",
     "full": "Az OTA-frissítés akkor hasznos, amikor nem szeretném minden alkalommal szétszedni az eszközt. Van benne alapvető beléptetés és watchdog is, hogy egy félresikerült frissítés után legyen esély a helyreállásra.",
     "links": {
@@ -76,8 +76,8 @@
   },
   {
     "id": "p6",
-    "title": "RoyalCore Minecraft hálózat",
-    "short": "Java Paper plugin duplikálás elleni védelemmel és Discord-riasztásokkal.",
+    "title": "RoyalCore Minecraft-hálózat",
+    "short": "Java Paper-plugin duplikálás elleni védelemmel és Discord-riasztásokkal.",
     "full": "Egy kisebb Minecraft-közösséghez készült plugin. Figyeli a gyanús tárgymozgatásokat, kiszűr néhány gyakori trükköt, és Discordon jelez, ha valami nem stimmel.",
     "links": {
       "github": false,
@@ -91,8 +91,8 @@
   },
   {
     "id": "p7",
-    "title": "Homelab infrastruktúra",
-    "short": "Két Dell Optiplexből álló otthoni szerverrendszer Proxmoxszal.",
+    "title": "Az otthoni szerverem",
+    "short": "Két régi Dell gép futtatja azokat a szolgáltatásokat és oldalakat, amiket használok.",
     "full": "Két Dell Optiplex gépen futnak a saját szolgáltatásaim: Jellyfin, Pelican Panel, adatbázisok és néhány weboldal. Kívülről Cloudflare Tunnelön keresztül érem el őket.",
     "links": {
       "github": false,
@@ -136,9 +136,9 @@
   },
   {
     "id": "p10",
-    "title": "mrzsomi.top portfólió",
-    "short": "Ez a portfólióoldal, GitHub Pagesen és Cloudflare mögött.",
-    "full": "A saját oldalam, ahol a projektjeimet és a kísérleteimet gyűjtöm. Statikus GitHub Pages-oldal, külön projektarchívummal, sötét móddal és Formspree-alapú kapcsolatfelvétellel.",
+    "title": "Ez az oldal",
+    "short": "A weboldal, amit éppen nézel, projektjegyzetekkel és archívummal.",
+    "full": "A saját oldalam, ahol a projektjeimet és a kísérleteimet gyűjtöm. Könnyű, statikus oldal projektarchívummal, sötét móddal és kapcsolatfelvételi űrlappal.",
     "links": {
       "github": "https://github.com/SajtosZsomle/web",
       "web": "https://mrzsomi.top",
@@ -151,9 +151,9 @@
   },
   {
     "id": "p11",
-    "title": "Game Web Assets",
-    "short": "Játékokhoz és játékszerverekhez készült statikus weboldalak egy helyen.",
-    "full": "Itt vannak a játékos projektekhez tartozó oldalak és szerverinfók. A GitHub Actions frissíti a szerveradatokat, így a game.mrzsomi.top és a Counter-Strike: Source MOTD-oldalak külön kézi frissítés nélkül is naprakészek.",
+    "title": "Játékos weboldalak",
+    "short": "Játékokhoz és játékszerverekhez készült statikus oldalak egy helyen.",
+    "full": "A játékos projektekhez tartozó oldalak és szerverinformációk gyűjteménye. A GitHub Actions frissíti az adatokat, így a game.mrzsomi.top és a Counter-Strike: Source MOTD-oldalak kézi frissítés nélkül is naprakészek.",
     "links": {
       "github": "https://github.com/SajtosZsomle/game-web",
       "web": "https://game.mrzsomi.top",
@@ -166,8 +166,8 @@
   },
   {
     "id": "p12",
-    "title": "Státuszoldal",
-    "short": "Upptime-alapú státuszoldal a szolgáltatások figyelésére.",
+    "title": "Szolgáltatási állapotoldal",
+    "short": "Upptime-alapú oldal a szolgáltatások állapotának követésére.",
     "full": "A GitHub Actions rendszeresen ellenőrzi a szolgáltatásokat, méri a válaszidőt, és jelzi, ha valami elérhetetlenné válik. Az eredmények és az esetleges hibák a status.mrzsomi.top oldalon láthatók.",
     "links": {
       "github": "https://github.com/SajtosZsomle/status-page",

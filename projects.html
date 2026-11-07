@@ -3,8 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="page-title">Projects | mrzsomi</title>
-    <meta id="page-description" name="description" content="A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi." />
+    <title id="page-title">mrzsomi | Projects</title>
+    <meta id="page-description" name="description" content="Projects by mrzsomi, a Hungarian student learning by building software, hardware, and small web experiments." />
+    <meta id="theme-color-meta" name="theme-color" content="#f4f4f1" />
+    <meta name="author" content="mrzsomi" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
+    <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+    <link rel="manifest" href="assets/img/site.webmanifest" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script>
       (function () {
@@ -21,23 +28,21 @@
         <a href="index.html" class="logo"><img src="assets/img/favicon.ico" alt="" width="30" height="30" /> mrzsomi.top</a>
         <ul class="nav-links">
           <li><a id="nav-about" href="index.html#about">About</a></li>
-          <li><a id="nav-skills" href="index.html#skills">Toolkit</a></li>
+          <li><a id="nav-skills" href="index.html#skills">Tools</a></li>
           <li><a id="nav-projects" class="active" href="projects.html">Projects</a></li>
+          <li><a id="nav-activity" href="index.html#activity">Log</a></li>
           <li><a id="nav-contact" href="index.html#contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
-          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">dark</button>
+          <button class="lang-btn" id="lang-toggle" aria-label="Switch language" data-i18n-aria="aria_language">EN</button>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme" data-i18n-aria="aria_theme">dark</button>
         </div>
       </div>
     </nav>
     <main id="main-content" class="container archive-page">
       <header class="archive-header">
-        <div class="section-heading">
-          <p id="archive-tag" class="section-tag">Project archive</p>
-        </div>
-        <h1 id="archive-title" class="archive-title">A record of things<br /><span class="accent-text">that became useful.</span></h1>
-        <p id="archive-lede" class="section-lede">Hardware, code, servers, and the experiments between them.</p>
+        <h1 id="archive-title" class="archive-title">Stuff I’ve made<br /><span class="accent-text">and kept useful.</span></h1>
+        <p id="archive-lede" class="section-lede">Things I’m learning by making.</p>
       </header>
       <div class="archive-filters" id="archive-filters"></div>
       <div class="archive-grid" id="archive-grid"><p class="loader">Loading projects…</p></div>

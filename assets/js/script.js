@@ -2,25 +2,25 @@
   const translations = {
     en: {
       about_tag: "Hi, I’m mrzsomi",
-      hero_title: 'I build <span class="accent-text">useful things</span> close to the metal.',
-      hero_paragraph: "Firmware, web tools and infrastructure for the things I want to understand and make useful.",
-      hero_index_label: "Field notes",
-      hero_index_intro: "A short list of what I’m working on.",
-      hero_index_hardware: "Embedded hardware",
-      hero_index_hardware_detail: "Sensors, motion and boards",
-      hero_index_software: "Useful software",
-      hero_index_software_detail: "Firmware, tools and interfaces",
-      hero_index_infra: "Infrastructure",
-      hero_index_infra_detail: "Self-hosting, monitoring and deployment",
-      view_projects: "Browse the project index",
-      get_in_touch: "Start a conversation",
+      hero_title: 'I’m learning by <span class="accent-text">making things.</span>',
+      hero_paragraph: "I’m a student from Hungary, exploring code, hardware, and whatever I’m curious about.",
+      hero_index_label: "Right now",
+      hero_index_intro: "A few things on my desk.",
+      hero_index_hardware: "Boards & sensors",
+      hero_index_hardware_detail: "ESP32s, motors, small experiments",
+      hero_index_software: "Small software",
+      hero_index_software_detail: "Firmware, scripts, useful little tools",
+      hero_index_infra: "Stuff that stays up",
+      hero_index_infra_detail: "My servers, websites, and monitoring",
+      view_projects: "See the projects",
+      get_in_touch: "Get in touch",
       name_origin: "mrzsomi started as a Hungarian Minecraft username and stayed because it felt right.",
-      skills_tag: "Working set",
-      skills_title: "Tools for making things real",
-      skills_lede: "A practical mix of bench work, code and systems work.",
-      hardware_title: "On the bench",
+      skills_tag: "What I’m learning",
+      skills_title: "What I reach for",
+      skills_lede: "The tools I use",
+      hardware_title: "At the desk",
       software_title: "In the editor",
-      engineering_title: "Around the system",
+      engineering_title: "At home",
       skills_hardware: [
         "ESP32 / ATmega328",
         "PCB Design (EasyEDA)",
@@ -44,31 +44,31 @@
       ],
       filter_all: "All",
       projects_tag: "Projects",
-      projects_title: "A working index, not a showcase.",
-      projects_lede: "Hardware, software and infrastructure projects.",
+      projects_title: "Things I’ve made.",
+      projects_lede: "A few builds, experiments, and sites I keep coming back to.",
       view_all_projects: "Open archive",
-      activity_tag: "Activity",
-      activity_title: "Notes from the build log.",
+      activity_tag: "GitHub",
+      activity_title: "The latest things.",
       contact_tag: "Contact",
-      contact_title: "Have something worth making?",
-      contact_paragraph: "Tell me what you are trying to make, fix or understand.",
+      contact_title: "Want to build something?",
+      contact_paragraph: "Send me a message. I like figuring out tricky things.",
       form_name: "Name",
       form_name_placeholder: "Your name",
       form_subject: "Subject",
-      form_subject_placeholder: "What's this about?",
+      form_subject_placeholder: "What’s this about…",
       form_email: "Email",
       form_email_placeholder: "you@example.com",
       form_message: "Message",
       form_message_placeholder: "Your message…",
       form_submit: "Send message",
-      form_wait: "Please wait before sending another message.",
-      form_slow_down: "Please take a moment to complete the form.",
+      form_wait: "Please wait a moment before sending another message.",
+      form_slow_down: "Please complete the form before sending.",
       form_error: "Something went wrong. Please try again.",
       footer_text: "© 2026 mrzsomi",
       nav_about: "About",
-      nav_skills: "Skills",
+      nav_skills: "Tools",
       nav_projects: "Projects",
-      nav_activity: "Activity",
+      nav_activity: "Log",
       nav_contact: "Contact",
       loading_projects: "Loading projects…",
       error_projects: "Failed to load projects.",
@@ -82,44 +82,52 @@
       view_github: "View GitHub profile",
       social_github: "GitHub profile",
       social_discord: "Discord",
-      selected_project: "Selected project"
+      selected_project: "Selected project",
+      aria_language: "Switch language",
+      aria_theme: "Toggle theme",
+      aria_current_work: "Current work",
+      aria_build: "Press the board button",
+      aria_build_active: "Release the board button",
+      theme_light: "light",
+      theme_dark: "dark"
     },
     hu: {
       about_tag: "Szia, mrzsomi vagyok",
-      hero_title: 'Hasznos dolgokat építek, <span class="accent-text">közel a vashoz.</span>',
-      hero_paragraph: "Firmware, webes eszközök és infrastruktúra ahhoz, amit meg akarok érteni és hasznossá tenni.",
-      hero_index_label: "Jegyzetek",
-      hero_index_intro: "Röviden arról, amin most dolgozom.",
-      hero_index_hardware: "Beágyazott hardver",
-      hero_index_hardware_detail: "Szenzorok, mozgatás és áramkörök",
-      hero_index_software: "Hasznos szoftver",
-      hero_index_software_detail: "Firmware, eszközök és felületek",
-      hero_index_infra: "Infrastruktúra",
-      hero_index_infra_detail: "Önüzemeltetés, monitorozás és kiadás",
-      get_in_touch: "Beszéljünk",
+      hero_title: 'Építve <span class="accent-text">tanulok.</span>',
+      hero_paragraph: "Magyar diák vagyok, akit érdekel a kód, a hardver és minden új ötlet.",
+      hero_index_label: "Mostanában",
+      hero_index_intro: "Az asztalomról",
+      hero_index_hardware: "Panelek és szenzorok",
+      hero_index_hardware_detail: "ESP32-k, motorok, apró kísérletek",
+      hero_index_software: "Kis szoftverek",
+      hero_index_software_detail: "Firmware, scriptek, hasznos eszközök",
+      hero_index_infra: "Ami otthon fut",
+      hero_index_infra_detail: "Szerverek, oldalak és monitorozás",
+      view_projects: "Nézd meg a projektjeimet",
+      get_in_touch: "Írj nekem",
       name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
-      skills_tag: "Amikkel dolgozom",
-      skills_title: "Eszközök, amikkel működő dolgok születnek",
-      skills_lede: "Gyakorlati keverék a műhelyből, a kódból és a rendszerekből.",
-      hardware_title: "A padon",
+      skills_tag: "Amit tanulok",
+      skills_title: "Amihez nyúlok",
+      skills_lede: "Az eszközeim",
+      hardware_title: "Az asztalon",
       software_title: "A szerkesztőben",
-      engineering_title: "A rendszer körül",
+      engineering_title: "Otthon",
       skills_hardware: [
         "ESP32 / ATmega328",
-        "PCB tervezés (EasyEDA)",
-        "3D nyomtatás (Creality)",
-        "Forrasztás és SMD javítás (rework)",
-        "Otthoni szerver (Proxmox)"
+        "NYÁK-tervezés (EasyEDA)",
+        "3D-nyomtatás (Creality)",
+        "Forrasztás és javítás",
+        "Otthoni szerverek (Proxmox)"
       ],
       skills_software: [
         "Beágyazott C/C++",
         "Java / Kotlin",
         "Python / JavaScript",
-        "OTA frissítések és aszinkron szerverek",
-        "ISR alapú állapotgépek"
+        "OTA-frissítés és aszinkron szerverek",
+        "ISR-alapú állapotgépek"
       ],
       skills_engineering: [
-        "RF diagnosztika és mérés",
+        "RF-hibakeresés és elemzés",
         "Cloudflare / Proxmox",
         "IntelliJ / VSCodium",
         "Figma (UI/UX)",
@@ -127,31 +135,31 @@
       ],
       filter_all: "Összes",
       projects_tag: "Projektek",
-      projects_title: "Munkajegyzék, nem kirakat.",
-      projects_lede: "Hardveres, szoftveres és infrastruktúra-projektek.",
+      projects_title: "Válogatott projektek",
+      projects_lede: "Hardver, kód és szerverek",
       view_all_projects: "Archívum megnyitása",
-      activity_tag: "Aktivitás",
-      activity_title: "Jegyzetek a build naplóból.",
+      activity_tag: "GitHub",
+      activity_title: "Friss munkák",
       contact_tag: "Kapcsolat",
-      contact_title: "Van valami, amit érdemes megépíteni?",
-      contact_paragraph: "Írd le, mit szeretnél elkészíteni, megjavítani vagy megérteni.",
+      contact_title: "Építsünk valamit?",
+      contact_paragraph: "Ötletek, kérdések, közös építés.",
       form_name: "Név",
       form_name_placeholder: "A neved",
       form_subject: "Tárgy",
-      form_subject_placeholder: "Miben segíthetek?",
-      form_email: "Email",
+      form_subject_placeholder: "Miben segíthetek…",
+      form_email: "E-mail",
       form_email_placeholder: "te@gmail.com",
       form_message: "Üzenet",
       form_message_placeholder: "Írd le röviden, miről lenne szó…",
       form_submit: "Üzenet küldése",
       form_wait: "Már küldtél egy üzenetet. Próbáld meg később.",
-      form_slow_down: "Töltsd ki egy kicsit lassabban az űrlapot.",
+      form_slow_down: "Küldés előtt töltsd ki az űrlap minden mezőjét.",
       form_error: "Nem sikerült elküldeni. Próbáld meg újra.",
       footer_text: "© 2026 mrzsomi",
       nav_about: "Rólam",
-      nav_skills: "Eszköztár",
+      nav_skills: "Eszközök",
       nav_projects: "Projektek",
-      nav_activity: "Friss dolgok",
+      nav_activity: "Napló",
       nav_contact: "Kapcsolat",
       loading_projects: "Projektek betöltése…",
       error_projects: "Nem sikerült betölteni a projekteket.",
@@ -159,13 +167,20 @@
       link_github: "GitHub",
       link_web: "Weboldal",
       link_discord: "Discord",
-      link_documentation: "Leírás",
-      link_live_demo: "Élő oldal",
+      link_documentation: "Dokumentáció",
+      link_live_demo: "Élő demó",
       no_activity: "Most nincs új nyilvános frissítés.",
       view_github: "GitHub-profil",
       social_github: "GitHub-profil",
       social_discord: "Discord",
-      selected_project: "Kiválasztott projekt"
+      selected_project: "Kiválasztott projekt",
+      aria_language: "Nyelv váltása",
+      aria_theme: "Téma váltása",
+      aria_current_work: "Amivel most dolgozom",
+      aria_build: "Nyomd meg a panel gombját",
+      aria_build_active: "Engedd fel a panel gombját",
+      theme_light: "világos",
+      theme_dark: "sötét"
     }
   };
 
@@ -189,6 +204,14 @@
       const key = el.getAttribute('data-i18n-placeholder');
       if (t[key]) el.placeholder = t[key];
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (t[key]) el.setAttribute('aria-label', t[key]);
+    });
+    if (typeof themeIcon !== 'undefined') {
+      themeIcon.textContent = html.getAttribute('data-theme') === 'dark' ? t.theme_light : t.theme_dark;
+    }
+    updateBuildDemoLabel();
     document.querySelectorAll('[data-i18n-nav]').forEach(el => {
       const key = el.getAttribute('data-i18n-nav');
       if (t['nav_'+key]) el.textContent = t['nav_'+key];
@@ -202,13 +225,18 @@
   const html = document.documentElement;
   const themeBtn = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
+  const themeColorMeta = document.getElementById('theme-color-meta');
   const savedTheme = localStorage.getItem('theme') || 'light';
   html.setAttribute('data-theme', savedTheme);
-  themeIcon.textContent = savedTheme === 'dark' ? 'light' : 'dark';
+  if (themeColorMeta) themeColorMeta.content = savedTheme === 'dark' ? '#0c0c0c' : '#f4f4f1';
+  themeIcon.textContent = html.getAttribute('data-theme') === 'dark'
+    ? translations[currentLang].theme_light
+    : translations[currentLang].theme_dark;
   themeBtn.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next); localStorage.setItem('theme', next);
-    themeIcon.textContent = next === 'dark' ? 'light' : 'dark';
+    if (themeColorMeta) themeColorMeta.content = next === 'dark' ? '#0c0c0c' : '#f4f4f1';
+    themeIcon.textContent = next === 'dark' ? translations[currentLang].theme_light : translations[currentLang].theme_dark;
   });
 
   // ── Language toggle ──
@@ -216,19 +244,43 @@
     applyLanguage(currentLang === 'en' ? 'hu' : 'en');
   });
 
+  const buildDemo = document.getElementById('build-demo');
+  function updateBuildDemoLabel() {
+    if (!buildDemo) return;
+    const key = buildDemo.classList.contains('is-active') ? 'aria_build_active' : 'aria_build';
+    buildDemo.setAttribute('aria-label', translations[currentLang][key]);
+  }
+  buildDemo?.addEventListener('click', () => {
+    const active = buildDemo.classList.toggle('is-active');
+    buildDemo.setAttribute('aria-pressed', String(active));
+    updateBuildDemoLabel();
+  });
+
   // ── Skills rendering ──
   const skillsContainer = document.getElementById('skills-container');
   function renderSkills() {
     const t = translations[currentLang];
     const categories = [
-      { title: t.hardware_title, items: t.skills_hardware },
-      { title: t.software_title, items: t.skills_software },
-      { title: t.engineering_title, items: t.skills_engineering }
+      {
+        title: t.hardware_title,
+        items: t.skills_hardware,
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><path d="M9 9h6v6H9z"/></svg>'
+      },
+      {
+        title: t.software_title,
+        items: t.skills_software,
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>'
+      },
+      {
+        title: t.engineering_title,
+        items: t.skills_engineering,
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4M7 9h.01M10 9h.01M13 9h.01M16 9h.01M7 13h10"/></svg>'
+      }
     ];
     skillsContainer.innerHTML = categories.map(cat => {
       return `
         <div class="skill-card">
-          <h3>${cat.title}</h3>
+          <div class="skill-heading"><span class="skill-icon">${cat.icon}</span><h3>${cat.title}</h3></div>
           <ul>
             ${cat.items.map(item => `<li><span class="skill-mark" aria-hidden="true"></span><span>${item}</span></li>`).join('')}
           </ul>
@@ -321,11 +373,11 @@
     const links = project.links || (project.github ? { github: project.github } : null);
     if (links) {
       const linkIcons = {
-        github: { labelKey: 'link_github', color: '#666666', colorDark: '#a0a0a0', colorRgb: '102, 102, 102', colorRgbDark: '160, 160, 160' },
-        web: { labelKey: 'link_web', color: '#4285f4', colorRgb: '66, 133, 244' },
-        discord: { labelKey: 'link_discord', color: '#5865f2', colorRgb: '88, 101, 242' },
-        documentation: { labelKey: 'link_documentation', color: '#0969da', colorRgb: '9, 105, 218' },
-        'live-demo': { labelKey: 'link_live_demo', color: '#22c55e', colorRgb: '34, 197, 94' }
+        github: { labelKey: 'link_github', icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 19c-3 1-3-1-4-1m8 3v-3.5c0-1 .1-1.4-.5-2C9.5 16 7 15.5 7 12.5c0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.2 0 0 .7-.2 2.3.9a8 8 0 0 1 4.2 0c1.6-1.1 2.3-.9 2.3-.9.5 1.1.2 2 .1 2.2.6.6.9 1.4.9 2.3 0 3-2.5 3.5-4.5 4 .6.5.5 1.3.5 2V21"/></svg>' },
+        web: { labelKey: 'link_web', icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>' },
+        discord: { labelKey: 'link_discord', icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 5.2A16 16 0 0 0 16 4l-.4.8a14.5 14.5 0 0 0-7.2 0L8 4a16 16 0 0 0-3.5 1.2C2.3 8.6 1.7 12 2 15.4a15.8 15.8 0 0 0 4.3 2.2l1-1.4a9.5 9.5 0 0 1-1.5-.7l.4-.3a11 11 0 0 0 9.6 0l.4.3a9.5 9.5 0 0 1-1.5.7l1 1.4a15.8 15.8 0 0 0 4.3-2.2c.3-3.4-.3-6.8-2.5-10.2Z"/></svg>' },
+        documentation: { labelKey: 'link_documentation', icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 0V4Zm0 0v16m3 0h11"/></svg>' },
+        'live-demo': { labelKey: 'link_live_demo', icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>' }
       };
       
       const activeLinks = Object.entries(links).filter(([key, value]) => value !== false && value !== null);
@@ -338,7 +390,7 @@
             const color = key === 'github' && isDarkTheme ? linkInfo.colorDark : linkInfo.color;
             const colorRgb = key === 'github' && isDarkTheme ? linkInfo.colorRgbDark : linkInfo.colorRgb;
             const label = translations[currentLang][linkInfo.labelKey] || linkInfo.labelKey;
-            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${color}; --platform-color-rgb: ${colorRgb};" title="${label}">${label}</a>`;
+            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${color}; --platform-color-rgb: ${colorRgb};" title="${label}">${linkInfo.icon}<span>${label}</span></a>`;
           }
         });
         html += '</div>';
@@ -357,21 +409,27 @@
       const events = await res.json();
       renderActivity(events.slice(0, 6));
     } catch {
-      const t = translations[currentLang];
-      document.getElementById("activity-feed").innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github}</a></div>`;
+      renderActivityEmpty();
     }
+  }
+  const activityIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 19c-3 1-3-1-4-1m8 3v-3.5c0-1 .1-1.4-.5-2C9.5 16 7 15.5 7 12.5c0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.2 0 0 .7-.2 2.3.9a8 8 0 0 1 4.2 0c1.6-1.1 2.3-.9 2.3-.9.5 1.1.2 2 .1 2.2.6.6.9 1.4.9 2.3 0 3-2.5 3.5-4.5 4 .6.5.5 1.3.5 2V21"/></svg>';
+  function renderActivityEmpty() {
+    const t = translations[currentLang];
+    document.getElementById("activity-feed").innerHTML = `<div class="activity-empty"><span class="activity-empty-icon">${activityIcon}</span><p>${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github}</a></p></div>`;
   }
   function renderActivity(events) {
     const feed = document.getElementById("activity-feed");
     feed.innerHTML = "";
     if (!events.length) {
-      const t = translations[currentLang];
-      feed.innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github}</a></div>`;
+      renderActivityEmpty();
       return;
     }
     events.forEach(e => {
-      const item = document.createElement("div"); item.className = "activity-item";
-      const avatar = e.actor?.avatar_url || "";
+      const item = document.createElement("article"); item.className = "activity-item";
+      const icon = document.createElement("span");
+      icon.className = "activity-icon";
+      icon.innerHTML = activityIcon;
+      item.appendChild(icon);
       const repo = e.repo?.name || "";
       const date = e.created_at ? new Date(e.created_at).toLocaleDateString(currentLang === "hu" ? "hu-HU" : "en-GB", { day: "numeric", month: "short" }) : "";
       const typeLabels = { PushEvent: currentLang === "hu" ? "Feltöltés" : "Push", CreateEvent: currentLang === "hu" ? "Létrehozás" : "Create", IssuesEvent: currentLang === "hu" ? "Issue" : "Issue", PullRequestEvent: currentLang === "hu" ? "Pull request" : "Pull request", WatchEvent: currentLang === "hu" ? "Csillagozás" : "Star" };
@@ -383,7 +441,16 @@
       else if (e.type === "PullRequestEvent") action = currentLang === "hu" ? `${e.payload.action} pull request` : `${e.payload.action} pull request`;
       else if (e.type === "WatchEvent") action = currentLang === "hu" ? "csillagozta" : "starred";
       else action = e.type;
-      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt="" width="34" height="34"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} / ${date}</small></div>`;
+      const content = document.createElement("div");
+      content.className = "activity-content";
+      const summary = document.createElement("p");
+      const repoName = document.createElement("strong");
+      repoName.textContent = repo;
+      summary.append(repoName, `: ${action}`);
+      const meta = document.createElement("small");
+      meta.textContent = `${type} / ${date}`;
+      content.append(summary, meta);
+      item.appendChild(content);
       feed.appendChild(item);
     });
   }
@@ -461,35 +528,25 @@
 
   // ── Smooth scroll + active nav ──
   const sections = Array.from(document.querySelectorAll('section[id]'));
-  let sectionOffsets = [];
-
-  function updateOffsets() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    sectionOffsets = sections.map(s => ({
-      id: s.id,
-      top: s.getBoundingClientRect().top + scrollY
-    }));
-  }
-
-  // Update offsets initially, on load, and on window resize
-  window.addEventListener('resize', updateOffsets);
-  window.addEventListener('load', updateOffsets);
-  updateOffsets();
+  const navOffset = 72;
 
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset;
     let current = '';
-    
-    // Find the current active section using cached offsets to prevent layout thrashing
-    for (let i = 0; i < sectionOffsets.length; i++) {
-      if (scrollY >= sectionOffsets[i].top - 120) {
-        current = sectionOffsets[i].id;
+
+    // Read live positions because project/activity content changes section heights after load.
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= navOffset + 18) {
+        current = section.id;
       }
+    }
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8) {
+      current = sections[sections.length - 1]?.id || current;
     }
 
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.classList.remove('active');
-      if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
+      const target = a.dataset.section || a.getAttribute('href')?.slice(1);
+      if (target === current) a.classList.add('active');
     });
   });
 
@@ -499,7 +556,7 @@
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         const scrollY = window.scrollY || window.pageYOffset;
-        const top = target.getBoundingClientRect().top + scrollY - 80;
+        const top = target.getBoundingClientRect().top + scrollY - navOffset;
         window.scrollTo({ top, behavior:'smooth' });
         window.location.hash = link.getAttribute('href').substring(1);
       }
@@ -510,14 +567,16 @@
   function updateNavFromHash() {
     const hash = window.location.hash.substring(1);
     if (hash) {
-      const link = document.querySelector(`.nav-links a[href="#${hash}"]`);
+      const link = Array.from(document.querySelectorAll('.nav-links a')).find(a => {
+        return a.dataset.section === hash || a.getAttribute('href') === `#${hash}`;
+      });
       if (link) {
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         link.classList.add('active');
         const target = document.querySelector(`#${hash}`);
         if (target) {
           const scrollY = window.scrollY || window.pageYOffset;
-          const top = target.getBoundingClientRect().top + scrollY - 80;
+          const top = target.getBoundingClientRect().top + scrollY - navOffset;
           window.scrollTo({ top, behavior:'smooth' });
         }
       }
@@ -527,7 +586,6 @@
   window.addEventListener('hashchange', updateNavFromHash);
   
   // Initialize active nav on page load
-  updateOffsets();
   if (window.location.hash) {
     setTimeout(updateNavFromHash, 100);
   } else {

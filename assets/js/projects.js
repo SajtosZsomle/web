@@ -7,12 +7,12 @@
   let language = localStorage.getItem('lang') || 'en';
   const pageCopy = {
     en: {
-      title: 'Projects | mrzsomi',
-      description: 'A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi.',
-      nav: ['About', 'Toolkit', 'Projects', 'Contact'],
-      tag: 'Project archive',
-      titleHtml: 'A record of things<br /><span class="accent-text">that became useful.</span>',
-      lede: 'Hardware, code, servers, and the experiments between them.',
+      title: 'mrzsomi | Projects',
+      description: 'Projects by mrzsomi, a Hungarian student learning by building software, hardware, and small web experiments.',
+      nav: ['About', 'Tools', 'Projects', 'Log', 'Contact'],
+      tag: 'Archive',
+      titleHtml: 'Stuff I’ve made<br /><span class="accent-text">and kept useful.</span>',
+      lede: 'Things I’m learning by making.',
       footer: '© 2026 mrzsomi',
       loading: 'Loading projects…',
       error: 'Projects could not be loaded.',
@@ -20,23 +20,29 @@
       note: 'Read the note',
       status: { completed: 'Completed', 'in-progress': 'In progress', ongoing: 'Ongoing' },
       tags: { arduino: 'Arduino', cnc: 'CNC', motion: 'Motion', pcb: 'PCB', diy: 'DIY', workshop: 'Workshop', esp32: 'ESP32', iot: 'IoT', web: 'Web', firmware: 'Firmware', java: 'Java', minecraft: 'Minecraft', backend: 'Backend', infra: 'Infrastructure', 'self-hosted': 'Self-hosted', prototype: 'Prototype', easyeda: 'EasyEDA', portfolio: 'Portfolio', game: 'Game', 'github-pages': 'GitHub Pages', monitoring: 'Monitoring', 'github-actions': 'GitHub Actions' },
-      links: { github: 'GitHub', web: 'Website', discord: 'Discord', documentation: 'Docs', 'live-demo': 'Live demo' }
+      links: { github: 'GitHub', web: 'Website', discord: 'Discord', documentation: 'Docs', 'live-demo': 'Live demo' },
+      themeLight: 'light',
+      themeDark: 'dark'
     },
     hu: {
-      title: 'Projektek | mrzsomi',
-      description: 'Elektronikai, firmware-, webes és otthoni szerveres projektek válogatása.',
-      nav: ['Rólam', 'Eszköztár', 'Projektek', 'Kapcsolat'],
-      tag: 'Projektjeim',
-      titleHtml: 'Dolgok, amiket<br /><span class="accent-text">hasznossá tettem.</span>',
-      lede: 'Hardver, kód, szerverek és a közben felmerülő kísérletek.',
+      title: 'mrzsomi | Projects',
+      description: 'mrzsomi projektjei, amelyeken diákként kódolva, építve és kísérletezve tanulok.',
+      nav: ['Rólam', 'Eszközök', 'Projektek', 'Napló', 'Kapcsolat'],
+      tag: 'Archívum',
+      titleHtml: 'Válogatott projektek',
+      lede: 'Amin keresztül tanulok.',
       footer: '© 2026 mrzsomi',
       loading: 'Projektek betöltése…',
       error: 'Nem sikerült betölteni a projekteket.',
       filterAll: 'Összes',
       note: 'Bővebben',
-      status: { completed: 'Kész', 'in-progress': 'Folyamatban', ongoing: 'Folyamatosan alakul' },
-      tags: { arduino: 'Arduino', cnc: 'CNC', motion: 'Mozgatás', pcb: 'NYÁK', diy: 'DIY', workshop: 'Műhely', esp32: 'ESP32', iot: 'IoT', web: 'Web', firmware: 'Firmware', java: 'Java', minecraft: 'Minecraft', backend: 'Backend', infra: 'Infrastruktúra', 'self-hosted': 'Önüzemelt', prototype: 'Prototípus', easyeda: 'EasyEDA', portfolio: 'Portfólió', game: 'Játék', 'github-pages': 'GitHub Pages', monitoring: 'Monitorozás', 'github-actions': 'GitHub Actions' },
-      links: { github: 'GitHub', web: 'Weboldal', discord: 'Discord', documentation: 'Leírás', 'live-demo': 'Élő oldal' }
+      status: { completed: 'Elkészült', 'in-progress': 'Folyamatban', ongoing: 'Alakul' },
+      tags: { arduino: 'Arduino', cnc: 'CNC', motion: 'Mozgatás', pcb: 'NYÁK', diy: 'Saját építés', workshop: 'Műhely', esp32: 'ESP32', iot: 'IoT', web: 'Web', firmware: 'Firmware', java: 'Java', minecraft: 'Minecraft', backend: 'Backend', infra: 'Infrastruktúra', 'self-hosted': 'Önüzemelt', prototype: 'Prototípus', easyeda: 'EasyEDA', portfolio: 'Portfólió', game: 'Játék', 'github-pages': 'GitHub Pages', monitoring: 'Monitorozás', 'github-actions': 'GitHub Actions' },
+      links: { github: 'GitHub', web: 'Weboldal', discord: 'Discord', documentation: 'Dokumentáció', 'live-demo': 'Élő demó' },
+      ariaLanguage: 'Nyelv váltása',
+      ariaTheme: 'Téma váltása',
+      themeLight: 'világos',
+      themeDark: 'sötét'
     }
   };
 
@@ -45,20 +51,28 @@
     document.documentElement.lang = language;
     document.getElementById('page-title').textContent = copy.title;
     document.getElementById('page-description').content = copy.description;
-    ['about', 'skills', 'projects', 'contact'].forEach((key, index) => {
+    ['about', 'skills', 'projects', 'activity', 'contact'].forEach((key, index) => {
       document.getElementById(`nav-${key}`).textContent = copy.nav[index];
     });
-    document.getElementById('archive-tag').textContent = copy.tag;
     document.getElementById('archive-title').innerHTML = copy.titleHtml;
     document.getElementById('archive-lede').textContent = copy.lede;
     document.getElementById('footer-text').textContent = copy.footer;
+    document.getElementById('lang-toggle').setAttribute('aria-label', language === 'hu' ? copy.ariaLanguage : 'Switch language');
+    document.getElementById('theme-toggle').setAttribute('aria-label', language === 'hu' ? copy.ariaTheme : 'Toggle theme');
   }
+
+  const themeColorMeta = document.getElementById('theme-color-meta');
+  function syncThemeColor() {
+    if (themeColorMeta) themeColorMeta.content = document.documentElement.dataset.theme === 'dark' ? '#0c0c0c' : '#f4f4f1';
+  }
+  syncThemeColor();
 
   themeButton.addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
-    themeButton.textContent = next === 'dark' ? 'light' : 'dark';
+    syncThemeColor();
+    themeButton.textContent = next === 'dark' ? pageCopy[language].themeLight : pageCopy[language].themeDark;
   });
   languageButton.addEventListener('click', () => {
     language = language === 'en' ? 'hu' : 'en';
@@ -99,8 +113,9 @@
     applyPageCopy();
     const response = await fetch(`projects.${language}.json`);
     projects = await response.json();
+    const copy = pageCopy[language];
     languageButton.textContent = language.toUpperCase();
-    themeButton.textContent = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    themeButton.textContent = document.documentElement.dataset.theme === 'dark' ? copy.themeLight : copy.themeDark;
     buildFilters();
     render();
   }
