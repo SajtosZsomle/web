@@ -11,7 +11,7 @@
       description: 'A curated archive of electronics, firmware, web, and infrastructure projects by mrzsomi.',
       nav: ['About', 'Toolkit', 'Projects', 'Contact'],
       tag: 'Project archive',
-      titleHtml: 'Things I build<br /><span class="accent-text">and learn from.</span>',
+      titleHtml: 'A record of things<br /><span class="accent-text">that became useful.</span>',
       lede: 'Hardware, code, servers, and the experiments between them.',
       footer: '© 2026 mrzsomi',
       loading: 'Loading projects…',
@@ -27,7 +27,7 @@
       description: 'Elektronikai, firmware-, webes és otthoni szerveres projektek válogatása.',
       nav: ['Rólam', 'Eszköztár', 'Projektek', 'Kapcsolat'],
       tag: 'Projektjeim',
-      titleHtml: 'Amiket építek<br /><span class="accent-text">és amiből tanulok.</span>',
+      titleHtml: 'Dolgok, amiket<br /><span class="accent-text">hasznossá tettem.</span>',
       lede: 'Hardver, kód, szerverek és a közben felmerülő kísérletek.',
       footer: '© 2026 mrzsomi',
       loading: 'Projektek betöltése…',
@@ -58,6 +58,7 @@
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
+    themeButton.textContent = next === 'dark' ? 'light' : 'dark';
   });
   languageButton.addEventListener('click', () => {
     language = language === 'en' ? 'hu' : 'en';
@@ -68,13 +69,16 @@
   function render(tag = 'all') {
     const visible = tag === 'all' ? projects : projects.filter(project => project.tags.includes(tag));
     const copy = pageCopy[language];
-    grid.innerHTML = visible.map(project => `
-      <article class="archive-card">
-        <div class="archive-card-top"><span>${copy.status[project.status] || project.status || ''}</span><span>${copy.tags[project.tags[0]] || project.tags[0] || ''}</span></div>
-        <h2>${project.title}</h2>
-        <p>${project.short}</p>
-        <details><summary>${copy.note}</summary><p>${project.full || project.short}</p></details>
-        <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${copy.links[name] || name}</a>`).join('')}</div>
+    grid.innerHTML = visible.map((project, index) => `
+      <article class="archive-row">
+        <span class="archive-row-index">${String(index + 1).padStart(2, '0')}</span>
+        <div class="archive-row-main">
+          <div class="archive-row-meta"><span>${copy.status[project.status] || project.status || ''}</span><span>${copy.tags[project.tags[0]] || project.tags[0] || ''}</span></div>
+          <h2>${project.title}</h2>
+          <p>${project.short}</p>
+          <details><summary>${copy.note}</summary><p>${project.full || project.short}</p></details>
+          <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${copy.links[name] || name}</a>`).join('')}</div>
+        </div>
       </article>`).join('');
   }
 
@@ -96,14 +100,9 @@
     const response = await fetch(`projects.${language}.json`);
     projects = await response.json();
     languageButton.textContent = language.toUpperCase();
+    themeButton.textContent = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     buildFilters();
     render();
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.archive-card').forEach((card, index) => {
-        card.style.setProperty('--delay', `${index * 55}ms`);
-        card.classList.add('reveal', 'is-visible');
-      });
-    }
   }
   load().catch(() => { grid.innerHTML = `<p class="loader">${pageCopy[language].error}</p>`; });
 })();

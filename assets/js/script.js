@@ -2,9 +2,9 @@
   const translations = {
     en: {
       about_tag: "Hi, I’m mrzsomi",
-      hero_title: 'I build across the stack, <span class="accent-text">from sensors to services.</span>',
+      hero_title: 'I build <span class="accent-text">useful things</span> close to the metal.',
       hero_paragraph: "Firmware, web tools and infrastructure for the things I want to understand and make useful.",
-      hero_index_label: "Now",
+      hero_index_label: "Field notes",
       hero_index_intro: "A short list of what I’m working on.",
       hero_index_hardware: "Embedded hardware",
       hero_index_hardware_detail: "Sensors, motion and boards",
@@ -12,11 +12,12 @@
       hero_index_software_detail: "Firmware, tools and interfaces",
       hero_index_infra: "Infrastructure",
       hero_index_infra_detail: "Self-hosting, monitoring and deployment",
-      view_projects: "View projects",
-      get_in_touch: "Get in touch",
+      view_projects: "Browse the project index",
+      get_in_touch: "Start a conversation",
       name_origin: "mrzsomi started as a Hungarian Minecraft username and stayed because it felt right.",
       skills_tag: "Working set",
       skills_title: "Tools for making things real",
+      skills_lede: "A practical mix of bench work, code and systems work.",
       hardware_title: "On the bench",
       software_title: "In the editor",
       engineering_title: "Around the system",
@@ -43,13 +44,14 @@
       ],
       filter_all: "All",
       projects_tag: "Projects",
-      projects_title: "Things I’ve made",
+      projects_title: "A working index, not a showcase.",
       projects_lede: "Hardware, software and infrastructure projects.",
-      view_all_projects: "View all projects",
+      view_all_projects: "Open archive",
       activity_tag: "Activity",
-      activity_title: "Recent activity",
+      activity_title: "Notes from the build log.",
       contact_tag: "Contact",
-      contact_title: "Let’s talk",
+      contact_title: "Have something worth making?",
+      contact_paragraph: "Tell me what you are trying to make, fix or understand.",
       form_name: "Name",
       form_name_placeholder: "Your name",
       form_subject: "Subject",
@@ -84,9 +86,9 @@
     },
     hu: {
       about_tag: "Szia, mrzsomi vagyok",
-      hero_title: 'A teljes stackben építek, <span class="accent-text">a szenzortól a szolgáltatásig.</span>',
+      hero_title: 'Hasznos dolgokat építek, <span class="accent-text">közel a vashoz.</span>',
       hero_paragraph: "Firmware, webes eszközök és infrastruktúra ahhoz, amit meg akarok érteni és hasznossá tenni.",
-      hero_index_label: "Most",
+      hero_index_label: "Jegyzetek",
       hero_index_intro: "Röviden arról, amin most dolgozom.",
       hero_index_hardware: "Beágyazott hardver",
       hero_index_hardware_detail: "Szenzorok, mozgatás és áramkörök",
@@ -94,10 +96,11 @@
       hero_index_software_detail: "Firmware, eszközök és felületek",
       hero_index_infra: "Infrastruktúra",
       hero_index_infra_detail: "Önüzemeltetés, monitorozás és kiadás",
-      get_in_touch: "Írj rám",
+      get_in_touch: "Beszéljünk",
       name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
       skills_tag: "Amikkel dolgozom",
       skills_title: "Eszközök, amikkel működő dolgok születnek",
+      skills_lede: "Gyakorlati keverék a műhelyből, a kódból és a rendszerekből.",
       hardware_title: "A padon",
       software_title: "A szerkesztőben",
       engineering_title: "A rendszer körül",
@@ -124,13 +127,14 @@
       ],
       filter_all: "Összes",
       projects_tag: "Projektek",
-      projects_title: "Amiket szívesen mutatok",
+      projects_title: "Munkajegyzék, nem kirakat.",
       projects_lede: "Hardveres, szoftveres és infrastruktúra-projektek.",
-      view_all_projects: "Minden projekt",
+      view_all_projects: "Archívum megnyitása",
       activity_tag: "Aktivitás",
-      activity_title: "Friss aktivitás",
+      activity_title: "Jegyzetek a build naplóból.",
       contact_tag: "Kapcsolat",
-      contact_title: "Beszéljünk",
+      contact_title: "Van valami, amit érdemes megépíteni?",
+      contact_paragraph: "Írd le, mit szeretnél elkészíteni, megjavítani vagy megérteni.",
       form_name: "Név",
       form_name_placeholder: "A neved",
       form_subject: "Tárgy",
@@ -200,11 +204,11 @@
   const themeIcon = document.getElementById('theme-icon');
   const savedTheme = localStorage.getItem('theme') || 'light';
   html.setAttribute('data-theme', savedTheme);
-  themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeIcon.textContent = savedTheme === 'dark' ? 'light' : 'dark';
   themeBtn.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next); localStorage.setItem('theme', next);
-    themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+    themeIcon.textContent = next === 'dark' ? 'light' : 'dark';
   });
 
   // ── Language toggle ──
@@ -262,43 +266,53 @@
       return;
     }
     filtered.forEach(project => {
-      const item = document.createElement('div');
-      item.className = 'project-item featured-project-card' + (project.id === activeProjectId ? ' active' : '');
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'project-item project-row' + (project.id === activeProjectId ? ' active' : '');
       item.setAttribute('data-id', project.id);
-      item.setAttribute('role', 'button');
-      item.setAttribute('tabindex', '0');
       item.setAttribute('aria-label', `${project.title}. View project details`);
+      item.setAttribute('aria-expanded', project.id === activeProjectId ? 'true' : 'false');
       const tagsHtml = (project.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
       const statusLabels = { completed: currentLang === "hu" ? "Elkészült" : "Completed", "in-progress": currentLang === "hu" ? "Folyamatban" : "In progress", ongoing: currentLang === "hu" ? "Folyamatosan alakul" : "Ongoing" };
       const statusHtml = project.status ? `<span class="status">${statusLabels[project.status] || project.status}</span>` : '';
       item.innerHTML = `
-        <div class="project-info">
-          <h3>${project.title}</h3>
-          <p>${project.short}</p>
-          <div class="project-meta">${statusHtml}${tagsHtml}</div>
-        </div>
-        <span class="project-status">Featured build</span>
+        <span class="project-row-index">${String(featuredProjectIds.indexOf(project.id) + 1).padStart(2, '0')}</span>
+        <span class="project-info">
+          <span class="project-title">${project.title}</span>
+          <span class="project-description">${project.short}</span>
+          <span class="project-meta">${statusHtml}${tagsHtml}</span>
+        </span>
       `;
       item.addEventListener('click', () => {
-        document.querySelectorAll('.project-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.project-item').forEach(el => {
+          el.classList.remove('active');
+          el.setAttribute('aria-expanded', 'false');
+        });
         item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
         activeProjectId = project.id;
         showDetail(project);
       });
-      item.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          item.click();
-        }
-      });
       listContainer.appendChild(item);
     });
-    if (!activeProjectId && filtered.length) { showDetail(filtered[0]); listContainer.querySelector('.project-item')?.classList.add('active'); activeProjectId = filtered[0].id; }
+    if (!activeProjectId && filtered.length) {
+      showDetail(filtered[0]);
+      const firstItem = listContainer.querySelector('.project-item');
+      firstItem?.classList.add('active');
+      firstItem?.setAttribute('aria-expanded', 'true');
+      activeProjectId = filtered[0].id;
+    }
     else if (activeProjectId && filtered.some(p => p.id === activeProjectId)) {
       const active = filtered.find(p => p.id === activeProjectId);
       showDetail(active);
       listContainer.querySelector(`[data-id="${activeProjectId}"]`)?.classList.add('active');
-    } else { showDetail(filtered[0]); listContainer.querySelector('.project-item')?.classList.add('active'); activeProjectId = filtered[0].id; }
+    } else {
+      showDetail(filtered[0]);
+      const firstItem = listContainer.querySelector('.project-item');
+      firstItem?.classList.add('active');
+      firstItem?.setAttribute('aria-expanded', 'true');
+      activeProjectId = filtered[0].id;
+    }
   }
 
   function showDetail(project) {

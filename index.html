@@ -41,41 +41,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
 
-    <!-- Preloader, kept inline so it renders before any external file loads -->
-    <style>
-      #preloader {
-        position: fixed; inset: 0; z-index: 99999;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center; gap: 1.6rem;
-        background: #ffffff;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-      }
-      #preloader.pre-dark { background: #0a0a0a; }
-      #preloader.pre-out  { opacity: 0; visibility: hidden; pointer-events: none; }
-      .pre-wordmark {
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 1.35rem; font-weight: 700;
-        letter-spacing: -0.03em; color: #111827;
-        display: flex; align-items: center; gap: 0;
-      }
-      #preloader.pre-dark .pre-wordmark { color: #f0f0f0; }
-      .pre-wordmark .pre-dot { color: #c05a3f; }
-      .pre-track {
-        width: 90px; height: 2px;
-        background: #e5e7eb; border-radius: 10px; overflow: hidden;
-      }
-      #preloader.pre-dark .pre-track { background: #2a2a2a; }
-      .pre-thumb {
-        height: 100%; width: 42%;
-        background: #c05a3f;
-        border-radius: 10px;
-        animation: pre-sweep 1s ease-in-out infinite;
-      }
-      @keyframes pre-sweep {
-        0%   { transform: translateX(-130%); }
-        100% { transform: translateX(290%); }
-      }
-    </style>
     <!-- Apply saved theme BEFORE any stylesheet to prevent flash -->
     <script>
       (function(){
@@ -139,7 +104,7 @@
         <div class="nav-actions">
           <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
           <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
-            <span id="theme-icon">🌙</span>
+            <span id="theme-icon">dark</span>
           </button>
         </div>
       </div>
@@ -147,65 +112,85 @@
 
     <main id="main-content" class="container">
       <section id="about" class="hero">
+        <div class="hero-masthead">
+          <span>mrzsomi.top</span>
+          <span>Notebook / 2026</span>
+        </div>
         <div class="hero-grid">
           <div class="hero-content">
             <p class="section-tag" data-i18n="about_tag">Hi, I’m mrzsomi</p>
-            <h1 data-i18n-html="hero_title">I’m into <span class="accent-text">a little bit of everything.</span></h1>
-            <p data-i18n="hero_paragraph">I build things with electronics, code, and whatever I am curious about next.</p>
-
-            <div class="btn-group">
-              <a href="#projects" class="btn btn-primary magnetic" data-i18n="view_projects">View projects</a>
-              <a href="#contact" class="btn btn-outline magnetic" data-i18n="get_in_touch">Get in touch</a>
+            <h1 data-i18n-html="hero_title">I build <span class="accent-text">useful things</span> close to the metal.</h1>
+            <p class="hero-paragraph" data-i18n="hero_paragraph">Firmware, web tools and infrastructure for the things I want to understand and make useful.</p>
+            <div class="hero-links">
+              <a href="#projects" class="text-link" data-i18n="view_projects">Browse the project index</a>
+              <a href="#contact" class="quiet-link" data-i18n="get_in_touch">Start a conversation</a>
             </div>
           </div>
-          <div class="hero-visual">
-            <div class="hero-index">
-              <div class="hero-index-header">
-                <span data-i18n="hero_index_label">Now</span>
-                <span>2026</span>
-              </div>
-              <p class="hero-index-intro" data-i18n="hero_index_intro">A short list of what I’m working on.</p>
-              <ul class="hero-index-list">
-                <li><strong data-i18n="hero_index_hardware">Embedded hardware</strong><small data-i18n="hero_index_hardware_detail">Sensors, motion and boards</small></li>
-                <li><strong data-i18n="hero_index_software">Useful software</strong><small data-i18n="hero_index_software_detail">Firmware, tools and interfaces</small></li>
-                <li><strong data-i18n="hero_index_infra">Infrastructure</strong><small data-i18n="hero_index_infra_detail">Self-hosting, monitoring and deployment</small></li>
-              </ul>
+          <aside class="hero-notes" aria-label="Current work">
+            <div class="hero-notes-heading">
+              <span data-i18n="hero_index_label">Field notes</span>
             </div>
-          </div>
+            <p data-i18n="hero_index_intro">A short list of what I’m working on.</p>
+            <dl>
+              <div><dt data-i18n="hero_index_hardware">Embedded hardware</dt><dd data-i18n="hero_index_hardware_detail">Sensors, motion and boards</dd></div>
+              <div><dt data-i18n="hero_index_software">Useful software</dt><dd data-i18n="hero_index_software_detail">Firmware, tools and interfaces</dd></div>
+              <div><dt data-i18n="hero_index_infra">Infrastructure</dt><dd data-i18n="hero_index_infra_detail">Self-hosting, monitoring and deployment</dd></div>
+            </dl>
+          </aside>
         </div>
       </section>
 
-      <section id="skills">
-        <p class="section-tag" data-i18n="skills_tag">Expertise</p>
-        <h2 class="section-title" data-i18n="skills_title">A practical toolkit</h2>
+      <section id="skills" class="tools-section">
+        <div class="section-heading">
+          <p class="section-tag" data-i18n="skills_tag">Working set</p>
+        </div>
+        <div class="section-intro">
+          <h2 class="section-title" data-i18n="skills_title">Tools for making things real</h2>
+          <p class="section-lede" data-i18n="skills_lede">A practical mix of bench work, code and systems work.</p>
+        </div>
         <div class="skills-grid" id="skills-container"></div>
       </section>
 
-      <section id="projects">
-        <p class="section-tag" data-i18n="projects_tag">Portfolio</p>
-        <h2 class="section-title" data-i18n="projects_title">Things I’ve built</h2>
-        <p class="section-lede" data-i18n="projects_lede">A few builds I keep coming back to.</p>
+      <section id="projects" class="projects-section">
+        <div class="section-heading">
+          <p class="section-tag" data-i18n="projects_tag">Projects</p>
+          <a href="projects.html" class="quiet-link" data-i18n="view_all_projects">Open archive</a>
+        </div>
+        <div class="section-intro project-intro">
+          <h2 class="section-title" data-i18n="projects_title">A working index, not a showcase.</h2>
+          <p class="section-lede" data-i18n="projects_lede">Hardware, software and infrastructure projects.</p>
+        </div>
         <div class="projects-wrapper">
-          <div class="featured-project-grid project-list-featured" id="project-list">
+          <div class="project-index project-list-featured" id="project-list">
             <div class="loader">Loading projects…</div>
           </div>
           <div class="project-detail" id="project-detail"></div>
         </div>
-        <a href="projects.html" class="text-link" data-i18n="view_all_projects">View all projects</a>
       </section>
 
-      <section id="activity">
-        <p class="section-tag" data-i18n="activity_tag">Live</p>
-        <h2 class="section-title" data-i18n="activity_title">What I’ve been working on</h2>
+      <section id="activity" class="activity-section">
+        <div class="section-heading">
+          <p class="section-tag" data-i18n="activity_tag">Activity</p>
+        </div>
+        <div class="section-intro">
+          <h2 class="section-title" data-i18n="activity_title">Notes from the build log.</h2>
+        </div>
         <div class="activity-feed" id="activity-feed">
           <div class="loader">Fetching activity…</div>
         </div>
       </section>
 
-      <section id="contact">
-        <p class="section-tag" data-i18n="contact_tag">Let's talk</p>
-        <h2 class="section-title" data-i18n="contact_title">Contact</h2>
-        <div class="contact-grid">
+      <section id="contact" class="contact-section">
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <p class="section-tag" data-i18n="contact_tag">Contact</p>
+            <h2 class="section-title" data-i18n="contact_title">Have something worth making?</h2>
+            <p class="section-lede" data-i18n="contact_paragraph">Tell me what you are trying to make, fix or understand.</p>
+            <div class="social-links">
+              <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" class="social-card" data-i18n="social_github">GitHub profile</a>
+              <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener" class="social-card" data-i18n="social_discord">Discord</a>
+            </div>
+          </div>
           <form id="contact-form" class="contact-form" action="https://formspree.io/f/xpqevgod" method="POST">
             <div class="form-group">
               <label for="name" data-i18n="form_name">Name</label>
@@ -233,22 +218,11 @@
               <span id="form-status" class="form-status" aria-live="polite"></span>
             </div>
           </form>
-          <div class="social-links">
-            <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" class="social-card" data-i18n="social_github">GitHub profile</a>
-            <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener" class="social-card" data-i18n="social_discord">Discord</a>
-          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <a class="copyrighted-badge" title="Copyrighted.com Registered & Protected" target="_blank"
-         href="https://app.copyrighted.com/website/HvaQmrxPD94tPsp8/">
-        <img alt="Copyrighted.com Registered & Protected" width="125" height="25"
-             srcset="https://static.copyrighted.com/badges/125x25/03_1_2x.png 2x"
-             src="https://static.copyrighted.com/badges/125x25/03_1.png" />
-      </a>
-      <script src="https://static.copyrighted.com/badges/helper.js"></script>
       <span data-i18n="footer_text">© 2026 mrzsomi</span>
     </footer>
   </body>
