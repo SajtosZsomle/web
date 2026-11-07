@@ -113,29 +113,6 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="pre-wordmark">mrzsomi<span class="pre-dot">.top</span></div>
-      <div class="pre-track"><div class="pre-thumb"></div></div>
-    </div>
-    <script>
-      (function(){
-        var el = document.getElementById('preloader');
-        if (localStorage.getItem('theme') === 'dark') el.classList.add('pre-dark');
-        function hide() {
-          el.classList.add('pre-out');
-          setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 520);
-        }
-        if (document.readyState === 'complete') {
-          setTimeout(hide, 80);
-        } else {
-          window.addEventListener('load', function(){ setTimeout(hide, 80); }, { once: true });
-          // Safety net: never show longer than 4s
-          setTimeout(hide, 4000);
-        }
-      })();
-    </script>
-
     <noscript>
       <div class="noscript-warning">
         <div class="noscript-content">
@@ -147,8 +124,6 @@
         </div>
       </div>
     </noscript>
-
-    <canvas id="particle-canvas"></canvas>
 
     <nav class="nav">
       <div class="container nav-inner">
@@ -188,22 +163,18 @@
             </div>
           </div>
           <div class="hero-visual">
-            <figure class="hero-photo">
-              <img src="assets/img/illustrations/circuit-board.svg" alt="Illustration of a circuit board" width="800" height="600" loading="eager" />
-              <figcaption>hardware / software / curiosity</figcaption>
-            </figure>
-            <div class="hero-terminal" aria-hidden="true">
-              <div class="trm-bar">
-                <span class="trm-dot trm-red"></span>
-                <span class="trm-dot trm-yellow"></span>
-                <span class="trm-dot trm-green"></span>
-                <span class="trm-title" data-i18n="build_notes">A few current interests</span>
+            <div class="hero-index">
+              <div class="hero-index-header">
+                <span data-i18n="hero_index_label">Current focus</span>
+                <span>2026</span>
               </div>
-              <div class="trm-body" id="trm-body">
-                <span class="trm-cursor" id="trm-cursor"></span>
-              </div>
+              <p class="hero-index-intro" data-i18n="hero_index_intro">A small, practical selection of what I’m exploring now.</p>
+              <ul class="hero-index-list">
+                <li><span>01</span><strong data-i18n="hero_index_hardware">Embedded hardware</strong><small data-i18n="hero_index_hardware_detail">Sensors, motion and boards</small></li>
+                <li><span>02</span><strong data-i18n="hero_index_software">Useful software</strong><small data-i18n="hero_index_software_detail">Firmware, tools and interfaces</small></li>
+                <li><span>03</span><strong data-i18n="hero_index_infra">Quiet infrastructure</strong><small data-i18n="hero_index_infra_detail">Self-hosting, monitoring and deployment</small></li>
+              </ul>
             </div>
-            <div class="hero-note">small experiments.<br />real hardware.<br />good questions.</div>
           </div>
         </div>
       </section>
@@ -267,8 +238,8 @@
             </div>
           </form>
           <div class="social-links">
-            <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" class="social-card">🐙 GitHub ↗</a>
-            <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener" class="social-card">💬 Discord ↗</a>
+            <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener" class="social-card" data-i18n="social_github">GitHub profile</a>
+            <a href="https://discord.com/users/mrzsomi" target="_blank" rel="noopener" class="social-card" data-i18n="social_discord">Discord</a>
           </div>
         </div>
       </section>

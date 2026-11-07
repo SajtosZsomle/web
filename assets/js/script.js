@@ -3,9 +3,16 @@
   const translations = {
     en: {
       about_tag: "Hi, I’m mrzsomi",
-      build_notes: "A few current interests",
-      hero_title: 'I’m into <span class="accent-text">a little bit of everything.</span>',
-      hero_paragraph: "I build things with electronics, code, and whatever I am curious about next.",
+      hero_title: 'I build useful things <span class="accent-text">at the edge of hardware and software.</span>',
+      hero_paragraph: "Embedded systems, practical tools and infrastructure for ideas that need to work in the real world.",
+      hero_index_label: "Current focus",
+      hero_index_intro: "A small, practical selection of what I’m exploring now.",
+      hero_index_hardware: "Embedded hardware",
+      hero_index_hardware_detail: "Sensors, motion and boards",
+      hero_index_software: "Useful software",
+      hero_index_software_detail: "Firmware, tools and interfaces",
+      hero_index_infra: "Quiet infrastructure",
+      hero_index_infra_detail: "Self-hosting, monitoring and deployment",
       view_projects: "View projects",
       get_in_touch: "Get in touch",
       name_origin: "mrzsomi started as a Hungarian Minecraft username and stayed because it felt right.",
@@ -72,13 +79,23 @@
       link_documentation: "Docs",
       link_live_demo: "Live Demo",
       no_activity: "No recent public activity.",
-      view_github: "View GitHub profile"
+      view_github: "View GitHub profile",
+      social_github: "GitHub profile",
+      social_discord: "Discord",
+      selected_project: "Selected project"
     },
     hu: {
       about_tag: "Szia, mrzsomi vagyok",
-      build_notes: "Néhány aktuális érdeklődés",
-      hero_title: '<span class="accent-text">Egy kicsit</span> minden érdekel.',
-      hero_paragraph: "Elektronikával, kóddal és mindenféle ötlettel szeretek foglalkozni.",
+      hero_title: 'Hasznos dolgokat építek <span class="accent-text">a hardver és a szoftver határán.</span>',
+      hero_paragraph: "Beágyazott rendszerek, praktikus eszközök és infrastruktúra olyan ötletekhez, amelyeknek működniük kell.",
+      hero_index_label: "Ami most érdekel",
+      hero_index_intro: "Egy rövid, gyakorlatias válogatás abból, amivel mostanában foglalkozom.",
+      hero_index_hardware: "Beágyazott hardver",
+      hero_index_hardware_detail: "Szenzorok, mozgatás és áramkörök",
+      hero_index_software: "Hasznos szoftver",
+      hero_index_software_detail: "Firmware, eszközök és felületek",
+      hero_index_infra: "Csendes infrastruktúra",
+      hero_index_infra_detail: "Önüzemeltetés, monitorozás és kiadás",
       get_in_touch: "Írj rám",
       name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
       skills_tag: "Amikkel dolgozom",
@@ -144,7 +161,10 @@
       link_documentation: "Leírás",
       link_live_demo: "Élő oldal",
       no_activity: "Most nincs új nyilvános frissítés.",
-      view_github: "GitHub-profil"
+      view_github: "GitHub-profil",
+      social_github: "GitHub-profil",
+      social_discord: "Discord",
+      selected_project: "Kiválasztott projekt"
     }
   };
 
@@ -177,43 +197,6 @@
     fetchGitHubActivity();
   }
 
-  // ── Particles ──
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  window.addEventListener('resize', resizeCanvas); resizeCanvas();
-
-  // Cache accent color to prevent layout thrashing (reflow) on every frame
-  let accentColor = '#ff8a3d';
-  function updateParticleColor() {
-    accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff8a3d';
-  }
-  updateParticleColor();
-  window.addEventListener('load', updateParticleColor);
-
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.2; this.vy = (Math.random() - 0.5) * 0.2;
-      this.radius = Math.random() * 1.5 + 0.5;
-    }
-    update() {
-      this.x += this.vx; this.y += this.vy;
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-    }
-    draw() {
-      ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = accentColor;
-      ctx.fill();
-    }
-  }
-  for (let i = 0; i < 50; i++) particles.push(new Particle());
-  function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateParticles); }
-  animateParticles();
-
   // ── Clock ──
   const clockEl = document.getElementById('live-clock');
   function tick() { const now = new Date(); clockEl.textContent = now.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }); }
@@ -230,7 +213,6 @@
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next); localStorage.setItem('theme', next);
     themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
-    updateParticleColor();
   });
 
   // ── Language toggle ──
@@ -421,7 +403,7 @@
       }
     }
     
-    detailPanel.innerHTML = html;
+    detailPanel.innerHTML = `<span class="detail-kicker">${translations[currentLang].selected_project}</span>${html}`;
     detailPanel.classList.add('visible');
   }
 
@@ -609,84 +591,6 @@
   } else {
     window.dispatchEvent(new Event('scroll'));
   }
-
-  // ── Terminal animation ──
-  const trmBody = document.getElementById('trm-body');
-  const trmCursor = document.getElementById('trm-cursor');
-  const TRM_MAX = 9;
-  const trmLines = {
-    en: [
-      { type: "info", text: "Trying out a new idea..." },
-      { type: "ok", text: "A small project is taking shape" },
-      { type: "info", text: "Learning something new..." },
-      { type: "ok", text: "Making progress" },
-      { type: "val", text: "Electronics, code, and a bit of patience" },
-      { type: "info", text: "Taking a break, then back to it" },
-      { type: "ok", text: "Another little problem solved" },
-      { type: "val", text: "Ideas saved for later" },
-      { type: "info", text: "Looking for the next interesting thing..." },
-      { type: "ok", text: "It works well enough for today" },
-      { type: "val", text: "One step at a time" },
-      { type: "info", text: "Trying a different approach..." },
-      { type: "ok", text: "Something useful came out of it" },
-      { type: "val", text: "A little tinkering never hurts" },
-      { type: "info", text: "Saving notes for later..." },
-      { type: "ok", text: "Back to the real world" },
-      { type: "val", text: "Still curious" },
-      { type: "info", text: "More to come..." },
-      { type: "ok", text: "Done for now" },
-      { type: "info", text: "See you around" }
-    ],
-    hu: [
-      { type: "info", text: "Kipróbálok egy új ötletet..." },
-      { type: "ok", text: "Alakul egy új kis projekt" },
-      { type: "info", text: "Tanulok valami újat..." },
-      { type: "ok", text: "Lassan haladok vele" },
-      { type: "val", text: "Elektronika, kód és egy kis türelem" },
-      { type: "info", text: "Tartok egy kis szünetet" },
-      { type: "ok", text: "Újabb apró probléma megoldva" },
-      { type: "val", text: "Ötletek későbbre elmentve" },
-      { type: "info", text: "Keresem a következő érdekes dolgot..." },
-      { type: "ok", text: "Mára ennyi pont elég" },
-      { type: "val", text: "Lépésről lépésre" },
-      { type: "info", text: "Kipróbálok egy másik megközelítést..." },
-      { type: "ok", text: "Valami hasznos azért született belőle" },
-      { type: "val", text: "Egy kis barkácsolás még belefér" },
-      { type: "info", text: "Jegyzeteket írok későbbre..." },
-      { type: "ok", text: "Ideje visszatérni a valósághoz" },
-      { type: "val", text: "Továbbra is érdekel" },
-      { type: "info", text: "Folytatás később..." },
-      { type: "ok", text: "Mára kész" },
-      { type: "info", text: "Találkozunk még" }
-    ]
-  };
-  let trmIdx = 0;
-  let trmTimeout = null;
-  const trmStart = Date.now();
-
-  function addTrmLine() {
-    if (!trmBody || !trmCursor) return;
-    const entry = (trmLines[currentLang] || trmLines.en)[trmIdx % (trmLines[currentLang] || trmLines.en).length];
-    trmIdx++;
-    const elapsed = ((Date.now() - trmStart) / 1000).toFixed(3);
-
-    const el = document.createElement('div');
-    el.className = 't-line';
-    el.innerHTML = `<span class="t-ts">[${elapsed}]</span> <span class="t-${entry.type}">${entry.text}</span>`;
-
-    if (trmCursor.parentNode) trmCursor.parentNode.removeChild(trmCursor);
-    trmBody.appendChild(el);
-    trmBody.appendChild(trmCursor);
-
-    const allLines = trmBody.querySelectorAll('.t-line');
-    if (allLines.length > TRM_MAX) allLines[0].remove();
-
-    requestAnimationFrame(() => el.classList.add('t-visible'));
-
-    trmTimeout = setTimeout(addTrmLine, 900 + Math.random() * 900);
-  }
-
-  setTimeout(addTrmLine, 500);
 
   // ── Init ──
   applyLanguage(currentLang);

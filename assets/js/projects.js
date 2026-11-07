@@ -14,8 +14,13 @@
       titleHtml: 'Things I build<br /><span class="accent-text">and learn from.</span>',
       lede: 'Hardware, code, servers, and the experiments between them.',
       footer: '© 2026 mrzsomi · Budapest / online',
-      loading: 'Loading projects...',
-      error: 'Projects could not be loaded.'
+      loading: 'Loading projects…',
+      error: 'Projects could not be loaded.',
+      filterAll: 'All',
+      note: 'Read the note',
+      status: { completed: 'Completed', 'in-progress': 'In progress', ongoing: 'Ongoing' },
+      tags: { arduino: 'Arduino', cnc: 'CNC', motion: 'Motion', pcb: 'PCB', diy: 'DIY', workshop: 'Workshop', esp32: 'ESP32', iot: 'IoT', web: 'Web', firmware: 'Firmware', java: 'Java', minecraft: 'Minecraft', backend: 'Backend', infra: 'Infrastructure', 'self-hosted': 'Self-hosted', prototype: 'Prototype', easyeda: 'EasyEDA', portfolio: 'Portfolio', game: 'Game', 'github-pages': 'GitHub Pages', monitoring: 'Monitoring', 'github-actions': 'GitHub Actions' },
+      links: { github: 'GitHub', web: 'Website', discord: 'Discord', documentation: 'Docs', 'live-demo': 'Live demo' }
     },
     hu: {
       title: 'Projektek | mrzsomi',
@@ -26,7 +31,12 @@
       lede: 'Hardver, kód, szerverek és a közben felmerülő kísérletek.',
       footer: '© 2026 mrzsomi · Budapest / online',
       loading: 'Projektek betöltése…',
-      error: 'Nem sikerült betölteni a projekteket.'
+      error: 'Nem sikerült betölteni a projekteket.',
+      filterAll: 'Összes',
+      note: 'Bővebben',
+      status: { completed: 'Kész', 'in-progress': 'Folyamatban', ongoing: 'Folyamatosan alakul' },
+      tags: { arduino: 'Arduino', cnc: 'CNC', motion: 'Mozgatás', pcb: 'NYÁK', diy: 'DIY', workshop: 'Műhely', esp32: 'ESP32', iot: 'IoT', web: 'Web', firmware: 'Firmware', java: 'Java', minecraft: 'Minecraft', backend: 'Backend', infra: 'Infrastruktúra', 'self-hosted': 'Önüzemelt', prototype: 'Prototípus', easyeda: 'EasyEDA', portfolio: 'Portfólió', game: 'Játék', 'github-pages': 'GitHub Pages', monitoring: 'Monitorozás', 'github-actions': 'GitHub Actions' },
+      links: { github: 'GitHub', web: 'Weboldal', discord: 'Discord', documentation: 'Leírás', 'live-demo': 'Élő oldal' }
     }
   };
 
@@ -63,33 +73,29 @@
 
   function render(tag = 'all') {
     const visible = tag === 'all' ? projects : projects.filter(project => project.tags.includes(tag));
-    const statusLabels = language === 'hu'
-      ? { completed: 'Kész', 'in-progress': 'Készül', ongoing: 'Folyamatban' }
-      : { completed: 'Completed', 'in-progress': 'In progress', ongoing: 'Ongoing' };
-    const copy = language === 'hu'
-      ? { note: 'Bővebben', project: 'projekt', build: 'munka' }
-      : { note: 'Read the note', project: 'project', build: 'build' };
+    const copy = pageCopy[language];
     grid.innerHTML = visible.map(project => `
       <article class="archive-card">
         <div class="archive-icon" aria-hidden="true">${iconFor(project)}</div>
-        <div class="archive-card-top"><span>${statusLabels[project.status] || project.status || copy.project}</span><span>${project.tags[0] || copy.build}</span></div>
+        <div class="archive-card-top"><span>${copy.status[project.status] || project.status || ''}</span><span>${copy.tags[project.tags[0]] || project.tags[0] || ''}</span></div>
         <h2>${project.title}</h2>
         <p>${project.short}</p>
         <details><summary>${copy.note}</summary><p>${project.full || project.short}</p></details>
-        <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}</div>
+        <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${copy.links[name] || name} ↗</a>`).join('')}</div>
       </article>`).join('');
   }
 
   function buildFilters() {
     const tags = ['all', ...new Set(projects.flatMap(project => project.tags || []))];
-    filters.innerHTML = tags.map(tag => `<button class="filter-chip${tag === 'all' ? ' active' : ''}" data-tag="${tag}">${tag}</button>`).join('');
-    filters.addEventListener('click', event => {
+    const copy = pageCopy[language];
+    filters.innerHTML = tags.map(tag => `<button class="filter-chip${tag === 'all' ? ' active' : ''}" data-tag="${tag}">${tag === 'all' ? copy.filterAll : copy.tags[tag] || tag}</button>`).join('');
+    filters.onclick = event => {
       const button = event.target.closest('button');
       if (!button) return;
       filters.querySelectorAll('button').forEach(item => item.classList.remove('active'));
       button.classList.add('active');
       render(button.dataset.tag);
-    });
+    };
   }
 
   async function load() {

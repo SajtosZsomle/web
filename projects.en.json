@@ -138,7 +138,7 @@
     "id": "p10",
     "title": "mrzsomi.top Portfolio",
     "short": "The site you are looking at: a small bilingual portfolio with a deliberately simple stack.",
-    "full": "This very site. Hosted on GitHub Pages, fronted by Cloudflare, with a contact form powered by Formspree. Clean responsive design with dark and light themes, particle background, and live GitHub activity.",
+    "full": "This very site. Hosted on GitHub Pages, fronted by Cloudflare, with a contact form powered by Formspree. Clean responsive design with dark and light themes, and live GitHub activity.",
     "links": {
       "github": "https://github.com/SajtosZsomle/web",
       "web": "https://mrzsomi.top",
