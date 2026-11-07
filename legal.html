@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mrzsomi | Privacy, terms and SLA</title>
+    <meta name="description" content="Privacy notice, cookie information, terms of use, and service level information for mrzsomi.top." />
+    <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script>
+      (function () {
+        var theme = localStorage.getItem('theme');
+        if (theme) document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/legal.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="index.html" class="logo"><img src="assets/img/favicon.ico" alt="" width="30" height="30" /> mrzsomi.top</a>
+        <ul class="nav-links">
+          <li><a href="#privacy" data-i18n="nav_privacy">Privacy</a></li>
+          <li><a href="#cookies" data-i18n="nav_cookies">Cookies</a></li>
+          <li><a href="#terms" data-i18n="nav_terms">Terms / ÁSZF</a></li>
+          <li><a href="#sla" data-i18n="nav_sla">SLA</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">dark</span></button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-content" class="container legal-page">
+      <header class="legal-header">
+        <p class="section-tag" data-i18n="tag">Site information</p>
+        <h1 class="section-title" data-i18n-html="title">Privacy, terms<br /><span class="accent-text">and service notes.</span></h1>
+        <p class="section-lede" data-i18n="lede">A plain-language overview of how this personal site handles messages, local storage, and its small hosted services.</p>
+        <p class="legal-updated" data-i18n="updated">Last updated: 7 November 2026</p>
+      </header>
+
+      <div class="legal-document">
+        <section id="privacy" class="legal-section">
+          <h2 data-i18n="privacy_title">Privacy notice</h2>
+          <div class="legal-copy" data-i18n-html="privacy"></div>
+        </section>
+        <section id="cookies" class="legal-section">
+          <h2 data-i18n="cookies_title">Cookies and local storage</h2>
+          <div class="legal-copy" data-i18n-html="cookies"></div>
+        </section>
+        <section id="terms" class="legal-section">
+          <h2 data-i18n="terms_title">Terms of use / ÁSZF</h2>
+          <div class="legal-copy" data-i18n-html="terms"></div>
+        </section>
+        <section id="sla" class="legal-section">
+          <h2 data-i18n="sla_title">Service level information</h2>
+          <div class="legal-copy" data-i18n-html="sla"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer"><span>© 2026 mrzsomi</span><a href="index.html" data-i18n="back">Back to the site</a></footer>
+  </body>
+</html>

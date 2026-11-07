@@ -14,6 +14,9 @@
       titleHtml: 'Stuff I’ve made<br /><span class="accent-text">and kept useful.</span>',
       lede: 'Things I’m learning by making.',
       footer: '© 2026 mrzsomi',
+      footerPrivacy: 'Privacy & cookies',
+      footerTerms: 'Terms / ÁSZF',
+      footerSla: 'SLA',
       loading: 'Loading projects…',
       error: 'Projects could not be loaded.',
       filterAll: 'All',
@@ -32,6 +35,9 @@
       titleHtml: 'Válogatott projektek',
       lede: 'Amin keresztül tanulok.',
       footer: '© 2026 mrzsomi',
+      footerPrivacy: 'Adatvédelem és sütik',
+      footerTerms: 'Feltételek / ÁSZF',
+      footerSla: 'SLA',
       loading: 'Projektek betöltése…',
       error: 'Nem sikerült betölteni a projekteket.',
       filterAll: 'Összes',
@@ -57,6 +63,9 @@
     document.getElementById('archive-title').innerHTML = copy.titleHtml;
     document.getElementById('archive-lede').textContent = copy.lede;
     document.getElementById('footer-text').textContent = copy.footer;
+    document.getElementById('footer-privacy').textContent = copy.footerPrivacy;
+    document.getElementById('footer-terms').textContent = copy.footerTerms;
+    document.getElementById('footer-sla').textContent = copy.footerSla;
     document.getElementById('lang-toggle').setAttribute('aria-label', language === 'hu' ? copy.ariaLanguage : 'Switch language');
     document.getElementById('theme-toggle').setAttribute('aria-label', language === 'hu' ? copy.ariaTheme : 'Toggle theme');
   }

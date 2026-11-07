@@ -64,6 +64,10 @@
       form_wait: "Please wait a moment before sending another message.",
       form_slow_down: "Please complete the form before sending.",
       form_error: "Something went wrong. Please try again.",
+      form_consent: 'I have read the <a href="legal.html#privacy">privacy notice</a> and agree to the processing of this message.',
+      footer_privacy: "Privacy & cookies",
+      footer_terms: "Terms / ÁSZF",
+      footer_sla: "SLA",
       footer_text: "© 2026 mrzsomi",
       nav_about: "About",
       nav_skills: "Tools",
@@ -155,6 +159,10 @@
       form_wait: "Már küldtél egy üzenetet. Próbáld meg később.",
       form_slow_down: "Küldés előtt töltsd ki az űrlap minden mezőjét.",
       form_error: "Nem sikerült elküldeni. Próbáld meg újra.",
+      form_consent: 'Elolvastam az <a href="legal.html#privacy">adatkezelési tájékoztatót</a>, és hozzájárulok az üzenetem kezeléséhez.',
+      footer_privacy: "Adatvédelem és sütik",
+      footer_terms: "Feltételek / ÁSZF",
+      footer_sla: "SLA",
       footer_text: "© 2026 mrzsomi",
       nav_about: "Rólam",
       nav_skills: "Eszközök",
@@ -219,6 +227,7 @@
     renderSkills();
     loadProjects();
     fetchGitHubActivity();
+    window.dispatchEvent(new CustomEvent('languagechange', { detail: lang }));
   }
 
   // ── Theme ──
