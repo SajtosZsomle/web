@@ -5,13 +5,13 @@
       about_tag: "Hi, I’m mrzsomi",
       hero_title: 'I build across the stack, <span class="accent-text">from sensors to services.</span>',
       hero_paragraph: "Firmware, web tools and infrastructure for the things I want to understand and make useful.",
-      hero_index_label: "Current focus",
-      hero_index_intro: "A small, practical selection of what I’m exploring now.",
+      hero_index_label: "Now",
+      hero_index_intro: "A short list of what I’m working on.",
       hero_index_hardware: "Embedded hardware",
       hero_index_hardware_detail: "Sensors, motion and boards",
       hero_index_software: "Useful software",
       hero_index_software_detail: "Firmware, tools and interfaces",
-      hero_index_infra: "Quiet infrastructure",
+      hero_index_infra: "Infrastructure",
       hero_index_infra_detail: "Self-hosting, monitoring and deployment",
       view_projects: "View projects",
       get_in_touch: "Get in touch",
@@ -43,12 +43,12 @@
         "Git / CI/CD"
       ],
       filter_all: "All",
-      projects_tag: "Selected work",
+      projects_tag: "Projects",
       projects_title: "Things I’ve made",
-      projects_lede: "A few builds I keep coming back to.",
+      projects_lede: "Hardware, software and infrastructure projects.",
       view_all_projects: "View all projects",
       activity_tag: "What I’m up to",
-      activity_title: "Recent bits and pieces",
+      activity_title: "Recent activity",
       contact_tag: "Have a project in mind?",
       contact_title: "Let’s talk",
       form_name: "Name",
@@ -63,7 +63,7 @@
       form_wait: "Please wait before sending another message.",
       form_slow_down: "Please take a moment to complete the form.",
       form_error: "Something went wrong. Please try again.",
-      footer_text: "© 2026 mrzsomi · Budapest / online",
+      footer_text: "© 2026 mrzsomi. Budapest / online",
       available: "Building",
       nav_about: "About",
       nav_skills: "Skills",
@@ -88,13 +88,13 @@
       about_tag: "Szia, mrzsomi vagyok",
       hero_title: 'A teljes stackben építek, <span class="accent-text">a szenzortól a szolgáltatásig.</span>',
       hero_paragraph: "Firmware, webes eszközök és infrastruktúra ahhoz, amit meg akarok érteni és hasznossá tenni.",
-      hero_index_label: "Ami most érdekel",
-      hero_index_intro: "Egy rövid, gyakorlatias válogatás abból, amivel mostanában foglalkozom.",
+      hero_index_label: "Most",
+      hero_index_intro: "Röviden arról, amin most dolgozom.",
       hero_index_hardware: "Beágyazott hardver",
       hero_index_hardware_detail: "Szenzorok, mozgatás és áramkörök",
       hero_index_software: "Hasznos szoftver",
       hero_index_software_detail: "Firmware, eszközök és felületek",
-      hero_index_infra: "Csendes infrastruktúra",
+      hero_index_infra: "Infrastruktúra",
       hero_index_infra_detail: "Önüzemeltetés, monitorozás és kiadás",
       get_in_touch: "Írj rám",
       name_origin: "A mrzsomi egy régi magyar Minecraft-felhasználónévből maradt meg.",
@@ -125,12 +125,12 @@
         "Git és CI/CD folyamatok"
       ],
       filter_all: "Összes",
-      projects_tag: "Kiemelt projektek",
+      projects_tag: "Projektek",
       projects_title: "Amiket szívesen mutatok",
-      projects_lede: "Néhány munka, amihez mindig visszatérek.",
+      projects_lede: "Hardveres, szoftveres és infrastruktúra-projektek.",
       view_all_projects: "Minden projekt",
       activity_tag: "Mostanában",
-      activity_title: "Friss történések",
+      activity_title: "Friss aktivitás",
       contact_tag: "Van egy ötleted?",
       contact_title: "Beszéljünk",
       form_name: "Név",
@@ -145,7 +145,7 @@
       form_wait: "Már küldtél egy üzenetet. Próbáld meg később.",
       form_slow_down: "Töltsd ki egy kicsit lassabban az űrlapot.",
       form_error: "Nem sikerült elküldeni. Próbáld meg újra.",
-      footer_text: "© 2026 mrzsomi · Budapest / online",
+      footer_text: "© 2026 mrzsomi. Budapest / online",
       available: "Építek",
       nav_about: "Rólam",
       nav_skills: "Eszköztár",
@@ -274,16 +274,13 @@
       const tagsHtml = (project.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
       const statusLabels = { completed: currentLang === "hu" ? "Elkészült" : "Completed", "in-progress": currentLang === "hu" ? "Folyamatban" : "In progress", ongoing: currentLang === "hu" ? "Folyamatosan alakul" : "Ongoing" };
       const statusHtml = project.status ? `<span class="status">${statusLabels[project.status] || project.status}</span>` : '';
-      const icon = project.tags?.includes('infra') ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v4H4zM4 11h16v4H4zM4 17h16v2H4z"/><path d="M7 7h.01M7 13h.01M7 18h.01"/></svg>' : project.tags?.some(tag => ['web', 'java', 'backend'].includes(tag)) ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8.5 8.5 15.5 15.5"/></svg>';
       item.innerHTML = `
-        <span class="project-icon" aria-hidden="true">${icon}</span>
         <div class="project-info">
           <h3>${project.title}</h3>
           <p>${project.short}</p>
           <div class="project-meta">${statusHtml}${tagsHtml}</div>
         </div>
         <span class="project-status">Featured build</span>
-        <span class="project-arrow" aria-hidden="true">↗</span>
       `;
       item.addEventListener('click', () => {
         document.querySelectorAll('.project-item').forEach(el => el.classList.remove('active'));
@@ -313,11 +310,11 @@
     const links = project.links || (project.github ? { github: project.github } : null);
     if (links) {
       const linkIcons = {
-        github: { icon: '🐙', labelKey: 'link_github', color: '#666666', colorDark: '#a0a0a0', colorRgb: '102, 102, 102', colorRgbDark: '160, 160, 160' },
-        web: { icon: '🌐', labelKey: 'link_web', color: '#4285f4', colorRgb: '66, 133, 244' },
-        discord: { icon: '💬', labelKey: 'link_discord', color: '#5865f2', colorRgb: '88, 101, 242' },
-        documentation: { icon: '📚', labelKey: 'link_documentation', color: '#0969da', colorRgb: '9, 105, 218' },
-        'live-demo': { icon: '🎯', labelKey: 'link_live_demo', color: '#22c55e', colorRgb: '34, 197, 94' }
+        github: { labelKey: 'link_github', color: '#666666', colorDark: '#a0a0a0', colorRgb: '102, 102, 102', colorRgbDark: '160, 160, 160' },
+        web: { labelKey: 'link_web', color: '#4285f4', colorRgb: '66, 133, 244' },
+        discord: { labelKey: 'link_discord', color: '#5865f2', colorRgb: '88, 101, 242' },
+        documentation: { labelKey: 'link_documentation', color: '#0969da', colorRgb: '9, 105, 218' },
+        'live-demo': { labelKey: 'link_live_demo', color: '#22c55e', colorRgb: '34, 197, 94' }
       };
       
       const activeLinks = Object.entries(links).filter(([key, value]) => value !== false && value !== null);
@@ -330,10 +327,7 @@
             const color = key === 'github' && isDarkTheme ? linkInfo.colorDark : linkInfo.color;
             const colorRgb = key === 'github' && isDarkTheme ? linkInfo.colorRgbDark : linkInfo.colorRgb;
             const label = translations[currentLang][linkInfo.labelKey] || linkInfo.labelKey;
-            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${color}; --platform-color-rgb: ${colorRgb};" title="${label}">
-              <span class="link-icon">${linkInfo.icon}</span>
-              <span class="link-label">${label}</span>
-            </a>`;
+            html += `<a href="${url}" target="_blank" rel="noopener" class="project-link" data-platform="${key}" style="--platform-color: ${color}; --platform-color-rgb: ${colorRgb};" title="${label}">${label}</a>`;
           }
         });
         html += '</div>';
@@ -353,7 +347,7 @@
       renderActivity(events.slice(0, 6));
     } catch {
       const t = translations[currentLang];
-      document.getElementById("activity-feed").innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github} ↗</a></div>`;
+      document.getElementById("activity-feed").innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github}</a></div>`;
     }
   }
   function renderActivity(events) {
@@ -361,7 +355,7 @@
     feed.innerHTML = "";
     if (!events.length) {
       const t = translations[currentLang];
-      feed.innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github} ↗</a></div>`;
+      feed.innerHTML = `<div class="loader">${t.no_activity} <a href="https://github.com/SajtosZsomle" target="_blank" rel="noopener">${t.view_github}</a></div>`;
       return;
     }
     events.forEach(e => {
@@ -378,7 +372,7 @@
       else if (e.type === "PullRequestEvent") action = currentLang === "hu" ? `${e.payload.action} pull request` : `${e.payload.action} pull request`;
       else if (e.type === "WatchEvent") action = currentLang === "hu" ? "csillagozta" : "starred";
       else action = e.type;
-      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt="" width="34" height="34"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
+      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt="" width="34" height="34"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} / ${date}</small></div>`;
       feed.appendChild(item);
     });
   }

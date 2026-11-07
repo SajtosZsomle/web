@@ -13,7 +13,7 @@
       tag: 'Project archive',
       titleHtml: 'Things I build<br /><span class="accent-text">and learn from.</span>',
       lede: 'Hardware, code, servers, and the experiments between them.',
-      footer: '© 2026 mrzsomi · Budapest / online',
+      footer: '© 2026 mrzsomi. Budapest / online',
       loading: 'Loading projects…',
       error: 'Projects could not be loaded.',
       filterAll: 'All',
@@ -29,7 +29,7 @@
       tag: 'Projektjeim',
       titleHtml: 'Amiket építek<br /><span class="accent-text">és amiből tanulok.</span>',
       lede: 'Hardver, kód, szerverek és a közben felmerülő kísérletek.',
-      footer: '© 2026 mrzsomi · Budapest / online',
+      footer: '© 2026 mrzsomi. Budapest / online',
       loading: 'Projektek betöltése…',
       error: 'Nem sikerült betölteni a projekteket.',
       filterAll: 'Összes',
@@ -65,23 +65,16 @@
     load();
   });
 
-  function iconFor(project) {
-    if (project.tags.includes('infra')) return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v4H4zM4 11h16v4H4zM4 17h16v2H4z"/><path d="M7 7h.01M7 13h.01M7 18h.01"/></svg>';
-    if (project.tags.some(tag => ['web', 'java', 'backend'].includes(tag))) return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>';
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8.5 8.5 15.5 15.5"/></svg>';
-  }
-
   function render(tag = 'all') {
     const visible = tag === 'all' ? projects : projects.filter(project => project.tags.includes(tag));
     const copy = pageCopy[language];
     grid.innerHTML = visible.map(project => `
       <article class="archive-card">
-        <div class="archive-icon" aria-hidden="true">${iconFor(project)}</div>
         <div class="archive-card-top"><span>${copy.status[project.status] || project.status || ''}</span><span>${copy.tags[project.tags[0]] || project.tags[0] || ''}</span></div>
         <h2>${project.title}</h2>
         <p>${project.short}</p>
         <details><summary>${copy.note}</summary><p>${project.full || project.short}</p></details>
-        <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${copy.links[name] || name} ↗</a>`).join('')}</div>
+        <div class="archive-links">${Object.entries(project.links || {}).filter(([, url]) => url).map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${copy.links[name] || name}</a>`).join('')}</div>
       </article>`).join('');
   }
 
