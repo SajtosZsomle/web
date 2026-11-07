@@ -388,7 +388,7 @@
       web: 'assets/img/illustrations/code-window.svg'
     };
     const imageKey = project.tags?.includes('infra') ? 'infra' : project.tags?.some(tag => ['web', 'java', 'backend'].includes(tag)) ? 'web' : project.tags?.some(tag => ['arduino', 'esp32', 'pcb', 'cnc', 'workshop', 'diy'].includes(tag)) ? 'hardware' : 'software';
-    html = `<img class="project-image" src="${projectImages[imageKey]}" alt="" loading="lazy" />` + html;
+    html = `<img class="project-image" src="${projectImages[imageKey]}" alt="" width="800" height="360" loading="lazy" />` + html;
     
     // Render links if available
     const links = project.links || (project.github ? { github: project.github } : null);
@@ -459,7 +459,7 @@
       else if (e.type === "PullRequestEvent") action = currentLang === "hu" ? `${e.payload.action} pull request` : `${e.payload.action} pull request`;
       else if (e.type === "WatchEvent") action = currentLang === "hu" ? "csillagozta" : "starred";
       else action = e.type;
-      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt=""><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
+      item.innerHTML = `<img class="activity-avatar" src="${avatar}" alt="" width="34" height="34"><div class="activity-content"><p><strong>${repo}</strong>: ${action}</p><small>${type} · ${date}</small></div>`;
       feed.appendChild(item);
     });
   }

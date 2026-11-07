@@ -9,7 +9,7 @@
     <meta name="author" content="mrzsomi" />
     <link rel="canonical" href="https://mrzsomi.top/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#ff8a3d" />
+    <meta name="theme-color" content="#2f66d0" />
     <meta name="copyrighted-site-verification" content="316f1e851e704216" />
 
     <!-- Open Graph / Facebook -->
@@ -59,7 +59,7 @@
         display: flex; align-items: center; gap: 0;
       }
       #preloader.pre-dark .pre-wordmark { color: #f0f0f0; }
-      .pre-wordmark .pre-dot { color: #ff8a3d; }
+      .pre-wordmark .pre-dot { color: #2f66d0; }
       .pre-track {
         width: 90px; height: 2px;
         background: #e5e7eb; border-radius: 10px; overflow: hidden;
@@ -67,7 +67,7 @@
       #preloader.pre-dark .pre-track { background: #2a2a2a; }
       .pre-thumb {
         height: 100%; width: 42%;
-        background: linear-gradient(90deg, #ff8a3d, #ff6b2b);
+        background: #2f66d0;
         border-radius: 10px;
         animation: pre-sweep 1s ease-in-out infinite;
       }
@@ -112,6 +112,7 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Preloader -->
     <div id="preloader">
       <div class="pre-wordmark">mrzsomi<span class="pre-dot">.top</span></div>
@@ -173,7 +174,7 @@
       </div>
     </nav>
 
-    <main class="container">
+    <main id="main-content" class="container">
       <section id="about" class="hero">
         <div class="hero-grid">
           <div class="hero-content">
@@ -188,7 +189,7 @@
           </div>
           <div class="hero-visual">
             <figure class="hero-photo">
-              <img src="assets/img/illustrations/circuit-board.svg" alt="Illustration of a circuit board" loading="eager" />
+              <img src="assets/img/illustrations/circuit-board.svg" alt="Illustration of a circuit board" width="800" height="600" loading="eager" />
               <figcaption>hardware / software / curiosity</figcaption>
             </figure>
             <div class="hero-terminal" aria-hidden="true">
@@ -241,19 +242,19 @@
           <form id="contact-form" class="contact-form" action="https://formspree.io/f/xpqevgod" method="POST">
             <div class="form-group">
               <label for="name" data-i18n="form_name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" data-i18n-placeholder="form_name_placeholder" required />
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" data-i18n-placeholder="form_name_placeholder" required />
             </div>
             <div class="form-group">
               <label for="subject" data-i18n="form_subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="What's this about?" data-i18n-placeholder="form_subject_placeholder" required />
+              <input type="text" id="subject" name="subject" autocomplete="off" placeholder="What's this about?" data-i18n-placeholder="form_subject_placeholder" required />
             </div>
             <div class="form-group">
               <label for="email" data-i18n="form_email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" data-i18n-placeholder="form_email_placeholder" required />
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" data-i18n-placeholder="form_email_placeholder" required />
             </div>
             <div class="form-group">
               <label for="message" data-i18n="form_message">Message</label>
-              <textarea id="message" name="message" placeholder="Your message…" data-i18n-placeholder="form_message_placeholder" required></textarea>
+              <textarea id="message" name="message" autocomplete="off" placeholder="Your message…" data-i18n-placeholder="form_message_placeholder" required></textarea>
             </div>
             <div class="form-trap" aria-hidden="true">
               <label for="website">Website</label>
@@ -262,7 +263,7 @@
             <input type="hidden" name="_subject" value="mrzsomi.top Contact Form" />
             <div class="form-row">
               <button type="submit" class="btn btn-primary" id="submit-btn" data-i18n="form_submit">Send message</button>
-              <span id="form-status" class="form-status"></span>
+              <span id="form-status" class="form-status" aria-live="polite"></span>
             </div>
           </form>
           <div class="social-links">
